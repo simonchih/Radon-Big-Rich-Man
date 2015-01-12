@@ -9,6 +9,16 @@ public class mcanvas extends JComponent {
 	int right_x = 650;
 	int up_y = 110;
 	int down_y = 650;
+	int color_long = 59;
+	int color_small = 20;
+	int down_string_x_start = 594;
+	int left_string_x_start = 20;
+	int up_string_x_start = 114;
+	int right_string_x_start = 690;
+	int up_down_d = 20;
+	int right_left_d = 15;
+	int left_string_y = 609;
+	int right_string_y = 129;
 	public Game_Map game_data = new Game_Map();
 	
 	public mcanvas(Game_Map gm) {
@@ -51,41 +61,41 @@ public class mcanvas extends JComponent {
 				// Down
 				if(i>=1 && i<=9){
 					g.setColor(Color.black);
-					g.drawLine(650-60*(i-1), 671, 650-60*i, 671);
-					g.drawString(game_data.name[i], 594-60*(i-1), 690);
-					g.drawString("$"+game_data.value[i], 594-60*(i-1), 710);
+					g.drawLine(right_x-block_size*(i-1), down_y+color_small+1, right_x-block_size*i, down_y+color_small+1);
+					g.drawString(game_data.name[i], down_string_x_start-block_size*(i-1), down_y+color_small+up_down_d);
+					g.drawString("$"+game_data.value[i], down_string_x_start-block_size*(i-1), down_y+color_small+2*up_down_d);
 					g.setColor(game_data.color[i]);
-					g.fillRect(590-60*(i-1)+1, 651, 59, 20);
+					g.fillRect(right_x-block_size*i+1, down_y+1, color_long, color_small);
 				}
 				
 				// Left
 				else if(i>=11 && i<=19){
 					g.setColor(Color.black);
-					g.drawLine(89, 650-60*(i-11), 89, 650-60*(i-10));
-					g.drawString(game_data.name[i], 20, 609-60*(i-11));
-					g.drawString("$"+game_data.value[i], 20, 624-60*(i-11));
+					g.drawLine(left_x-color_small-1, down_y-block_size*(i-11), left_x-color_small-1, down_y-block_size*(i-10));
+					g.drawString(game_data.name[i], left_string_x_start, left_string_y-block_size*(i-11));
+					g.drawString("$"+game_data.value[i], left_string_x_start, left_string_y+right_left_d-block_size*(i-11));
 					g.setColor(game_data.color[i]);
-					g.fillRect(90, 590-60*(i-11)+1, 20, 59);					
+					g.fillRect(left_x-color_small, down_y-block_size*(i-10)+1, color_small, color_long);					
 				}
 				
 				// Up
 				else if(i>=21 && i<=29){
 					g.setColor(Color.black);
-					g.drawLine(110+60*(i-21), 89, 110+60*(i-20), 89);
-					g.drawString(game_data.name[i], 114+60*(i-21),70);
-					g.drawString("$"+game_data.value[i], 114+60*(i-21),50);
+					g.drawLine(left_x+block_size*(i-21), up_y-color_small-1, left_x+block_size*(i-20), up_y-color_small-1);
+					g.drawString(game_data.name[i], up_string_x_start+block_size*(i-21),up_y-color_small-up_down_d);
+					g.drawString("$"+game_data.value[i], up_string_x_start+block_size*(i-21),up_y-color_small-2*up_down_d);
 					g.setColor(game_data.color[i]);
-					g.fillRect(110+60*(i-21)+1, 90, 59, 20);
+					g.fillRect(left_x+block_size*(i-21)+1, up_y-color_small, color_long, color_small);
 				}
 				
 				// Right
 				else if(i>=31 && i<=39){
 					g.setColor(Color.black);
-					g.drawLine(671, 110+60*(i-31), 671, 110+60*(i-30));
-					g.drawString(game_data.name[i], 690, 129+60*(i-31));
-					g.drawString("$"+game_data.value[i], 690, 144+60*(i-31));
+					g.drawLine(right_x+color_small+1, up_y+block_size*(i-31), right_x+color_small+1, up_y+block_size*(i-30));
+					g.drawString(game_data.name[i], right_string_x_start, right_string_y+block_size*(i-31));
+					g.drawString("$"+game_data.value[i], right_string_x_start, right_string_y+right_left_d+block_size*(i-31));
 					g.setColor(game_data.color[i]);
-					g.fillRect(651, 110+60*(i-31)+1, 20, 59);
+					g.fillRect(right_x+1, up_y+block_size*(i-31)+1, color_small, color_long);
 				}
 				
 			}

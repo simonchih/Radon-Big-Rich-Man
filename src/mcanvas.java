@@ -3,6 +3,12 @@ import javax.swing.*;
 
 public class mcanvas extends JComponent {
 	private static final long serialVersionUID = 1;
+	int max_size = 760;
+	int block_size = 60;
+	int left_x = 110;
+	int right_x = 650;
+	int up_y = 110;
+	int down_y = 650;
 	public Game_Map game_data = new Game_Map();
 	
 	public mcanvas(Game_Map gm) {
@@ -14,32 +20,32 @@ public class mcanvas extends JComponent {
 		
 		super.paintComponent(g);
 
-		g.drawLine(110, 0, 110, 760);
-		g.drawLine(650, 0, 650, 760);
-		g.drawLine(0, 110, 760, 110);
-		g.drawLine(0, 650, 760, 650);
+		g.drawLine(left_x, 0, left_x, max_size);
+		g.drawLine(right_x, 0, right_x, max_size);
+		g.drawLine(0, up_y, max_size, up_y);
+		g.drawLine(0, down_y, max_size, down_y);
 		
 		//Up
-		for(i=170;i<650;i+=60){
-			g.drawLine(i, 0, i, 110);
+		for(i=left_x+block_size;i<right_x;i+=block_size){
+			g.drawLine(i, 0, i, up_y);
 		}
 		
 		//Down
-		for(i=170;i<650;i+=60){
-			g.drawLine(i, 650, i, 760);
+		for(i=left_x+block_size;i<right_x;i+=block_size){
+			g.drawLine(i, down_y, i, max_size);
 		}
 		
 		//Left
-		for(i=170;i<650;i+=60){
-			g.drawLine(0, i, 110, i);
+		for(i=up_y+block_size;i<down_y;i+=block_size){
+			g.drawLine(0, i, left_x, i);
 		}
 		
 		//Right
-		for(i=170;i<650;i+=60){
-			g.drawLine(650, i, 760, i);
+		for(i=up_y+block_size;i<down_y;i+=block_size){
+			g.drawLine(right_x, i, max_size, i);
 		}
 		
-		for(i=1;i<40;i++)
+		for(i=1;i<game_data.Size;i++)
 		{
 			if(0 == game_data.type[i]){
 				// Down

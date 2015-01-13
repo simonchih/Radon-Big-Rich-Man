@@ -103,7 +103,7 @@ public class mcanvas extends JComponent {
 	}
 
 	public Dimension getPreferredSize() {
-		return new Dimension(760, 760);
+		return new Dimension(max_size, max_size);
 	}
 
 	public Dimension getMaximumSize() {

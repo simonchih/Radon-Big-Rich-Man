@@ -18,18 +18,30 @@ public class game {
 	public int p1_type;
 	public int p1_icon;
 	public long p1_money;
+	public int p1_x_now;
+	public int p1_y_now;
+	
 	public String p2_name;
 	public int p2_type;
 	public int p2_icon;
 	public long p2_money;
+	public int p2_x_now;
+	public int p2_y_now;
+	
 	public String p3_name;
 	public int p3_type;
 	public int p3_icon;
 	public long p3_money;
+	public int p3_x_now;
+	public int p3_y_now;
+	
 	public String p4_name;
 	public int p4_type;
 	public int p4_icon;
 	public long p4_money;
+	public int p4_x_now;
+	public int p4_y_now;
+	
 	public static void main(String[] args) {
 		game Game = new game();
 		JFrame frame = new JFrame("Random Big Rich Man");

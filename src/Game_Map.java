@@ -9,6 +9,14 @@ public class Game_Map {
 	//type 9, NOT assign
 	int[] type = new int[Size];
 	int[] id = new int[Size];
+	int[] p1_x = new int[Size];
+	int[] p1_y = new int[Size];
+	int[] p2_x = new int[Size];
+	int[] p2_y = new int[Size];
+	int[] p3_x = new int[Size];
+	int[] p3_y = new int[Size];
+	int[] p4_x = new int[Size];
+	int[] p4_y = new int[Size];
 	
 	//owner 0, No one
 	//owner 1, player 1...

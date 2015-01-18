@@ -359,19 +359,20 @@ public class Main_Map extends JFrame{
 		}
 		
 		//set player p_x, p_y
-		Game.p1_x_now = ini_map.p1_x[0];
-		Game.p1_y_now = ini_map.p1_y[0];
-		Game.p2_x_now = ini_map.p2_x[0];
-		Game.p2_y_now = ini_map.p2_y[0];
-		Game.p3_x_now = ini_map.p3_x[0];
-		Game.p3_y_now = ini_map.p3_y[0];
-		Game.p4_x_now = ini_map.p4_x[0];
-		Game.p4_y_now = ini_map.p4_y[0];
+		Game.p1_x_now = ini_map.p1_x[Game.p1_id];
+		Game.p1_y_now = ini_map.p1_y[Game.p1_id];
+		Game.p2_x_now = ini_map.p2_x[Game.p2_id];
+		Game.p2_y_now = ini_map.p2_y[Game.p2_id];
+		Game.p3_x_now = ini_map.p3_x[Game.p3_id];
+		Game.p3_y_now = ini_map.p3_y[Game.p3_id];
+		Game.p4_x_now = ini_map.p4_x[Game.p4_id];
+		Game.p4_y_now = ini_map.p4_y[Game.p4_id];
 		
 		this.getContentPane().add(canvas);
 		this.getContentPane().setBackground(new Color(233,234,205));
 		this.setVisible(true);
 		game_loop = new Game_Loop(Game, canvas, ini_map);
+		game_loop.setPriority(Thread.MAX_PRIORITY);
 		game_loop.start();
 	}
 }

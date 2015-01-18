@@ -1,21 +1,21 @@
 import javax.swing.*;
-
 import java.awt.Color;
+//import java.awt.event.*;
 import java.util.*;
 
 
-public class Main_Map {
-	public JFrame game_map = new JFrame("Random Big Rich Man");
+public class Main_Map extends JFrame{
+	private static final long serialVersionUID = 1;
+	
 	public Game_Map game_data = new Game_Map();
 	public Game_Map ini_map = new Game_Map();
+	public Game_Loop game_loop;
 	public Main_Map(){
-		game_map.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Random Big Rich Man");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	public Game_Map ini_game_map(Game_Map gdata){
-		game_map.setResizable(false);
+		this.setResizable(false);
 		Game_Map ini_map = new Game_Map();
 		Color land_color[] = new Color[]{Color.red, Color.cyan, Color.blue, Color.green, Color.orange, Color.pink, Color.yellow, Color.gray};
 		int i, j, index;
@@ -207,16 +207,107 @@ public class Main_Map {
 		return ini_map;
 	}
 	public void generate_map(game Game){
-		game_map.getContentPane().setLayout(null);
-		game_map.setSize(767, 790);
-		game_map.setResizable(false);
+		int i;
+		
+		this.getContentPane().setLayout(null);
+		this.setSize(767, 790);
+		this.setResizable(false);
 		
 		ini_map = ini_game_map(game_data);
 		
-		mcanvas canvas = new mcanvas(ini_map);
-		canvas.setBounds(0, 0, 760, 760);
-		game_map.getContentPane().add(canvas);
-		game_map.getContentPane().setBackground(new Color(233,234,205));
-		game_map.setVisible(true);
+		Game.p1_x_now = ini_map.p1_x[0];
+		Game.p1_y_now = ini_map.p1_y[0];
+		Game.p2_x_now = ini_map.p2_x[0];
+		Game.p2_y_now = ini_map.p2_y[0];
+		Game.p3_x_now = ini_map.p3_x[0];
+		Game.p3_y_now = ini_map.p3_y[0];
+		Game.p4_x_now = ini_map.p4_x[0];
+		Game.p4_y_now = ini_map.p4_y[0];
+		
+		mcanvas canvas = new mcanvas(ini_map, Game);
+		canvas.setBounds(0, 0, canvas.max_size, canvas.max_size);
+		
+		//ini_map p_x[0], p_y[0]
+		ini_map.p1_x[0] = canvas.right_x + canvas.color_small + canvas.p_gap;
+		ini_map.p1_y[0] = canvas.down_y + canvas.color_small + canvas.p_gap;
+				
+		ini_map.p2_x[0] = canvas.right_x + canvas.color_small + canvas.p_gap + Game.p1_pawn.getIconWidth();
+		ini_map.p2_y[0] = canvas.down_y + canvas.color_small + canvas.p_gap + Game.p1_pawn.getIconHeight();
+				
+		ini_map.p3_x[0] = canvas.right_x + canvas.color_small + canvas.p_gap + 2*Game.p1_pawn.getIconWidth();
+		ini_map.p3_y[0] = canvas.down_y + canvas.color_small + canvas.p_gap + 2*Game.p1_pawn.getIconHeight();
+				
+		ini_map.p4_x[0] = canvas.right_x + canvas.color_small + canvas.p_gap + 3*Game.p1_pawn.getIconWidth();
+		ini_map.p4_y[0] = canvas.down_y + canvas.color_small + canvas.p_gap + 3*Game.p1_pawn.getIconHeight();
+		
+		//ini_map p_x[1], p_y[1]
+		ini_map.p1_x[1] = canvas.right_x - canvas.block_size/2 - Game.p1_pawn.getIconWidth()/2;
+		ini_map.p1_y[1] = canvas.down_y + canvas.color_small + canvas.p_gap;
+		ini_map.p2_x[1] = canvas.right_x - canvas.block_size/2 - Game.p2_pawn.getIconWidth()/2;
+		ini_map.p2_y[1] = canvas.down_y + canvas.color_small + canvas.p_gap + Game.p1_pawn.getIconHeight();
+		ini_map.p3_x[1] = canvas.right_x - canvas.block_size/2 - Game.p3_pawn.getIconWidth()/2;
+		ini_map.p3_y[1] = canvas.down_y + canvas.color_small + canvas.p_gap + 2*Game.p1_pawn.getIconHeight();
+		ini_map.p4_x[1] = canvas.right_x - canvas.block_size/2 - Game.p4_pawn.getIconWidth()/2;
+		ini_map.p4_y[1] = canvas.down_y + canvas.color_small + canvas.p_gap + + 3*Game.p1_pawn.getIconHeight();
+		
+		//ini_map p_x[2~9], p_y[2~9]
+		for(i=2; i<10; i++){
+			ini_map.p1_x[i] = ini_map.p1_x[i-1] - canvas.block_size;
+			ini_map.p1_y[i] = ini_map.p1_y[i-1];
+			ini_map.p2_x[i] = ini_map.p2_x[i-1] - canvas.block_size;
+			ini_map.p2_y[i] = ini_map.p2_y[i-1];
+			ini_map.p3_x[i] = ini_map.p3_x[i-1] - canvas.block_size;
+			ini_map.p3_y[i] = ini_map.p3_y[i-1];
+			ini_map.p4_x[i] = ini_map.p4_x[i-1] - canvas.block_size;
+			ini_map.p4_y[i] = ini_map.p4_y[i-1];
+		}
+		
+		//ini_map p_x[10], p_y[10]
+		ini_map.p1_x[10] = canvas.left_x - canvas.color_small - canvas.p_gap - Game.p1_pawn.getIconWidth();
+		ini_map.p1_y[10] = ini_map.p1_y[9];
+		ini_map.p2_x[10] = canvas.left_x - canvas.color_small - canvas.p_gap - 2*Game.p1_pawn.getIconWidth();
+		ini_map.p2_y[10] = ini_map.p2_y[9];
+		ini_map.p3_x[10] = canvas.left_x - canvas.color_small - canvas.p_gap - 3*Game.p1_pawn.getIconWidth();
+		ini_map.p3_y[10] = ini_map.p3_y[9];
+		ini_map.p4_x[10] = canvas.left_x - canvas.color_small - canvas.p_gap - 4*Game.p1_pawn.getIconWidth();
+		ini_map.p4_y[10] = ini_map.p4_y[9];
+		
+		//ini_map p_x[11], p_y[11]
+		ini_map.p1_x[11] = ini_map.p1_x[10];
+		ini_map.p1_y[11] = canvas.down_y - canvas.block_size/2 - Game.p1_pawn.getIconHeight()/2;
+		ini_map.p2_x[11] = ini_map.p2_x[10];
+		ini_map.p2_y[11] = canvas.down_y - canvas.block_size/2 - Game.p2_pawn.getIconHeight()/2;
+		ini_map.p3_x[11] = ini_map.p3_x[10];
+		ini_map.p3_y[11] = canvas.down_y - canvas.block_size/2 - Game.p3_pawn.getIconHeight()/2;
+		ini_map.p4_x[11] = ini_map.p4_x[10];
+		ini_map.p4_y[11] = canvas.down_y - canvas.block_size/2 - Game.p4_pawn.getIconHeight()/2;
+		
+		//ini_map p_x[12~19], p_y[12~19]
+		for(i=12; i<20; i++){
+			ini_map.p1_x[i] = ini_map.p1_x[i-1];
+			ini_map.p1_y[i] = ini_map.p1_y[i-1] - canvas.block_size;
+			ini_map.p2_x[i] = ini_map.p2_x[i-1];
+			ini_map.p2_y[i] = ini_map.p2_y[i-1] - canvas.block_size;
+			ini_map.p3_x[i] = ini_map.p3_x[i-1];
+			ini_map.p3_y[i] = ini_map.p3_y[i-1] - canvas.block_size;
+			ini_map.p4_x[i] = ini_map.p4_x[i-1];
+			ini_map.p4_y[i] = ini_map.p4_y[i-1] - canvas.block_size;
+		}
+		
+		//set player p_x, p_y
+		Game.p1_x_now = ini_map.p1_x[0];
+		Game.p1_y_now = ini_map.p1_y[0];
+		Game.p2_x_now = ini_map.p2_x[0];
+		Game.p2_y_now = ini_map.p2_y[0];
+		Game.p3_x_now = ini_map.p3_x[0];
+		Game.p3_y_now = ini_map.p3_y[0];
+		Game.p4_x_now = ini_map.p4_x[0];
+		Game.p4_y_now = ini_map.p4_y[0];
+		
+		this.getContentPane().add(canvas);
+		this.getContentPane().setBackground(new Color(233,234,205));
+		this.setVisible(true);
+		game_loop = new Game_Loop(Game, canvas, ini_map);
+		game_loop.start();
 	}
 }

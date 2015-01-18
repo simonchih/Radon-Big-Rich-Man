@@ -19,10 +19,15 @@ public class mcanvas extends JComponent {
 	int right_left_d = 15;
 	int left_string_y = 609;
 	int right_string_y = 129;
-	public Game_Map game_data = new Game_Map();
 	
-	public mcanvas(Game_Map gm) {
+	int p_gap = 5;
+	
+	public Game_Map game_data = new Game_Map();
+	public game mygame = new game();
+	
+	public mcanvas(Game_Map gm, game Game) {
 		game_data = gm;
+		mygame = Game;
 	}
 
 	public void paintComponent(Graphics g) {
@@ -98,8 +103,14 @@ public class mcanvas extends JComponent {
 					g.fillRect(right_x+1, up_y+block_size*(i-31)+1, color_small, color_long);
 				}
 				
-			}
-		}
+			}//end if
+		}//end for
+		
+		//draw pawn at p_x, p_y;
+		g.drawImage(mygame.p1_pawn.getImage(), mygame.p1_x_now, mygame.p1_y_now, mygame.p1_pawn.getIconWidth(), mygame.p1_pawn.getIconWidth(), null);
+		g.drawImage(mygame.p2_pawn.getImage(), mygame.p2_x_now, mygame.p2_y_now, mygame.p2_pawn.getIconWidth(), mygame.p2_pawn.getIconWidth(), null);
+		g.drawImage(mygame.p3_pawn.getImage(), mygame.p3_x_now, mygame.p3_y_now, mygame.p3_pawn.getIconWidth(), mygame.p3_pawn.getIconWidth(), null);
+		g.drawImage(mygame.p4_pawn.getImage(), mygame.p4_x_now, mygame.p4_y_now, mygame.p4_pawn.getIconWidth(), mygame.p4_pawn.getIconWidth(), null);
 	}
 
 	public Dimension getPreferredSize() {

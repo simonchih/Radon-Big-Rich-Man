@@ -68,9 +68,13 @@ public class Game_Setting {
 		JButton btnNext = new JButton("Next");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
+				ImageIcon parray[] = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
 				Game.p1_name = dtrpnPlayer.getText();
 				Game.p1_type = comboBox.getSelectedIndex();
 				Game.p1_icon = comboBox_1.getSelectedIndex();
+				Game.p1_ic = array[Game.p1_icon];
+				Game.p1_pawn = parray[Game.p1_icon];
 				Game.p1_money = Long.parseLong(editorPane.getText());
 				games1.setVisible(false);
 				gs2.show(games1, Game);

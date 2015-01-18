@@ -77,9 +77,30 @@ public class Game_Setting4 {
 		JButton btnNext = new JButton("Finish");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
+				ImageIcon parray[] = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
+				
+				List<ImageIcon> list = new ArrayList<ImageIcon>(Arrays.asList(array));
+				list.remove(Game.p1_icon);
+				array = list.toArray(new ImageIcon[0]);
+				list.remove(Game.p2_icon);
+				array = list.toArray(new ImageIcon[0]);
+				list.remove(Game.p3_icon);
+				array = list.toArray(new ImageIcon[0]);
+				List<ImageIcon> listp = new ArrayList<ImageIcon>(Arrays.asList(parray));
+				listp.remove(Game.p1_icon);
+				parray = listp.toArray(new ImageIcon[0]);
+				listp.remove(Game.p2_icon);
+				parray = listp.toArray(new ImageIcon[0]);
+				listp.remove(Game.p3_icon);
+				parray = listp.toArray(new ImageIcon[0]);
+				
 				Game.p4_name = dtrpnPlayer.getText();
 				Game.p4_type = comboBox.getSelectedIndex();
 				Game.p4_icon = comboBox_1.getSelectedIndex();
+				Game.p4_ic = array[Game.p4_icon];
+				Game.p4_pawn = parray[Game.p4_icon];
+				
 				Game.p4_money = Long.parseLong(editorPane.getText());
 				games1.setVisible(false);
 				mmap.generate_map(Game);

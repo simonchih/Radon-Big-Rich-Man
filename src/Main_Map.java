@@ -13,6 +13,12 @@ public class Main_Map extends JFrame{
 	public Main_Map(){
 		this.setTitle("Random Big Rich Man");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(767, 790);
+		getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("Roll Dice");
+		btnNewButton.setBounds(488, 601, 87, 23);
+		getContentPane().add(btnNewButton);
 	}
 	public Game_Map ini_game_map(Game_Map gdata){
 		this.setResizable(false);
@@ -210,7 +216,6 @@ public class Main_Map extends JFrame{
 		int i;
 		
 		this.getContentPane().setLayout(null);
-		this.setSize(767, 790);
 		this.setResizable(false);
 		
 		ini_map = ini_game_map(game_data);

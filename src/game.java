@@ -1,5 +1,7 @@
 import java.awt.*;
+
 import javax.swing.*;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -23,32 +25,11 @@ public class game {
 	public ImageIcon imagep7 = new ImageIcon(game.class.getResource("/Image/pawn7.gif"));
 	public ImageIcon imagep8 = new ImageIcon(game.class.getResource("/Image/pawn8.gif"));
 	
-	public ImageIcon idice1_2 = new ImageIcon(game.class.getResource("/Image/die-1+2.gif"));
-	public ImageIcon idice1_3 = new ImageIcon(game.class.getResource("/Image/die-1+3.gif"));
-	public ImageIcon idice1_4 = new ImageIcon(game.class.getResource("/Image/die-1+4.gif"));
-	public ImageIcon idice1_5 = new ImageIcon(game.class.getResource("/Image/die-1+5.gif"));
-	public ImageIcon idice2_1 = new ImageIcon(game.class.getResource("/Image/die-2+1.gif"));
-	public ImageIcon idice2_3 = new ImageIcon(game.class.getResource("/Image/die-2+3.gif"));
-	public ImageIcon idice2_4 = new ImageIcon(game.class.getResource("/Image/die-2+4.gif"));
-	public ImageIcon idice2_6 = new ImageIcon(game.class.getResource("/Image/die-2+6.gif"));
-	public ImageIcon idice3_1 = new ImageIcon(game.class.getResource("/Image/die-3+1.gif"));
-	public ImageIcon idice3_2 = new ImageIcon(game.class.getResource("/Image/die-3+2.gif"));
-	public ImageIcon idice3_5 = new ImageIcon(game.class.getResource("/Image/die-3+5.gif"));
-	public ImageIcon idice3_6 = new ImageIcon(game.class.getResource("/Image/die-3+6.gif"));
-	public ImageIcon idice4_1 = new ImageIcon(game.class.getResource("/Image/die-4+1.gif"));
-	public ImageIcon idice4_2 = new ImageIcon(game.class.getResource("/Image/die-4+2.gif"));
-	public ImageIcon idice4_5 = new ImageIcon(game.class.getResource("/Image/die-4+5.gif"));
-	public ImageIcon idice4_6 = new ImageIcon(game.class.getResource("/Image/die-4+6.gif"));
-	public ImageIcon idice5_1 = new ImageIcon(game.class.getResource("/Image/die-5+1.gif"));
-	public ImageIcon idice5_3 = new ImageIcon(game.class.getResource("/Image/die-5+3.gif"));
-	public ImageIcon idice5_4 = new ImageIcon(game.class.getResource("/Image/die-5+4.gif"));
-	public ImageIcon idice5_6 = new ImageIcon(game.class.getResource("/Image/die-5+6.gif"));
-	public ImageIcon idice6_2 = new ImageIcon(game.class.getResource("/Image/die-6+2.gif"));
-	public ImageIcon idice6_3 = new ImageIcon(game.class.getResource("/Image/die-6+3.gif"));
-	public ImageIcon idice6_4 = new ImageIcon(game.class.getResource("/Image/die-6+4.gif"));
-	public ImageIcon idice6_5 = new ImageIcon(game.class.getResource("/Image/die-6+5.gif"));
+	public JButton btnNewButton = new JButton("Roll Dice");
+	public Dice dice = new Dice();
 	
 	public int turn = 0;//0: player1
+	public boolean move_start = false;
 	
 	public String p1_name;
 	public int p1_type;//0:human, 1:AI, 9:out

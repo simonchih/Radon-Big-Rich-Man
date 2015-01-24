@@ -1,7 +1,10 @@
 import javax.swing.*;
+
 import java.awt.Color;
 //import java.awt.event.*;
 import java.util.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class Main_Map extends JFrame{
@@ -10,15 +13,36 @@ public class Main_Map extends JFrame{
 	public Game_Map game_data = new Game_Map();
 	public Game_Map ini_map = new Game_Map();
 	public Game_Loop game_loop;
-	public Main_Map(){
+	public Main_Map(game Game){
 		this.setTitle("Random Big Rich Man");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(767, 790);
 		getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Roll Dice");
-		btnNewButton.setBounds(488, 601, 87, 23);
-		getContentPane().add(btnNewButton);
+		Game.btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Game.dice.Roll_Dice();
+				Game.move_start = true;
+				if(0 == Game.turn){
+					Game.p1_dest_id = (Game.p1_id + Game.dice.count) % ini_map.Size;
+				}
+				else if(1 == Game.turn){
+					Game.p2_dest_id = (Game.p2_id + Game.dice.count) % ini_map.Size;
+				}
+				else if(2 == Game.turn){
+					Game.p3_dest_id = (Game.p3_id + Game.dice.count) % ini_map.Size;
+				}
+				else if(3 == Game.turn){
+					Game.p4_dest_id = (Game.p4_id + Game.dice.count) % ini_map.Size;
+				}
+				Game.btnNewButton.setEnabled(false);
+				//System.out.println(Game.turn);
+				//System.out.println(Game.p1_id);
+				//System.out.println(Game.p1_dest_id);
+			}
+		});
+		Game.btnNewButton.setBounds(488, 601, 87, 23);
+		getContentPane().add(Game.btnNewButton);
 	}
 	public Game_Map ini_game_map(Game_Map gdata){
 		this.setResizable(false);

@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 
 public class Game_Setting4 {
 	public JFrame games1 = new JFrame("Player4 Setting");
-	public Main_Map mmap = new Main_Map();
+	public Main_Map mmap;
 	public Game_Setting4(){
 		games1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -14,6 +14,8 @@ public class Game_Setting4 {
 	 * @wbp.parser.entryPoint
 	 */
 	public void show(JFrame f, game Game){
+		mmap = new Main_Map(Game);
+		
 		games1.getContentPane().removeAll();
 		games1.setSize(450, 320);
 		games1.getContentPane().setLayout(null);

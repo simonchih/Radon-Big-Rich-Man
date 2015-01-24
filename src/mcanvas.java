@@ -106,11 +106,17 @@ public class mcanvas extends JComponent {
 			}//end if
 		}//end for
 		
+		//draw dice
+		g.drawImage(mygame.dice.idice1.getImage(), mygame.dice.idice1_x, mygame.dice.idice1_y, mygame.dice.idice1.getIconWidth(), mygame.dice.idice1.getIconHeight(), this);
+		g.drawImage(mygame.dice.idice2.getImage(), mygame.dice.idice2_x, mygame.dice.idice2_y, mygame.dice.idice2.getIconWidth(), mygame.dice.idice2.getIconHeight(), this);
+		//System.out.println(mygame.dice.dice1_raw);
+	    //System.out.println(mygame.dice.dice2_raw);
+		
 		//draw pawn at p_x, p_y;
-		g.drawImage(mygame.p1_pawn.getImage(), mygame.p1_x_now, mygame.p1_y_now, mygame.p1_pawn.getIconWidth(), mygame.p1_pawn.getIconWidth(), null);
-		g.drawImage(mygame.p2_pawn.getImage(), mygame.p2_x_now, mygame.p2_y_now, mygame.p2_pawn.getIconWidth(), mygame.p2_pawn.getIconWidth(), null);
-		g.drawImage(mygame.p3_pawn.getImage(), mygame.p3_x_now, mygame.p3_y_now, mygame.p3_pawn.getIconWidth(), mygame.p3_pawn.getIconWidth(), null);
-		g.drawImage(mygame.p4_pawn.getImage(), mygame.p4_x_now, mygame.p4_y_now, mygame.p4_pawn.getIconWidth(), mygame.p4_pawn.getIconWidth(), null);
+		g.drawImage(mygame.p1_pawn.getImage(), mygame.p1_x_now, mygame.p1_y_now, mygame.p1_pawn.getIconWidth(), mygame.p1_pawn.getIconHeight(), null);
+		g.drawImage(mygame.p2_pawn.getImage(), mygame.p2_x_now, mygame.p2_y_now, mygame.p2_pawn.getIconWidth(), mygame.p2_pawn.getIconHeight(), null);
+		g.drawImage(mygame.p3_pawn.getImage(), mygame.p3_x_now, mygame.p3_y_now, mygame.p3_pawn.getIconWidth(), mygame.p3_pawn.getIconHeight(), null);
+		g.drawImage(mygame.p4_pawn.getImage(), mygame.p4_x_now, mygame.p4_y_now, mygame.p4_pawn.getIconWidth(), mygame.p4_pawn.getIconHeight(), null);
 	}
 
 	public Dimension getPreferredSize() {

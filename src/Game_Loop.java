@@ -14,16 +14,52 @@ public class Game_Loop extends Thread{
 		while(player_number(mygame) > 1)
 		{	
 			if(0 == mygame.turn){
-				mygame.turn++;
+				if(9 == mygame.p1_type)mygame.turn++;
+				else if(false == mygame.move_start && 0 == mygame.p1_type){
+					mygame.btnNewButton.setEnabled(true);
+				}
+				else if(1 == mygame.p1_type){
+					mygame.dice.Roll_Dice();
+					mygame.move_start = true;
+					mygame.p1_dest_id = (mygame.p1_id + mygame.dice.count) % game_map.Size;
+				}
 			}
 			else if(1 == mygame.turn){
-				mygame.turn++;
+				if(9 == mygame.p2_type)mygame.turn++;
+				else if(false == mygame.move_start && 0 == mygame.p2_type){
+					mygame.btnNewButton.setEnabled(true);
+				}
+				else if(1 == mygame.p2_type){
+					mygame.dice.Roll_Dice();
+					mygame.move_start = true;
+					mygame.p2_dest_id = (mygame.p2_id + mygame.dice.count) % game_map.Size;
+				}
 			}
 			else if(2 == mygame.turn){
-				mygame.turn++;
+				if(9 == mygame.p3_type)mygame.turn++;
+				else if(false == mygame.move_start && 0 == mygame.p3_type){
+					mygame.btnNewButton.setEnabled(true);
+				}
+				else if(1 == mygame.p3_type){
+					mygame.dice.Roll_Dice();
+					mygame.move_start = true;
+					mygame.p3_dest_id = (mygame.p3_id + mygame.dice.count) % game_map.Size;
+				}
 			}
 			else if(3 == mygame.turn){
-				mygame.turn = 0;
+				if(9 == mygame.p4_type)mygame.turn = 0;
+				else if(false == mygame.move_start && 0 == mygame.p4_type){
+					mygame.btnNewButton.setEnabled(true);
+				}
+				else if(1 == mygame.p4_type){
+					mygame.dice.Roll_Dice();
+					mygame.move_start = true;
+					mygame.p4_dest_id = (mygame.p4_id + mygame.dice.count) % game_map.Size;
+				}
+			}
+			
+			if(true == mygame.move_start){
+				mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
 			}
 			
 			while(mygame.p1_id != mygame.p1_dest_id || mygame.p2_id != mygame.p2_dest_id || mygame.p3_id != mygame.p3_dest_id || mygame.p4_id != mygame.p4_dest_id){
@@ -89,10 +125,26 @@ public class Game_Loop extends Thread{
 						mygame.p4_y_now = mygame.p4_y_now + one_step;
 					}
 				}
-				
+				if(0 == mygame.turn && true == mygame.move_start && mygame.p1_id == mygame.p1_dest_id){
+					mygame.move_start = false;
+					mygame.turn++;
+				}
+				if(1 == mygame.turn && true == mygame.move_start && mygame.p2_id == mygame.p2_dest_id){
+					mygame.move_start = false;
+					mygame.turn++;
+				}
+				if(2 == mygame.turn && true == mygame.move_start && mygame.p3_id == mygame.p3_dest_id){
+					mygame.move_start = false;
+					mygame.turn++;
+				}
+				if(3 == mygame.turn && true == mygame.move_start && mygame.p4_id == mygame.p4_dest_id){
+					mygame.move_start = false;
+					mygame.turn = 0;
+				}
+				//System.out.println(mygame.turn);
 				mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
-			}
-		}
+			}///while(mygame.p1_id != mygame.p1_dest_id ...)
+		}// while(player_number > 1)
 	}
 	public int player_number(game Game){
 		int n = 0;

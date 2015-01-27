@@ -25,6 +25,8 @@ public class game {
 	public ImageIcon imagep7 = new ImageIcon(game.class.getResource("/Image/pawn7.gif"));
 	public ImageIcon imagep8 = new ImageIcon(game.class.getResource("/Image/pawn8.gif"));
 	
+	public ImageIcon iarrow = new ImageIcon(game.class.getResource("/Image/gtkmonop-go-0.png"));
+	
 	public JButton btnNewButton = new JButton("Roll Dice");
 	public Dice dice = new Dice();
 	

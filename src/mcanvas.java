@@ -60,6 +60,9 @@ public class mcanvas extends JComponent {
 			g.drawLine(right_x, i, max_size, i);
 		}
 		
+		// Game Map id=0
+		g.drawImage(mygame.iarrow.getImage(), right_x+(max_size-right_x-mygame.iarrow.getIconWidth())/2, down_y+(max_size-right_x-mygame.iarrow.getIconHeight())/2, mygame.iarrow.getIconWidth(), mygame.iarrow.getIconHeight(), null);
+		
 		for(i=1;i<game_data.Size;i++)
 		{
 			if(0 == game_data.type[i]){

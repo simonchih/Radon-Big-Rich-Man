@@ -107,6 +107,20 @@ public class mcanvas extends JComponent {
 				}
 				
 			}//end if
+			else if(2 == game_data.type[i]){
+				if(i>=1 && i<=9){
+					g.drawImage(mygame.iquestionmark.getImage(), right_x-block_size*i, down_y+color_small+1, mygame.iquestionmark.getIconWidth(), mygame.iquestionmark.getIconHeight(), null);
+				}
+				else if(i>=11 && i<=19){
+					g.drawImage(mygame.iquestionmark_left.getImage(), left_x-color_small-mygame.iquestionmark_left.getIconWidth()-1, down_y-block_size*(i-10), mygame.iquestionmark_left.getIconWidth(), mygame.iquestionmark_left.getIconHeight(), null);
+				}
+				else if(i>=21 && i<=29){
+					g.drawImage(mygame.iquestionmark_up.getImage(), left_x+block_size*(i-21), up_y-color_small-mygame.iquestionmark_up.getIconHeight()-1, mygame.iquestionmark_up.getIconWidth(), mygame.iquestionmark_up.getIconHeight(), null);
+				}
+				else if(i>=31 && i<=39){
+					g.drawImage(mygame.iquestionmark_right.getImage(), right_x+color_small+1, up_y+block_size*(i-31), mygame.iquestionmark_right.getIconWidth(), mygame.iquestionmark_right.getIconHeight(), null);
+				}
+			}
 		}//end for
 		
 		//draw dice

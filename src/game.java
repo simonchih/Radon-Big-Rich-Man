@@ -27,6 +27,11 @@ public class game {
 	
 	public ImageIcon iarrow = new ImageIcon(game.class.getResource("/Image/gtkmonop-go-0.png"));
 	
+	public ImageIcon iquestionmark = new ImageIcon(game.class.getResource("/Image/questionmark_60x79.png"));
+	public ImageIcon iquestionmark_left = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_left.png"));
+	public ImageIcon iquestionmark_right = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_right.png"));
+	public ImageIcon iquestionmark_up = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_up.png"));
+	
 	public JButton btnNewButton = new JButton("Roll Dice");
 	public Dice dice = new Dice();
 	

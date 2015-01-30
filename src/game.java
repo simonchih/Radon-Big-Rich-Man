@@ -26,11 +26,23 @@ public class game {
 	public ImageIcon imagep8 = new ImageIcon(game.class.getResource("/Image/pawn8.gif"));
 	
 	public ImageIcon iarrow = new ImageIcon(game.class.getResource("/Image/gtkmonop-go-0.png"));
+	public ImageIcon ijail = new ImageIcon(game.class.getResource("/Image/jail.jpg"));
+	public ImageIcon iparking = new ImageIcon(game.class.getResource("/Image/Parking.jpg"));
+	public ImageIcon ihospital = new ImageIcon(game.class.getResource("/Image/Hospital.jpg"));
 	
 	public ImageIcon iquestionmark = new ImageIcon(game.class.getResource("/Image/questionmark_60x79.png"));
 	public ImageIcon iquestionmark_left = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_left.png"));
 	public ImageIcon iquestionmark_right = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_right.png"));
 	public ImageIcon iquestionmark_up = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_up.png"));
+	
+	public String s36_1 = "Go";
+	public String s36_2 = "Jail";
+	public String s37_1 = "Go";
+	public String s37_2 = "Hospital";
+	public String s38_1 = "Land";
+	public String s38_2 = "Tax";
+	public String s39_1 = "House";
+	public String s39_2 = "Tax";
 	
 	public JButton btnNewButton = new JButton("Roll Dice");
 	public Dice dice = new Dice();

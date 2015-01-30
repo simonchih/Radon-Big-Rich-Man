@@ -61,7 +61,7 @@ public class mcanvas extends JComponent {
 		}
 		
 		// Game Map id=0
-		g.drawImage(mygame.iarrow.getImage(), right_x+(max_size-right_x-mygame.iarrow.getIconWidth())/2, down_y+(max_size-right_x-mygame.iarrow.getIconHeight())/2, mygame.iarrow.getIconWidth(), mygame.iarrow.getIconHeight(), null);
+		g.drawImage(mygame.iarrow.getImage(), right_x+(max_size-right_x-mygame.iarrow.getIconWidth())/2, down_y+(max_size-down_y-mygame.iarrow.getIconHeight())/2, mygame.iarrow.getIconWidth(), mygame.iarrow.getIconHeight(), null);
 		
 		for(i=1;i<game_data.Size;i++)
 		{
@@ -107,6 +107,28 @@ public class mcanvas extends JComponent {
 				}
 				
 			}//end if
+			else if(1 == game_data.type[i]){
+				ImageIcon iblock = null;
+				if(25 == game_data.id[i]){// Jail					
+					iblock = mygame.ijail;
+				}
+				else if(26 == game_data.id[i]){//Nothing
+					iblock = mygame.iparking;
+				}
+				else if(27 == game_data.id[i]){//Hospital
+					iblock = mygame.ihospital;
+				}
+				
+				if(10 == i){
+					g.drawImage(iblock.getImage(), (left_x-iblock.getIconWidth())/2, down_y+(max_size-down_y-iblock.getIconHeight())/2, iblock.getIconWidth(), iblock.getIconHeight(), null);
+				}
+				else if(20 == i){
+					g.drawImage(iblock.getImage(), (left_x-iblock.getIconWidth())/2, (up_y-iblock.getIconHeight())/2, iblock.getIconWidth(), iblock.getIconHeight(), null);
+				}
+				else if(30 == i){
+					g.drawImage(iblock.getImage(), right_x + (max_size-right_x-iblock.getIconWidth())/2, (up_y-iblock.getIconHeight())/2, iblock.getIconWidth(), iblock.getIconHeight(), null);					
+				}
+			}
 			else if(2 == game_data.type[i]){
 				if(i>=1 && i<=9){
 					g.drawImage(mygame.iquestionmark.getImage(), right_x-block_size*i, down_y+color_small+1, mygame.iquestionmark.getIconWidth(), mygame.iquestionmark.getIconHeight(), null);
@@ -119,6 +141,46 @@ public class mcanvas extends JComponent {
 				}
 				else if(i>=31 && i<=39){
 					g.drawImage(mygame.iquestionmark_right.getImage(), right_x+color_small+1, up_y+block_size*(i-31), mygame.iquestionmark_right.getIconWidth(), mygame.iquestionmark_right.getIconHeight(), null);
+				}
+			}
+			else if(3 == game_data.type[i]){
+				String s1 = null, s2 = null;
+				if(36 == game_data.id[i]){//go jail
+					s1 = mygame.s36_1;
+					s2 = mygame.s36_2;
+				}
+				else if(37 == game_data.id[i]){//go hospital
+					s1 = mygame.s37_1;
+					s2 = mygame.s37_2;
+				}
+				else if(38 == game_data.id[i]){//land tax
+					s1 = mygame.s38_1;
+					s2 = mygame.s38_2;
+				}
+				else if(39 == game_data.id[i]){//house tax
+					s1 = mygame.s39_1;
+					s2 = mygame.s39_2;
+				}
+				
+				if(i>=1 && i<=9){
+					g.setColor(Color.black);
+					g.drawString(s1, down_string_x_start-block_size*(i-1), down_y+color_small+up_down_d);
+					g.drawString(s2, down_string_x_start-block_size*(i-1), down_y+color_small+2*up_down_d);
+				}
+				else if(i>=11 && i<=19){
+					g.setColor(Color.black);
+					g.drawString(s1, left_string_x_start, left_string_y-block_size*(i-11));
+					g.drawString(s2, left_string_x_start, left_string_y+right_left_d-block_size*(i-11));
+				}
+				else if(i>=21 && i<=29){
+					g.setColor(Color.black);
+					g.drawString(s2, up_string_x_start+block_size*(i-21),up_y-color_small-up_down_d);
+					g.drawString(s1, up_string_x_start+block_size*(i-21),up_y-color_small-2*up_down_d);
+				}
+				else if(i>=31 && i<=39){
+					g.setColor(Color.black);
+					g.drawString(s1, right_string_x_start, right_string_y+block_size*(i-31));
+					g.drawString(s2, right_string_x_start, right_string_y+right_left_d+block_size*(i-31));
 				}
 			}
 		}//end for

@@ -54,10 +54,14 @@ public class Main_Map extends JFrame{
 		// 24~27: big block
 		// 24: over this will give player $2000
 		// 25: Jail
-		// 26: Go Jail
+		// 26: Nothing
 		// 27: Hospital
 		// 28~35: chance
 		// 36~39: others
+		// 36: go jail
+		// 37: go hospital
+		// 38: land tax
+		// 39: house tax
 		for(i=0;i<gdata.Size;i++){
 			gdata.id[i] = i;
 			if(i>=0 && i<=23){

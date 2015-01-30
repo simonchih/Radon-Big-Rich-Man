@@ -56,7 +56,7 @@ public class Game_Setting2 {
 		games1.getContentPane().add(lblNewLabel_1);
 		
 		JEditorPane editorPane = new JEditorPane();
-		editorPane.setText("15000");
+		editorPane.setText("20000");
 		editorPane.setBounds(205, 159, 106, 21);
 		games1.getContentPane().add(editorPane);
 		

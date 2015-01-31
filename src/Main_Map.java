@@ -401,6 +401,11 @@ public class Main_Map extends JFrame{
 		Game.p4_x_now = ini_map.p4_x[Game.p4_id];
 		Game.p4_y_now = ini_map.p4_y[Game.p4_id];
 		
+		//Set all level 0: No house
+		for(i=0;i<40;i++){
+			ini_map.level[i] = 0;
+		}
+		
 		this.getContentPane().add(canvas);
 		this.getContentPane().setBackground(new Color(233,234,205));
 		this.setVisible(true);

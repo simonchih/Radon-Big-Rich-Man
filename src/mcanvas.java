@@ -74,6 +74,19 @@ public class mcanvas extends JComponent {
 					g.drawString("$"+game_data.value[i], down_string_x_start-block_size*(i-1), down_y+color_small+2*up_down_d);
 					g.setColor(game_data.color[i]);
 					g.fillRect(right_x-block_size*i+1, down_y+1, color_long, color_small);
+					if(4 == game_data.level[i]){
+						g.drawImage(mygame.ihotel.getImage(), right_x-block_size*i+1, down_y+1, mygame.ihotel.getIconWidth(), mygame.ihotel.getIconHeight(), null);
+					}
+					else if(game_data.level[i] > 0){
+						g.drawImage(mygame.ihouse.getImage(), right_x-block_size*i+1, down_y+1, mygame.ihouse.getIconWidth(), mygame.ihouse.getIconHeight(), null);
+						
+						if(game_data.level[i] >= 2){
+							g.drawImage(mygame.ihouse.getImage(), right_x-block_size*i+mygame.ihouse.getIconWidth()+1, down_y+1, mygame.ihouse.getIconWidth(), mygame.ihouse.getIconHeight(), null);
+						}
+						if(3 == game_data.level[i]){
+							g.drawImage(mygame.ihouse.getImage(), right_x-block_size*i+2*mygame.ihouse.getIconWidth()+1, down_y+1, mygame.ihouse.getIconWidth(), mygame.ihouse.getIconHeight(), null);
+						}
+					}
 				}
 				
 				// Left
@@ -83,7 +96,20 @@ public class mcanvas extends JComponent {
 					g.drawString(game_data.name[i], left_string_x_start, left_string_y-block_size*(i-11));
 					g.drawString("$"+game_data.value[i], left_string_x_start, left_string_y+right_left_d-block_size*(i-11));
 					g.setColor(game_data.color[i]);
-					g.fillRect(left_x-color_small, down_y-block_size*(i-10)+1, color_small, color_long);					
+					g.fillRect(left_x-color_small, down_y-block_size*(i-10)+1, color_small, color_long);
+					if(4 == game_data.level[i]){
+						g.drawImage(mygame.ihotel_left.getImage(), left_x-color_small, down_y-block_size*(i-10)+1, mygame.ihotel_left.getIconWidth(), mygame.ihotel_left.getIconHeight(), null);
+					}
+					else if(game_data.level[i] > 0){
+						g.drawImage(mygame.ihouse_left.getImage(), left_x-color_small, down_y-block_size*(i-10)+1, mygame.ihouse_left.getIconWidth(), mygame.ihouse_left.getIconHeight(), null);
+						
+						if(game_data.level[i] >= 2){
+							g.drawImage(mygame.ihouse_left.getImage(), left_x-color_small, down_y-block_size*(i-10)+mygame.ihouse_left.getIconHeight()+1, mygame.ihouse_left.getIconWidth(), mygame.ihouse_left.getIconHeight(), null);
+						}
+						if(3 == game_data.level[i]){
+							g.drawImage(mygame.ihouse_left.getImage(), left_x-color_small, down_y-block_size*(i-10)+2*mygame.ihouse_left.getIconHeight()+1, mygame.ihouse_left.getIconWidth(), mygame.ihouse_left.getIconHeight(), null);
+						}
+					}
 				}
 				
 				// Up
@@ -94,6 +120,19 @@ public class mcanvas extends JComponent {
 					g.drawString("$"+game_data.value[i], up_string_x_start+block_size*(i-21),up_y-color_small-2*up_down_d);
 					g.setColor(game_data.color[i]);
 					g.fillRect(left_x+block_size*(i-21)+1, up_y-color_small, color_long, color_small);
+					if(4 == game_data.level[i]){
+						g.drawImage(mygame.ihotel_up.getImage(), left_x+block_size*(i-21)+1, up_y-color_small, mygame.ihotel_up.getIconWidth(), mygame.ihotel_up.getIconHeight(), null);
+					}
+					else if(game_data.level[i] > 0){
+						g.drawImage(mygame.ihouse_up.getImage(), left_x+block_size*(i-21)+1, up_y-color_small, mygame.ihouse_up.getIconWidth(), mygame.ihouse_up.getIconHeight(), null);
+						
+						if(game_data.level[i] >= 2){
+							g.drawImage(mygame.ihouse_up.getImage(), left_x+block_size*(i-21)+ mygame.ihouse_up.getIconWidth()+1, up_y-color_small, mygame.ihouse_up.getIconWidth(), mygame.ihouse_up.getIconHeight(), null);
+						}
+						if(3 == game_data.level[i]){
+							g.drawImage(mygame.ihouse_up.getImage(), left_x+block_size*(i-21)+ 2*mygame.ihouse_up.getIconWidth()+1, up_y-color_small, mygame.ihouse_up.getIconWidth(), mygame.ihouse_up.getIconHeight(), null);
+						}
+					}
 				}
 				
 				// Right
@@ -104,6 +143,19 @@ public class mcanvas extends JComponent {
 					g.drawString("$"+game_data.value[i], right_string_x_start, right_string_y+right_left_d+block_size*(i-31));
 					g.setColor(game_data.color[i]);
 					g.fillRect(right_x+1, up_y+block_size*(i-31)+1, color_small, color_long);
+					if(4 == game_data.level[i]){
+						g.drawImage(mygame.ihotel_right.getImage(), right_x+1, up_y+block_size*(i-31)+1, mygame.ihotel_right.getIconWidth(), mygame.ihotel_right.getIconHeight(), null);
+					}
+					else if(game_data.level[i] > 0){
+						g.drawImage(mygame.ihouse_right.getImage(), right_x+1, up_y+block_size*(i-31)+1, mygame.ihouse_right.getIconWidth(), mygame.ihouse_right.getIconHeight(), null);
+						
+						if(game_data.level[i] >= 2){
+							g.drawImage(mygame.ihouse_right.getImage(), right_x+1, up_y+block_size*(i-31)+mygame.ihouse_right.getIconHeight()+1, mygame.ihouse_right.getIconWidth(), mygame.ihouse_right.getIconHeight(), null);
+						}
+						if(3 == game_data.level[i]){
+							g.drawImage(mygame.ihouse_right.getImage(), right_x+1, up_y+block_size*(i-31)+2*mygame.ihouse_right.getIconHeight()+1, mygame.ihouse_right.getIconWidth(), mygame.ihouse_right.getIconHeight(), null);
+						}
+					}
 				}
 				
 			}//end if

@@ -58,9 +58,9 @@ public class Game_Loop extends Thread{
 				}
 			}
 			
-			if(true == mygame.move_start){
+			//if(true == mygame.move_start){
 				mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
-			}
+			//}
 			
 			while(mygame.p1_id != mygame.p1_dest_id || mygame.p2_id != mygame.p2_dest_id || mygame.p3_id != mygame.p3_dest_id || mygame.p4_id != mygame.p4_dest_id){
 				try {

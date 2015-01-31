@@ -30,6 +30,15 @@ public class game {
 	public ImageIcon iparking = new ImageIcon(game.class.getResource("/Image/Parking.jpg"));
 	public ImageIcon ihospital = new ImageIcon(game.class.getResource("/Image/Hospital.jpg"));
 	
+	public ImageIcon ihouse = new ImageIcon(game.class.getResource("/Image/house.png"));
+	public ImageIcon ihouse_left = new ImageIcon(game.class.getResource("/Image/house_left.png"));
+	public ImageIcon ihouse_up = new ImageIcon(game.class.getResource("/Image/house_up.png"));
+	public ImageIcon ihouse_right = new ImageIcon(game.class.getResource("/Image/house_right.png"));
+	public ImageIcon ihotel = new ImageIcon(game.class.getResource("/Image/hotel.png"));
+	public ImageIcon ihotel_left = new ImageIcon(game.class.getResource("/Image/hotel_left.png"));
+	public ImageIcon ihotel_up = new ImageIcon(game.class.getResource("/Image/hotel_up.png"));
+	public ImageIcon ihotel_right = new ImageIcon(game.class.getResource("/Image/hotel_right.png"));
+	
 	public ImageIcon iquestionmark = new ImageIcon(game.class.getResource("/Image/questionmark_60x79.png"));
 	public ImageIcon iquestionmark_left = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_left.png"));
 	public ImageIcon iquestionmark_right = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_right.png"));

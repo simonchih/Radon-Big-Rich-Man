@@ -21,6 +21,10 @@ public class Game_Map {
 	//owner 0, No one
 	//owner 1, player 1...
 	int[] owner = new int[Size];
+	//level 0, No house
+	//level 1, one house
+	//level 4, hotel (highest)
+	int[] level = new int[Size];
 	String[] name = new String[Size];
 	long[] value = new long[Size];
 	Color[] color = new Color[Size];

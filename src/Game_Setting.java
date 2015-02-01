@@ -1,7 +1,6 @@
 import javax.swing.*;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.*;
+import java.awt.event.*;
 
 public class Game_Setting {
 	public JFrame games1 = new JFrame("Player1 Setting");

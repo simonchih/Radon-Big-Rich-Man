@@ -17,6 +17,7 @@ public class mcanvas extends JComponent {
 	int right_string_x_start = 690;
 	int up_down_d = 20;
 	int right_left_d = 15;
+	int right_left_ic_d = 20;
 	int left_string_y = 609;
 	int right_string_y = 129;
 	
@@ -87,6 +88,9 @@ public class mcanvas extends JComponent {
 							g.drawImage(mygame.ihouse.getImage(), right_x-block_size*i+2*mygame.ihouse.getIconWidth()+1, down_y+1, mygame.ihouse.getIconWidth(), mygame.ihouse.getIconHeight(), null);
 						}
 					}
+					if(game_data.owner[i] > 0){
+						g.drawImage(mygame.p_ic[game_data.owner[i]-1].getImage(), right_x-block_size*i+(block_size-mygame.p_ic[game_data.owner[i]-1].getIconWidth())/2, down_y+color_small+3*up_down_d, mygame.p_ic[game_data.owner[i]-1].getIconWidth(), mygame.p_ic[game_data.owner[i]-1].getIconHeight(), null);
+					}
 				}
 				
 				// Left
@@ -109,6 +113,9 @@ public class mcanvas extends JComponent {
 						if(3 == game_data.level[i]){
 							g.drawImage(mygame.ihouse_left.getImage(), left_x-color_small, down_y-block_size*(i-10)+2*mygame.ihouse_left.getIconHeight()+1, mygame.ihouse_left.getIconWidth(), mygame.ihouse_left.getIconHeight(), null);
 						}
+					}
+					if(game_data.owner[i] > 0){
+						g.drawImage(mygame.p_ic[game_data.owner[i]-1].getImage(), (left_x - color_small - mygame.p_ic[game_data.owner[i]-1].getIconWidth())/2, left_string_y+right_left_ic_d-block_size*(i-11), mygame.p_ic[game_data.owner[i]-1].getIconWidth(), mygame.p_ic[game_data.owner[i]-1].getIconHeight(), null);
 					}
 				}
 				
@@ -133,6 +140,9 @@ public class mcanvas extends JComponent {
 							g.drawImage(mygame.ihouse_up.getImage(), left_x+block_size*(i-21)+ 2*mygame.ihouse_up.getIconWidth()+1, up_y-color_small, mygame.ihouse_up.getIconWidth(), mygame.ihouse_up.getIconHeight(), null);
 						}
 					}
+					if(game_data.owner[i] > 0){
+						g.drawImage(mygame.p_ic[game_data.owner[i]-1].getImage(), left_x+block_size*(i-21)+(block_size-mygame.p_ic[game_data.owner[i]-1].getIconWidth())/2, up_y-color_small-3*up_down_d-mygame.p_ic[game_data.owner[i]-1].getIconHeight(), mygame.p_ic[game_data.owner[i]-1].getIconWidth(), mygame.p_ic[game_data.owner[i]-1].getIconHeight(), null);
+					}
 				}
 				
 				// Right
@@ -155,6 +165,9 @@ public class mcanvas extends JComponent {
 						if(3 == game_data.level[i]){
 							g.drawImage(mygame.ihouse_right.getImage(), right_x+1, up_y+block_size*(i-31)+2*mygame.ihouse_right.getIconHeight()+1, mygame.ihouse_right.getIconWidth(), mygame.ihouse_right.getIconHeight(), null);
 						}
+					}
+					if(game_data.owner[i] > 0){
+						g.drawImage(mygame.p_ic[game_data.owner[i]-1].getImage(), right_x + color_small + (block_size- mygame.p_ic[game_data.owner[i]-1].getIconWidth())/2, right_string_y+right_left_ic_d+block_size*(i-31), mygame.p_ic[game_data.owner[i]-1].getIconWidth(), mygame.p_ic[game_data.owner[i]-1].getIconHeight(), null);
 					}
 				}
 				
@@ -244,10 +257,10 @@ public class mcanvas extends JComponent {
 	    //System.out.println(mygame.dice.dice2_raw);
 		
 		//draw pawn at p_x, p_y;
-		g.drawImage(mygame.p1_pawn.getImage(), mygame.p1_x_now, mygame.p1_y_now, mygame.p1_pawn.getIconWidth(), mygame.p1_pawn.getIconHeight(), null);
-		g.drawImage(mygame.p2_pawn.getImage(), mygame.p2_x_now, mygame.p2_y_now, mygame.p2_pawn.getIconWidth(), mygame.p2_pawn.getIconHeight(), null);
-		g.drawImage(mygame.p3_pawn.getImage(), mygame.p3_x_now, mygame.p3_y_now, mygame.p3_pawn.getIconWidth(), mygame.p3_pawn.getIconHeight(), null);
-		g.drawImage(mygame.p4_pawn.getImage(), mygame.p4_x_now, mygame.p4_y_now, mygame.p4_pawn.getIconWidth(), mygame.p4_pawn.getIconHeight(), null);
+		g.drawImage(mygame.p_pawn[0].getImage(), mygame.p_x_now[0], mygame.p_y_now[0], mygame.p_pawn[0].getIconWidth(), mygame.p_pawn[0].getIconHeight(), null);
+		g.drawImage(mygame.p_pawn[1].getImage(), mygame.p_x_now[1], mygame.p_y_now[1], mygame.p_pawn[1].getIconWidth(), mygame.p_pawn[1].getIconHeight(), null);
+		g.drawImage(mygame.p_pawn[2].getImage(), mygame.p_x_now[2], mygame.p_y_now[2], mygame.p_pawn[2].getIconWidth(), mygame.p_pawn[2].getIconHeight(), null);
+		g.drawImage(mygame.p_pawn[3].getImage(), mygame.p_x_now[3], mygame.p_y_now[3], mygame.p_pawn[3].getIconWidth(), mygame.p_pawn[3].getIconHeight(), null);
 	}
 
 	public Dimension getPreferredSize() {

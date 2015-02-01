@@ -8,7 +8,7 @@ public class Game_Setting3 {
 	public JFrame games1 = new JFrame("Player3 Setting");
 	public Game_Setting4 gs4 = new Game_Setting4();
 	public Game_Setting3(){
-		games1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		games1.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
 	/**
 	 * @wbp.parser.entryPoint
@@ -45,9 +45,9 @@ public class Game_Setting3 {
 		comboBox_1.setBounds(205, 118, 106, 21);
 		ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
 		List<ImageIcon> list = new ArrayList<ImageIcon>(Arrays.asList(array));
-		list.remove(Game.p1_icon);
+		list.remove(Game.p_icon[0]);
 		array = list.toArray(new ImageIcon[0]);
-		list.remove(Game.p2_icon);
+		list.remove(Game.p_icon[1]);
 		array = list.toArray(new ImageIcon[0]);
 		comboBox_1.setModel(new DefaultComboBoxModel<ImageIcon>(array));
 		comboBox_1.setSelectedIndex(2);
@@ -79,23 +79,23 @@ public class Game_Setting3 {
 				ImageIcon parray[] = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
 				
 				List<ImageIcon> list = new ArrayList<ImageIcon>(Arrays.asList(array));
-				list.remove(Game.p1_icon);
+				list.remove(Game.p_icon[0]);
 				array = list.toArray(new ImageIcon[0]);
-				list.remove(Game.p2_icon);
+				list.remove(Game.p_icon[1]);
 				array = list.toArray(new ImageIcon[0]);
 				List<ImageIcon> listp = new ArrayList<ImageIcon>(Arrays.asList(parray));
-				listp.remove(Game.p1_icon);
+				listp.remove(Game.p_icon[0]);
 				parray = listp.toArray(new ImageIcon[0]);
-				listp.remove(Game.p2_icon);
+				listp.remove(Game.p_icon[1]);
 				parray = listp.toArray(new ImageIcon[0]);
 				
-				Game.p3_name = dtrpnPlayer.getText();
-				Game.p3_type = comboBox.getSelectedIndex();
-				Game.p3_icon = comboBox_1.getSelectedIndex();
-				Game.p3_ic = array[Game.p3_icon];
-				Game.p3_pawn = parray[Game.p3_icon];
+				Game.p_name[2] = dtrpnPlayer.getText();
+				Game.p_type[2] = comboBox.getSelectedIndex();
+				Game.p_icon[2] = comboBox_1.getSelectedIndex();
+				Game.p_ic[2] = array[Game.p_icon[2]];
+				Game.p_pawn[2] = parray[Game.p_icon[2]];
 				
-				Game.p3_money = Long.parseLong(editorPane.getText());
+				Game.p_money[2] = Long.parseLong(editorPane.getText());
 				games1.setVisible(false);
 				gs4.show(games1, Game);
 			}

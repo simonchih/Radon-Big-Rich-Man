@@ -8,7 +8,7 @@ public class Game_Setting2 {
 	public JFrame games1 = new JFrame("Player2 Setting");
 	public Game_Setting3 gs3 = new Game_Setting3();
 	public Game_Setting2(){
-		games1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		games1.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
 	/**
 	 * @wbp.parser.entryPoint
@@ -45,7 +45,7 @@ public class Game_Setting2 {
 		comboBox_1.setBounds(205, 118, 106, 21);
 		ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
 		List<ImageIcon> list = new ArrayList<ImageIcon>(Arrays.asList(array));
-		list.remove(Game.p1_icon);
+		list.remove(Game.p_icon[0]);
 		array = list.toArray(new ImageIcon[0]);
 		comboBox_1.setModel(new DefaultComboBoxModel<ImageIcon>(array));
 		comboBox_1.setSelectedIndex(1);
@@ -77,19 +77,19 @@ public class Game_Setting2 {
 				ImageIcon parray[] = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
 				
 				List<ImageIcon> list = new ArrayList<ImageIcon>(Arrays.asList(array));
-				list.remove(Game.p1_icon);
+				list.remove(Game.p_icon[0]);
 				array = list.toArray(new ImageIcon[0]);
 				List<ImageIcon> listp = new ArrayList<ImageIcon>(Arrays.asList(parray));
-				listp.remove(Game.p1_icon);
+				listp.remove(Game.p_icon[0]);
 				parray = listp.toArray(new ImageIcon[0]);
 				
-				Game.p2_name = dtrpnPlayer.getText();
-				Game.p2_type = comboBox.getSelectedIndex();
-				Game.p2_icon = comboBox_1.getSelectedIndex();
-				Game.p2_ic = array[Game.p2_icon];
-				Game.p2_pawn = parray[Game.p2_icon];
+				Game.p_name[1] = dtrpnPlayer.getText();
+				Game.p_type[1] = comboBox.getSelectedIndex();
+				Game.p_icon[1] = comboBox_1.getSelectedIndex();
+				Game.p_ic[1] = array[Game.p_icon[1]];
+				Game.p_pawn[1] = parray[Game.p_icon[1]];
 				
-				Game.p2_money = Long.parseLong(editorPane.getText());
+				Game.p_money[1] = Long.parseLong(editorPane.getText());
 				games1.setVisible(false);
 				gs3.show(games1, Game);
 			}

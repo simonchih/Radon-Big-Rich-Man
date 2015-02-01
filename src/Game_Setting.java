@@ -7,7 +7,7 @@ public class Game_Setting {
 	public JFrame games1 = new JFrame("Player1 Setting");
 	public Game_Setting2 gs2 = new Game_Setting2();
 	public Game_Setting(){
-		games1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		games1.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
 	/**
 	 * @wbp.parser.entryPoint
@@ -70,12 +70,12 @@ public class Game_Setting {
 			public void actionPerformed(ActionEvent e) {
 				ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
 				ImageIcon parray[] = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
-				Game.p1_name = dtrpnPlayer.getText();
-				Game.p1_type = comboBox.getSelectedIndex();
-				Game.p1_icon = comboBox_1.getSelectedIndex();
-				Game.p1_ic = array[Game.p1_icon];
-				Game.p1_pawn = parray[Game.p1_icon];
-				Game.p1_money = Long.parseLong(editorPane.getText());
+				Game.p_name[0] = dtrpnPlayer.getText();
+				Game.p_type[0] = comboBox.getSelectedIndex();
+				Game.p_icon[0] = comboBox_1.getSelectedIndex();
+				Game.p_ic[0] = array[Game.p_icon[0]];
+				Game.p_pawn[0] = parray[Game.p_icon[0]];
+				Game.p_money[0] = Long.parseLong(editorPane.getText());
 				games1.setVisible(false);
 				gs2.show(games1, Game);
 			}

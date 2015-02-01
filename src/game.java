@@ -56,53 +56,23 @@ public class game {
 	public JButton btnNewButton = new JButton("Roll Dice");
 	public Dice dice = new Dice();
 	
+	public int max_p_size = 4;
 	public int turn = 0;//0: player1
 	public boolean move_start = false;
 	
-	public String p1_name;
-	public int p1_type;//0:human, 1:AI, 9:out
-	public int p1_icon;
-	public ImageIcon p1_ic;
-	public ImageIcon p1_pawn;
-	public long p1_money;
-	public int p1_x_now;
-	public int p1_y_now;
-	public int p1_id = 0;
-	public int p1_dest_id = 0;
-	
-	public String p2_name;
-	public int p2_type;
-	public int p2_icon;
-	public ImageIcon p2_ic;
-	public ImageIcon p2_pawn;
-	public long p2_money;
-	public int p2_x_now;
-	public int p2_y_now;
-	public int p2_id = 0;
-	public int p2_dest_id = 0;
-	
-	public String p3_name;
-	public int p3_type;
-	public int p3_icon;
-	public ImageIcon p3_ic;
-	public ImageIcon p3_pawn;
-	public long p3_money;
-	public int p3_x_now;
-	public int p3_y_now;
-	public int p3_id = 0;
-	public int p3_dest_id = 0;
-	
-	public String p4_name;
-	public int p4_type;
-	public int p4_icon;
-	public ImageIcon p4_ic;
-	public ImageIcon p4_pawn;
-	public long p4_money;
-	public int p4_x_now;
-	public int p4_y_now;
-	public int p4_id = 0;
-	public int p4_dest_id = 0;
-	
+	//0: player 1 ...
+	//3: player 4
+	public String[] p_name = new String[max_p_size];
+	public int[] p_type = new int[max_p_size];//0:human, 1:AI, 9:out
+	public int[] p_icon = new int[max_p_size];
+	public ImageIcon[] p_ic = new ImageIcon[max_p_size];
+	public ImageIcon[] p_pawn = new ImageIcon[max_p_size];
+	public long[] p_money = new long[max_p_size];
+	public int[] p_x_now = new int[max_p_size];
+	public int[] p_y_now = new int[max_p_size];
+	public int[] p_id = new int[max_p_size];
+	public int[] p_dest_id = new int[max_p_size];
+
 	public static void main(String[] args) {
 		game Game = new game();
 		JFrame frame = new JFrame("Random Big Rich Man");

@@ -56,7 +56,7 @@ public class Buy_Land{
 		
 		if(game_map.value[mygame.p_dest_id[turn_id]] > mygame.p_money[turn_id]){
 			JLabel lblNewLabel_2 = new JLabel("You have NOT enough money!");
-			lblNewLabel_2.setBounds(20, 189, 46, 15);
+			lblNewLabel_2.setBounds(20, 189, 404, 15);
 			lblNewLabel_2.setForeground(Color.RED);
 			bl.getContentPane().add(lblNewLabel_2);
 			btnNewButton_1.setEnabled(false);

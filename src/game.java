@@ -1,5 +1,8 @@
 import java.awt.*;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 import java.awt.event.ActionListener;
@@ -53,6 +56,8 @@ public class game {
 	public String s39_1 = "House";
 	public String s39_2 = "Tax";
 	
+	public String skaching = "/Sound/kaching.wav";
+	
 	public JButton btnNewButton = new JButton("Roll Dice");
 	public Dice dice = new Dice();
 	
@@ -72,7 +77,38 @@ public class game {
 	public int[] p_y_now = new int[max_p_size];
 	public int[] p_id = new int[max_p_size];
 	public int[] p_dest_id = new int[max_p_size];
+	public String[] p_status = new String[max_p_size];
+	public int[] sp_x = new int[max_p_size];
+	public int[] sp_y = new int[max_p_size];
 
+	//playSound modified from http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
+	//I personally made this code that works fine. I think it only works with .wav format.
+	public static synchronized void playSound(final String url) {
+		  new Thread(new Runnable() {
+		  // The wrapper thread is unnecessary, unless it blocks on the
+		  // Clip finishing
+		    public void run() {
+		      try {
+		        Clip clip = AudioSystem.getClip();
+		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+		        game.class.getResourceAsStream(url));
+		        clip.open(inputStream);
+		        clip.start(); 
+		      } catch (Exception e) {
+		        System.err.println(e.getMessage());
+		      }
+		    }
+		  }).start();
+		}
+	
+	public void deal(long cash, int turn_id){
+		p_money[turn_id] += cash;
+		p_status[turn_id] = "" + cash;
+		if(cash < 0){
+			playSound(skaching);
+		}
+	}
+	
 	public static void main(String[] args) {
 		game Game = new game();
 		JFrame frame = new JFrame("Random Big Rich Man");

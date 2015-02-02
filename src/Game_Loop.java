@@ -4,6 +4,7 @@ public class Game_Loop implements Runnable{
 	public  mcanvas mycanvas;
 	public Game_Map game_map;
 	public Buy_Land buy_land;
+	public Build_House build_house;
 	public Thread t_game;
 	public boolean susp;
 	
@@ -12,7 +13,8 @@ public class Game_Loop implements Runnable{
 		mycanvas = canvas;
 		game_map = gm;
 		t_game = new Thread(this);
-		buy_land = new Buy_Land(Game, canvas, gm, this);
+		buy_land = new Buy_Land(Game, gm, this);
+		build_house = new Build_House(Game, gm, this);
 	}
 	public void run(){
 		int one_step;
@@ -136,7 +138,14 @@ public class Game_Loop implements Runnable{
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						System.out.println("Test Buy Land");
 						susp = true;
-						buy_land.show(mygame.turn);
+						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
+							buy_land.show(mygame.turn);
+						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							build_house.show(mygame.turn);
+						}
+						else{
+							
+						}
 						while(true == susp){
 							try {
 								Thread.sleep(500);
@@ -152,7 +161,14 @@ public class Game_Loop implements Runnable{
 					mygame.move_start = false;
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
-						buy_land.show(mygame.turn);
+						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
+							buy_land.show(mygame.turn);
+						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							build_house.show(mygame.turn);
+						}
+						else{
+							
+						}
 						while(true == susp){
 							try {
 								Thread.sleep(500);
@@ -168,7 +184,14 @@ public class Game_Loop implements Runnable{
 					mygame.move_start = false;
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
-						buy_land.show(mygame.turn);
+						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
+							buy_land.show(mygame.turn);
+						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							build_house.show(mygame.turn);
+						}
+						else{
+							
+						}
 						while(true == susp){
 							try {
 								Thread.sleep(500);
@@ -184,7 +207,14 @@ public class Game_Loop implements Runnable{
 					mygame.move_start = false;
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
-						buy_land.show(mygame.turn);
+						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
+							buy_land.show(mygame.turn);
+						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							build_house.show(mygame.turn);
+						}
+						else{
+							
+						}
 						while(true == susp){
 							try {
 								Thread.sleep(500);

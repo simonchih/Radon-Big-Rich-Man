@@ -8,10 +8,10 @@ public class Buy_Land{
 	public Game_Map game_map;
 	public Game_Loop mygl;
 	public JFrame bl = new JFrame("Buy Lnad");
-	Buy_Land(game Game, mcanvas canvas, Game_Map gm, Game_Loop gl){
+	Buy_Land(game Game, Game_Map gm, Game_Loop gl){
 		bl.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		mygame = Game;
-		mycanvas = canvas;
+		//mycanvas = canvas;
 		game_map = gm;
 		mygl = gl;
 	}

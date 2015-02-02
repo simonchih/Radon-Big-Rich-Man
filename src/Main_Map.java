@@ -16,11 +16,13 @@ public class Main_Map extends JFrame{
 	public Main_Map(game Game){
 		int i;
 		
-		//ini p_id and p_dest_id, p_status
+		//ini p_id and p_dest_id, p_status, p_in_jail, p_stop
 		for(i=0;i<Game.max_p_size;i++){
 			Game.p_id[i] = 0;
 			Game.p_dest_id[i] = 0;
 			Game.p_status[i] = "0";
+			Game.p_in_jail[i] = 0;
+			Game.p_stop[i] = 0;
 		}
 		
 		this.setTitle("Random Big Rich Man");

@@ -5,6 +5,7 @@ public class Game_Loop implements Runnable{
 	public Game_Map game_map;
 	public Buy_Land buy_land;
 	public Build_House build_house;
+	public AI ai;
 	public Thread t_game;
 	public boolean susp;
 	
@@ -15,6 +16,7 @@ public class Game_Loop implements Runnable{
 		t_game = new Thread(this);
 		buy_land = new Buy_Land(Game, gm, this);
 		build_house = new Build_House(Game, gm, this);
+		ai = new AI(Game, gm, this);
 	}
 	public void run(){
 		int one_step;
@@ -144,7 +146,8 @@ public class Game_Loop implements Runnable{
 							build_house.show(mygame.turn);
 						}
 						else{
-							
+							//pay for land owner
+							payout();
 						}
 						while(true == susp){
 							try {
@@ -167,7 +170,8 @@ public class Game_Loop implements Runnable{
 							build_house.show(mygame.turn);
 						}
 						else{
-							
+							//pay for land owner
+							payout();
 						}
 						while(true == susp){
 							try {
@@ -190,7 +194,8 @@ public class Game_Loop implements Runnable{
 							build_house.show(mygame.turn);
 						}
 						else{
-							
+							//pay for land owner
+							payout();
 						}
 						while(true == susp){
 							try {
@@ -213,7 +218,8 @@ public class Game_Loop implements Runnable{
 							build_house.show(mygame.turn);
 						}
 						else{
-							
+							//pay for land owner
+							payout();
 						}
 						while(true == susp){
 							try {
@@ -239,5 +245,24 @@ public class Game_Loop implements Runnable{
 		if(Game.p_type[3] != 9)n++;
 		//System.out.println(n);
 		return n;
+	}
+	public void payout(){//pay for land owner
+		long fee, basic_money;
+		int id, doub, owner1, owner2, owner3, owner;
+		id = mygame.p_dest_id[mygame.turn];
+		
+		owner1 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[id])][0]];
+		owner2 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[id])][1]];
+		owner3 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[id])][2]];
+		if(owner1 == owner2 && owner2 == owner3)doub = 2;
+		else doub = 1;
+		
+		basic_money = (long)((0.2)*game_map.value[id]);
+		fee = (long) (doub*Math.pow(2, game_map.level[id])*basic_money);
+		owner = game_map.owner[id] - 1;
+		
+		mygame.deal((-1)*fee, mygame.turn);
+		mygame.deal(fee, owner);
+		this.susp = false;
 	}
 }

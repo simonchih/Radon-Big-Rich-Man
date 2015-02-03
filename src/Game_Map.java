@@ -2,6 +2,8 @@ import java.awt.Color;
 
 public class Game_Map {
 	final int Size = 40;
+	final int color_size = 8;
+	final int same_color_land_size = 3;
 	//type 0, land
 	//type 1, big block
 	//type 2, chance
@@ -28,4 +30,21 @@ public class Game_Map {
 	String[] name = new String[Size];
 	long[] value = new long[Size];
 	Color[] color = new Color[Size];
+	
+	//Color land_color[] = new Color[]{Color.red, Color.cyan, Color.blue, Color.green, Color.orange, Color.pink, Color.yellow, Color.gray};
+	int[][] same_color = new int[color_size][same_color_land_size];
+	
+	int color_index(Color c){
+		if(Color.red == c)return 0;
+		else if(Color.cyan == c)return 1;
+		else if(Color.blue == c)return 2;
+		else if(Color.green == c)return 3;
+		else if(Color.orange == c)return 4;
+		else if(Color.pink == c)return 5;
+		else if(Color.yellow == c)return 6;
+		else if(Color.gray == c)return  7;
+		else
+			//impossible
+			return -1;
+	}
 }

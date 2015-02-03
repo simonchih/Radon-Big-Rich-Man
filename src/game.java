@@ -82,7 +82,7 @@ public class game {
 	public int[] sp_y = new int[max_p_size];
 	public int[] p_in_jail = new int[max_p_size];//0:out of jail, 1: in jail
 	public int[] p_stop = new int[max_p_size];//0:continue, 1: stop 1 turn...
-
+	
 	//playSound modified from http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
 	//I personally made this code that works fine. I think it only works with .wav format.
 	public static synchronized void playSound(final String url) {

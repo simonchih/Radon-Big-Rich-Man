@@ -243,6 +243,7 @@ public class Main_Map extends JFrame{
 				ini_map.name[i] = game_data.name[index];
 				ini_map.value[i] = game_data.value[index];
 				ini_map.color[i] = land_color[j/3];
+				ini_map.same_color[j/3][j%3] = i;
 				++j;
 			}
 		}

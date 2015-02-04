@@ -282,10 +282,18 @@ public class mcanvas extends JComponent {
 	    //System.out.println(mygame.dice.dice2_raw);
 		
 		//draw pawn at p_x, p_y;
-		g.drawImage(mygame.p_pawn[0].getImage(), mygame.p_x_now[0], mygame.p_y_now[0], mygame.p_pawn[0].getIconWidth(), mygame.p_pawn[0].getIconHeight(), null);
-		g.drawImage(mygame.p_pawn[1].getImage(), mygame.p_x_now[1], mygame.p_y_now[1], mygame.p_pawn[1].getIconWidth(), mygame.p_pawn[1].getIconHeight(), null);
-		g.drawImage(mygame.p_pawn[2].getImage(), mygame.p_x_now[2], mygame.p_y_now[2], mygame.p_pawn[2].getIconWidth(), mygame.p_pawn[2].getIconHeight(), null);
-		g.drawImage(mygame.p_pawn[3].getImage(), mygame.p_x_now[3], mygame.p_y_now[3], mygame.p_pawn[3].getIconWidth(), mygame.p_pawn[3].getIconHeight(), null);
+		if(mygame.p_type[0] != 9){
+			g.drawImage(mygame.p_pawn[0].getImage(), mygame.p_x_now[0], mygame.p_y_now[0], mygame.p_pawn[0].getIconWidth(), mygame.p_pawn[0].getIconHeight(), null);
+		}
+		if(mygame.p_type[1] != 9){
+			g.drawImage(mygame.p_pawn[1].getImage(), mygame.p_x_now[1], mygame.p_y_now[1], mygame.p_pawn[1].getIconWidth(), mygame.p_pawn[1].getIconHeight(), null);
+		}
+		if(mygame.p_type[2] != 9){
+			g.drawImage(mygame.p_pawn[2].getImage(), mygame.p_x_now[2], mygame.p_y_now[2], mygame.p_pawn[2].getIconWidth(), mygame.p_pawn[2].getIconHeight(), null);
+		}
+		if(mygame.p_type[3] != 9){
+			g.drawImage(mygame.p_pawn[3].getImage(), mygame.p_x_now[3], mygame.p_y_now[3], mygame.p_pawn[3].getIconWidth(), mygame.p_pawn[3].getIconHeight(), null);
+		}
 	}
 
 	public Dimension getPreferredSize() {

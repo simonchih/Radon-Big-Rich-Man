@@ -273,7 +273,7 @@ public class mcanvas extends JComponent {
 		g.drawString(sp1, mygame.sp_x[0], mygame.sp_y[0]);
 		g.drawString(sp2, mygame.sp_x[1], mygame.sp_y[1]);
 		g.drawString(sp3, mygame.sp_x[2], mygame.sp_y[2]);
-		g.drawString(sp3, mygame.sp_x[3], mygame.sp_y[3]);
+		g.drawString(sp4, mygame.sp_x[3], mygame.sp_y[3]);
 		
 		//draw dice
 		g.drawImage(mygame.dice.idice1.getImage(), mygame.dice.idice1_x, mygame.dice.idice1_y, mygame.dice.idice1.getIconWidth(), mygame.dice.idice1.getIconHeight(), this);

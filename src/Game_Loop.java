@@ -19,7 +19,7 @@ public class Game_Loop implements Runnable{
 		ai = new AI(Game, gm, this);
 	}
 	public void run(){
-		int one_step;
+		int one_step, i, j;
 		
 		while(player_number(mygame) > 1)
 		{	
@@ -68,9 +68,28 @@ public class Game_Loop implements Runnable{
 				}
 			}
 			
-			//if(true == mygame.move_start){
-				mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
-			//}
+			// if p_money < 0
+			for(i=0;i<mygame.max_p_size;i++){
+				if(9 == mygame.p_type[i]){
+					continue;
+				}
+				else{
+					if(mygame.p_money[i] < 0){
+						for(j=0;j<game_map.Size;j++){
+							if(i + 1 == game_map.owner[j]){
+								game_map.owner[j] = 0;
+								game_map.level[j] = 0;
+							}
+						}
+						
+						mygame.p_status[i] = "Broken";
+						mygame.p_type[i] = 9;
+					}
+				}
+			}
+			
+			mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
+			
 			
 			while(mygame.p_id[0] != mygame.p_dest_id[0] || mygame.p_id[1] != mygame.p_dest_id[1] || mygame.p_id[2] != mygame.p_dest_id[2] || mygame.p_id[3] != mygame.p_dest_id[3]){
 				try {
@@ -138,7 +157,6 @@ public class Game_Loop implements Runnable{
 				if(0 == mygame.turn && true == mygame.move_start && mygame.p_id[0] == mygame.p_dest_id[0]){
 					mygame.move_start = false;
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
-						System.out.println("Test Buy Land");
 						susp = true;
 						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
 							buy_land.show(mygame.turn);
@@ -148,6 +166,7 @@ public class Game_Loop implements Runnable{
 						else{
 							//pay for land owner
 							payout();
+							susp = false;
 						}
 						while(true == susp){
 							try {
@@ -156,6 +175,18 @@ public class Game_Loop implements Runnable{
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+						}
+					}
+					else if(0 == game_map.type[mygame.p_dest_id[mygame.turn]]){//AI for land
+						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							ai.buy_land();
+						}
+						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							ai.build_house();
+						}
+						else{
+							//pay for land owner
+							payout();
 						}
 					}
 					mygame.turn++;
@@ -172,6 +203,7 @@ public class Game_Loop implements Runnable{
 						else{
 							//pay for land owner
 							payout();
+							susp = false;
 						}
 						while(true == susp){
 							try {
@@ -180,6 +212,18 @@ public class Game_Loop implements Runnable{
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+						}
+					}
+					else if(0 == game_map.type[mygame.p_dest_id[mygame.turn]]){//AI for land
+						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							ai.buy_land();
+						}
+						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							ai.build_house();
+						}
+						else{
+							//pay for land owner
+							payout();
 						}
 					}
 					mygame.turn++;
@@ -196,6 +240,7 @@ public class Game_Loop implements Runnable{
 						else{
 							//pay for land owner
 							payout();
+							susp = false;
 						}
 						while(true == susp){
 							try {
@@ -204,6 +249,18 @@ public class Game_Loop implements Runnable{
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+						}
+					}
+					else if(0 == game_map.type[mygame.p_dest_id[mygame.turn]]){//AI for land
+						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							ai.buy_land();
+						}
+						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							ai.build_house();
+						}
+						else{
+							//pay for land owner
+							payout();
 						}
 					}
 					mygame.turn++;
@@ -220,6 +277,7 @@ public class Game_Loop implements Runnable{
 						else{
 							//pay for land owner
 							payout();
+							susp = false;
 						}
 						while(true == susp){
 							try {
@@ -228,6 +286,18 @@ public class Game_Loop implements Runnable{
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+						}
+					}
+					else if(0 == game_map.type[mygame.p_dest_id[mygame.turn]]){//AI for land
+						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							ai.buy_land();
+						}
+						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							ai.build_house();
+						}
+						else{
+							//pay for land owner
+							payout();
 						}
 					}
 					mygame.turn = 0;
@@ -260,9 +330,10 @@ public class Game_Loop implements Runnable{
 		basic_money = (long)((0.2)*game_map.value[id]);
 		fee = (long) (doub*Math.pow(2, game_map.level[id])*basic_money);
 		owner = game_map.owner[id] - 1;
-		
-		mygame.deal((-1)*fee, mygame.turn);
-		mygame.deal(fee, owner);
-		this.susp = false;
+		if(1 == mygame.p_in_jail[owner])return;
+		else{
+			mygame.deal((-1)*fee, mygame.turn);
+			mygame.deal(fee, owner);
+		}
 	}
 }

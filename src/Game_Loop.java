@@ -20,6 +20,7 @@ public class Game_Loop implements Runnable{
 	}
 	public void run(){
 		int one_step, i, j;
+		boolean no_cross_cash[] = {true, true, true, true};
 		
 		while(player_number(mygame) > 1)
 		{	
@@ -100,6 +101,10 @@ public class Game_Loop implements Runnable{
 				}
 
 				if(mygame.p_id[0] != mygame.p_dest_id[0]){
+					if(false == no_cross_cash[0] && 0 == mygame.p_id[0]){
+						no_cross_cash[0] = true;
+						mygame.deal(mygame.cross_cash, 0);
+					}
 					if(mygame.p_x_now[0] == game_map.p1_x[(mygame.p_id[0]+1)%game_map.Size] && mygame.p_y_now[0] == game_map.p1_y[(mygame.p_id[0]+1)%game_map.Size]) {
 						mygame.p_id[0] = (mygame.p_id[0]+1)%game_map.Size;
 					}
@@ -114,6 +119,10 @@ public class Game_Loop implements Runnable{
 				}
 				
 				if(mygame.p_id[1] != mygame.p_dest_id[1]){
+					if(false == no_cross_cash[1] && 0 == mygame.p_id[1]){
+						no_cross_cash[1] = true;
+						mygame.deal(mygame.cross_cash, 1);
+					}
 					if(mygame.p_x_now[1] == game_map.p2_x[(mygame.p_id[1]+1)%game_map.Size] && mygame.p_y_now[1] == game_map.p2_y[(mygame.p_id[1]+1)%game_map.Size]) {
 						mygame.p_id[1] = (mygame.p_id[1]+1)%game_map.Size;
 					}
@@ -128,6 +137,10 @@ public class Game_Loop implements Runnable{
 				}
 				
 				if(mygame.p_id[2] != mygame.p_dest_id[2]){
+					if(false == no_cross_cash[2] && 0 == mygame.p_id[2]){
+						no_cross_cash[2] = true;
+						mygame.deal(mygame.cross_cash, 2);
+					}
 					if(mygame.p_x_now[2] == game_map.p3_x[(mygame.p_id[2]+1)%game_map.Size] && mygame.p_y_now[2] == game_map.p3_y[(mygame.p_id[2]+1)%game_map.Size]) {
 						mygame.p_id[2] = (mygame.p_id[2]+1)%game_map.Size;
 					}
@@ -142,6 +155,10 @@ public class Game_Loop implements Runnable{
 				}
 				
 				if(mygame.p_id[3] != mygame.p_dest_id[3]){
+					if(false == no_cross_cash[3] && 0 == mygame.p_id[3]){
+						no_cross_cash[3] = true;
+						mygame.deal(mygame.cross_cash, 3);
+					}
 					if(mygame.p_x_now[3] == game_map.p4_x[(mygame.p_id[3]+1)%game_map.Size] && mygame.p_y_now[3] == game_map.p4_y[(mygame.p_id[3]+1)%game_map.Size]) {
 						mygame.p_id[3] = (mygame.p_id[3]+1)%game_map.Size;
 					}
@@ -156,6 +173,8 @@ public class Game_Loop implements Runnable{
 				}
 				if(0 == mygame.turn && true == mygame.move_start && mygame.p_id[0] == mygame.p_dest_id[0]){
 					mygame.move_start = false;
+					if(0 == mygame.p_dest_id[0])no_cross_cash[0] = true;
+					else no_cross_cash[0] = false;
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
 						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
@@ -193,6 +212,8 @@ public class Game_Loop implements Runnable{
 				}
 				if(1 == mygame.turn && true == mygame.move_start && mygame.p_id[1] == mygame.p_dest_id[1]){
 					mygame.move_start = false;
+					if(0 == mygame.p_dest_id[1])no_cross_cash[1] = true;
+					else no_cross_cash[1] = false;
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
 						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
@@ -230,6 +251,8 @@ public class Game_Loop implements Runnable{
 				}
 				if(2 == mygame.turn && true == mygame.move_start && mygame.p_id[2] == mygame.p_dest_id[2]){
 					mygame.move_start = false;
+					if(0 == mygame.p_dest_id[2])no_cross_cash[2] = true;
+					else no_cross_cash[2] = false;
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
 						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
@@ -267,6 +290,8 @@ public class Game_Loop implements Runnable{
 				}
 				if(3 == mygame.turn && true == mygame.move_start && mygame.p_id[3] == mygame.p_dest_id[3]){
 					mygame.move_start = false;
+					if(0 == mygame.p_dest_id[3])no_cross_cash[3] = true;
+					else no_cross_cash[3] = false;
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
 						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])

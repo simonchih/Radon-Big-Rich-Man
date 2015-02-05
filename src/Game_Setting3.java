@@ -1,6 +1,7 @@
 import javax.swing.*;
 
 import java.util.*;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -72,6 +73,18 @@ public class Game_Setting3 {
 		btnCancel.setBounds(103, 214, 87, 23);
 		games1.getContentPane().add(btnCancel);
 		
+		JLabel lblNewLabel_2 = new JLabel("(error value)");
+		lblNewLabel_2.setForeground(Color.RED);
+		lblNewLabel_2.setBounds(321, 165, 103, 15);
+		lblNewLabel_2.setVisible(false);
+		games1.getContentPane().add(lblNewLabel_2);
+		
+		JLabel lblErrorValue = new JLabel("(error value)");
+		lblErrorValue.setForeground(Color.RED);
+		lblErrorValue.setBounds(321, 40, 103, 15);
+		lblErrorValue.setVisible(false);
+		games1.getContentPane().add(lblErrorValue);
+		
 		JButton btnNext = new JButton("Next");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,13 +102,29 @@ public class Game_Setting3 {
 				listp.remove(Game.p_icon[1]);
 				parray = listp.toArray(new ImageIcon[0]);
 				
-				Game.p_name[2] = dtrpnPlayer.getText();
+				try{
+					Game.p_name[2] = dtrpnPlayer.getText();
+				}
+				catch(Exception e1){
+					lblErrorValue.setVisible(true);
+					return;
+				}
+				lblErrorValue.setVisible(false);
+				
+				try{
+					Game.p_money[2] = Long.parseLong(editorPane.getText());
+				}
+				catch(Exception e2){
+					lblNewLabel_2.setVisible(true);
+					return;
+				}
+				lblNewLabel_2.setVisible(false);
+				
 				Game.p_type[2] = comboBox.getSelectedIndex();
 				Game.p_icon[2] = comboBox_1.getSelectedIndex();
 				Game.p_ic[2] = array[Game.p_icon[2]];
 				Game.p_pawn[2] = parray[Game.p_icon[2]];
 				
-				Game.p_money[2] = Long.parseLong(editorPane.getText());
 				games1.setVisible(false);
 				gs4.show(games1, Game);
 			}

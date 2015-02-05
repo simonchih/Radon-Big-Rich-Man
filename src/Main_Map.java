@@ -147,6 +147,9 @@ public class Main_Map extends JFrame{
 		ini_map.id[0] = 24;
 		ini_map.type[0] = 1;
 		
+		// 25: Jail
+		// 26: Nothing/Parking Lot
+		// 27: Hospital
 		Integer array[] = {25, 26, 27};
 		List<Integer> list = new ArrayList<Integer>(Arrays.asList(array));
 		Random_Pick_List pick = new Random_Pick_List();
@@ -167,6 +170,19 @@ public class Main_Map extends JFrame{
 		temp = pick.getRandomList(list);
 		ini_map.id[30] = temp;
 		ini_map.type[30] = 1;
+		
+		for(i=10; i <= 30; i+=10){
+			if(25 == ini_map.id[i]){
+				ini_map.jail_id = i;
+			}
+			else if(26 == ini_map.id[i]){
+				ini_map.parking_id = i;
+			}
+			else if(27 == ini_map.id[i]){
+				ini_map.hospital_id = i;
+			}
+		}
+		
 		
 		// 28~35: chance
 		// 36~39: others

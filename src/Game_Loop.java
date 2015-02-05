@@ -19,7 +19,7 @@ public class Game_Loop implements Runnable{
 		ai = new AI(Game, gm, this);
 	}
 	public void run(){
-		int one_step, i, j;
+		int one_step, i, j, id;
 		boolean no_cross_cash[] = {true, true, true, true};
 		
 		while(player_number(mygame) > 1)
@@ -27,18 +27,28 @@ public class Game_Loop implements Runnable{
 			for(i=0; i<game.max_p_size; i++){
 				if(i == mygame.turn){
 					if(9 == mygame.p_type[i]){
-						mygame.turn++;
-						break;
+						mygame.turn = (mygame.turn + 1) % game.max_p_size;
+						continue;
 					}
-					else if(false == mygame.move_start && 0 == mygame.p_type[i]){
-						mygame.btnNewButton.setEnabled(true);
-						break;
+					else if(mygame.p_stop[i] > 0){
+						mygame.p_status[i] = "Stop "+mygame.p_stop[mygame.turn]+" turn.";
+						mygame.p_stop[i]--;
+						mygame.turn = (mygame.turn + 1) % game.max_p_size;
+						continue;
 					}
-					else if(1 == mygame.p_type[i]){
-						mygame.dice.Roll_Dice();
-						mygame.move_start = true;
-						mygame.p_dest_id[i] = (mygame.p_id[i] + mygame.dice.count) % game_map.Size;
-						break;
+					else{
+						mygame.p_in_jail[mygame.turn] = 0;
+						mygame.p_status[mygame.turn] = "0";
+						if(false == mygame.move_start && 0 == mygame.p_type[i]){
+							mygame.btnNewButton.setEnabled(true);
+							break;
+						}
+						else if(1 == mygame.p_type[i]){
+							mygame.dice.Roll_Dice();
+							mygame.move_start = true;
+							mygame.p_dest_id[i] = (mygame.p_id[i] + mygame.dice.count) % game_map.Size;
+							break;
+						}
 					}
 				}
 			}
@@ -94,13 +104,15 @@ public class Game_Loop implements Runnable{
 					}
 					if(i == mygame.turn && true == mygame.move_start && mygame.p_id[i] == mygame.p_dest_id[i]){
 						mygame.move_start = false;
+						id = mygame.p_dest_id[mygame.turn];
 						if(0 == mygame.p_dest_id[i])no_cross_cash[i] = true;
 						else no_cross_cash[i] = false;
-						if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
+						//land: 0 == mygame.p_type[mygame.turn]
+						if(0 == game_map.type[id] && 0 == mygame.p_type[mygame.turn]){
 							susp = true;
-							if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
+							if(0 == game_map.owner[id])
 								buy_land.show();
-							else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							else if(mygame.turn + 1 == game_map.owner[id]){
 								build_house.show();
 							}
 							else{
@@ -117,16 +129,41 @@ public class Game_Loop implements Runnable{
 								}
 							}
 						}
-						else if(0 == game_map.type[mygame.p_dest_id[mygame.turn]]){//AI for land
-							if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+						else if(0 == game_map.type[id]){//AI for land
+							if(0 == game_map.owner[id]){
 								ai.buy_land();
 							}
-							else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+							else if(mygame.turn + 1 == game_map.owner[id]){
 								ai.build_house();
 							}
 							else{
 								//pay for land owner
 								payout();
+							}
+						}
+						//Chance: 2 == game_map.type[id]
+						else if(2 == game_map.type[id]){
+						}
+						//Others: 3 == game_map.type[id]
+						else if(3 == game_map.type[id]){
+							// 36~39: others
+							// 36: go jail
+							// 37: go hospital
+							// 38: land tax
+							// 39: house tax
+							if(36 == game_map.id[id]){//go jail
+								go_jail();
+								continue;
+							}
+							else if(37 == game_map.id[id]){//go hospital
+								go_hospital();
+								continue;
+							}
+							else if(38 == game_map.id[id]){
+								land_tax();
+							}
+							else if(39 == game_map.id[id]){
+								house_tax();
 							}
 						}
 						mygame.turn = (mygame.turn+1)%game.max_p_size;
@@ -172,7 +209,7 @@ public class Game_Loop implements Runnable{
 		int i, land_number=0;
 		long tax=400, fee=0;
 		for(i=0; i<game_map.Size; i++){
-			if(turn_id + 1 == game_map.owner[i]){
+			if(turn_id + 1 == game_map.owner[i] && 0 == game_map.type[i]){
 				land_number++;
 			}
 		}
@@ -184,11 +221,29 @@ public class Game_Loop implements Runnable{
 		int i, house_number=0;
 		long tax=200, fee=0;
 		for(i=0; i<game_map.Size; i++){
-			if(turn_id + 1 == game_map.owner[i]){
+			if(turn_id + 1 == game_map.owner[i] && 0 == game_map.type[i]){
 				house_number += game_map.level[i];
 			}
 		}
 		fee = tax*house_number;
 		mygame.deal((-1)*fee, turn_id);
+	}
+	public void go_jail(){
+		int turn_id = mygame.turn;
+		mygame.p_stop[turn_id] = 3;
+		mygame.p_status[turn_id] = "Stop "+mygame.p_stop[turn_id]+" turn.";
+		mygame.p_in_jail[turn_id] = 1;
+		mygame.move_start = true;
+		mygame.p_id[turn_id] = (game_map.jail_id-1)%game_map.Size;
+		mygame.p_dest_id[turn_id] = game_map.jail_id;
+	}
+	public void go_hospital(){
+		int turn_id = mygame.turn;
+		mygame.p_stop[turn_id] = 1;
+		//mygame.p_status[turn_id] = "Stop "+mygame.p_stop[turn_id]+" turn.";
+		mygame.move_start = true;
+		mygame.p_dest_id[turn_id] = game_map.hospital_id;
+		mygame.p_id[turn_id] = (game_map.hospital_id - 1)%game_map.Size;
+		mygame.deal((-1)*mygame.hospital_fee, turn_id);
 	}
 }

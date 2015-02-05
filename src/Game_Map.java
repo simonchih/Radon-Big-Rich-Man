@@ -28,6 +28,11 @@ public class Game_Map {
 	//Color land_color[] = new Color[]{Color.red, Color.cyan, Color.blue, Color.green, Color.orange, Color.pink, Color.yellow, Color.gray};
 	int[][] same_color = new int[color_size][same_color_land_size];
 	
+	int hospital_id;
+	int jail_id;
+	int parking_id;
+	//int start_id = 0;
+	
 	int color_index(Color c){
 		if(Color.red == c)return 0;
 		else if(Color.cyan == c)return 1;

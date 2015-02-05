@@ -1,3 +1,5 @@
+import java.util.Random;
+
 
 public class Game_Loop implements Runnable{
 	public game mygame;
@@ -19,7 +21,8 @@ public class Game_Loop implements Runnable{
 		ai = new AI(Game, gm, this);
 	}
 	public void run(){
-		int one_step, i, j, id;
+		int one_step, i, j, n, id, move_step;
+		long cash;
 		boolean no_cross_cash[] = {true, true, true, true};
 		
 		while(player_number(mygame) > 1)
@@ -143,6 +146,34 @@ public class Game_Loop implements Runnable{
 						}
 						//Chance: 2 == game_map.type[id]
 						else if(2 == game_map.type[id]){
+							Random rand = new Random();
+							n = rand.nextInt(11);
+							if(n < 3){
+								cash = 100*(rand.nextInt(30)+1);
+								mygame.deal((-1)*cash, mygame.turn);
+							}
+							else if(n < 6){
+								cash = 100*(rand.nextInt(30)+1);
+								mygame.deal(cash, mygame.turn);
+							}
+							else if(6 == n){
+								cash = (-1)*(mygame.p_money[mygame.turn]/100)*10;
+								mygame.deal(cash, mygame.turn);
+							}
+							else if(7 == n){
+								go_parking();
+								continue;
+							}
+							else if(8 == n){
+								go_start();
+								continue;
+							}
+							else if(9 == n){
+								move_step = rand.nextInt(12)+ 1;
+							}
+							else if(10 == n){
+								//stop once
+							}
 						}
 						//Others: 3 == game_map.type[id]
 						else if(3 == game_map.type[id]){
@@ -245,5 +276,19 @@ public class Game_Loop implements Runnable{
 		mygame.p_dest_id[turn_id] = game_map.hospital_id;
 		mygame.p_id[turn_id] = (game_map.hospital_id - 1)%game_map.Size;
 		mygame.deal((-1)*mygame.hospital_fee, turn_id);
+	}
+	public void go_parking(){
+		int turn_id = mygame.turn;
+		mygame.p_status[turn_id] = "Go parking lot.";
+		mygame.move_start = true;
+		mygame.p_id[turn_id] = (game_map.parking_id-1)%game_map.Size;
+		mygame.p_dest_id[turn_id] = game_map.parking_id;
+	}
+	public void go_start(){
+		int turn_id = mygame.turn;
+		mygame.p_status[turn_id] = "Go start point.";
+		mygame.move_start = true;
+		mygame.p_id[turn_id] = game_map.Size - 1;
+		mygame.p_dest_id[turn_id] = 0;
 	}
 }

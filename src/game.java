@@ -47,9 +47,9 @@ public class game {
 	public ImageIcon iquestionmark_right = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_right.png"));
 	public ImageIcon iquestionmark_up = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_up.png"));
 	
-	public String s36_1 = "Go";
+	public String s36_1 = "Go to";
 	public String s36_2 = "Jail";
-	public String s37_1 = "Go";
+	public String s37_1 = "Go to";
 	public String s37_2 = "Hospital";
 	public String s38_1 = "Land";
 	public String s38_2 = "Tax";

@@ -24,48 +24,22 @@ public class Game_Loop implements Runnable{
 		
 		while(player_number(mygame) > 1)
 		{	
-			if(0 == mygame.turn){
-				if(9 == mygame.p_type[0])mygame.turn++;
-				else if(false == mygame.move_start && 0 == mygame.p_type[0]){
-					mygame.btnNewButton.setEnabled(true);
-				}
-				else if(1 == mygame.p_type[0]){
-					mygame.dice.Roll_Dice();
-					mygame.move_start = true;
-					mygame.p_dest_id[0] = (mygame.p_id[0] + mygame.dice.count) % game_map.Size;
-				}
-			}
-			else if(1 == mygame.turn){
-				if(9 == mygame.p_type[1])mygame.turn++;
-				else if(false == mygame.move_start && 0 == mygame.p_type[1]){
-					mygame.btnNewButton.setEnabled(true);
-				}
-				else if(1 == mygame.p_type[1]){
-					mygame.dice.Roll_Dice();
-					mygame.move_start = true;
-					mygame.p_dest_id[1] = (mygame.p_id[1] + mygame.dice.count) % game_map.Size;
-				}
-			}
-			else if(2 == mygame.turn){
-				if(9 == mygame.p_type[2])mygame.turn++;
-				else if(false == mygame.move_start && 0 == mygame.p_type[2]){
-					mygame.btnNewButton.setEnabled(true);
-				}
-				else if(1 == mygame.p_type[2]){
-					mygame.dice.Roll_Dice();
-					mygame.move_start = true;
-					mygame.p_dest_id[2] = (mygame.p_id[2] + mygame.dice.count) % game_map.Size;
-				}
-			}
-			else if(3 == mygame.turn){
-				if(9 == mygame.p_type[3])mygame.turn = 0;
-				else if(false == mygame.move_start && 0 == mygame.p_type[3]){
-					mygame.btnNewButton.setEnabled(true);
-				}
-				else if(1 == mygame.p_type[3]){
-					mygame.dice.Roll_Dice();
-					mygame.move_start = true;
-					mygame.p_dest_id[3] = (mygame.p_id[3] + mygame.dice.count) % game_map.Size;
+			for(i=0; i<game.max_p_size; i++){
+				if(i == mygame.turn){
+					if(9 == mygame.p_type[i]){
+						mygame.turn++;
+						break;
+					}
+					else if(false == mygame.move_start && 0 == mygame.p_type[i]){
+						mygame.btnNewButton.setEnabled(true);
+						break;
+					}
+					else if(1 == mygame.p_type[i]){
+						mygame.dice.Roll_Dice();
+						mygame.move_start = true;
+						mygame.p_dest_id[i] = (mygame.p_id[i] + mygame.dice.count) % game_map.Size;
+						break;
+					}
 				}
 			}
 			
@@ -118,164 +92,48 @@ public class Game_Loop implements Runnable{
 							mygame.p_y_now[i] = mygame.p_y_now[i] + one_step;
 						}
 					}
-				}
-				if(0 == mygame.turn && true == mygame.move_start && mygame.p_id[0] == mygame.p_dest_id[0]){
-					mygame.move_start = false;
-					if(0 == mygame.p_dest_id[0])no_cross_cash[0] = true;
-					else no_cross_cash[0] = false;
-					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
-						susp = true;
-						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
-							buy_land.show();
-						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							build_house.show();
-						}
-						else{
-							//pay for land owner
-							payout();
-							susp = false;
-						}
-						while(true == susp){
-							try {
-								Thread.sleep(500);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+					if(i == mygame.turn && true == mygame.move_start && mygame.p_id[i] == mygame.p_dest_id[i]){
+						mygame.move_start = false;
+						if(0 == mygame.p_dest_id[i])no_cross_cash[i] = true;
+						else no_cross_cash[i] = false;
+						if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
+							susp = true;
+							if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
+								buy_land.show();
+							else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+								build_house.show();
+							}
+							else{
+								//pay for land owner
+								payout();
+								susp = false;
+							}
+							while(true == susp){
+								try {
+									Thread.sleep(500);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 							}
 						}
-					}
-					else if(0 == game_map.type[mygame.p_dest_id[mygame.turn]]){//AI for land
-						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							ai.buy_land();
-						}
-						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							ai.build_house();
-						}
-						else{
-							//pay for land owner
-							payout();
-						}
-					}
-					mygame.turn++;
-				}
-				if(1 == mygame.turn && true == mygame.move_start && mygame.p_id[1] == mygame.p_dest_id[1]){
-					mygame.move_start = false;
-					if(0 == mygame.p_dest_id[1])no_cross_cash[1] = true;
-					else no_cross_cash[1] = false;
-					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
-						susp = true;
-						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
-							buy_land.show();
-						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							build_house.show();
-						}
-						else{
-							//pay for land owner
-							payout();
-							susp = false;
-						}
-						while(true == susp){
-							try {
-								Thread.sleep(500);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+						else if(0 == game_map.type[mygame.p_dest_id[mygame.turn]]){//AI for land
+							if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+								ai.buy_land();
+							}
+							else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
+								ai.build_house();
+							}
+							else{
+								//pay for land owner
+								payout();
 							}
 						}
+						mygame.turn = (mygame.turn+1)%game.max_p_size;
 					}
-					else if(0 == game_map.type[mygame.p_dest_id[mygame.turn]]){//AI for land
-						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							ai.buy_land();
-						}
-						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							ai.build_house();
-						}
-						else{
-							//pay for land owner
-							payout();
-						}
-					}
-					mygame.turn++;
-				}
-				if(2 == mygame.turn && true == mygame.move_start && mygame.p_id[2] == mygame.p_dest_id[2]){
-					mygame.move_start = false;
-					if(0 == mygame.p_dest_id[2])no_cross_cash[2] = true;
-					else no_cross_cash[2] = false;
-					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
-						susp = true;
-						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
-							buy_land.show();
-						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							build_house.show();
-						}
-						else{
-							//pay for land owner
-							payout();
-							susp = false;
-						}
-						while(true == susp){
-							try {
-								Thread.sleep(500);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					}
-					else if(0 == game_map.type[mygame.p_dest_id[mygame.turn]]){//AI for land
-						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							ai.buy_land();
-						}
-						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							ai.build_house();
-						}
-						else{
-							//pay for land owner
-							payout();
-						}
-					}
-					mygame.turn++;
-				}
-				if(3 == mygame.turn && true == mygame.move_start && mygame.p_id[3] == mygame.p_dest_id[3]){
-					mygame.move_start = false;
-					if(0 == mygame.p_dest_id[3])no_cross_cash[3] = true;
-					else no_cross_cash[3] = false;
-					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
-						susp = true;
-						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
-							buy_land.show();
-						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							build_house.show();
-						}
-						else{
-							//pay for land owner
-							payout();
-							susp = false;
-						}
-						while(true == susp){
-							try {
-								Thread.sleep(500);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					}
-					else if(0 == game_map.type[mygame.p_dest_id[mygame.turn]]){//AI for land
-						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							ai.buy_land();
-						}
-						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							ai.build_house();
-						}
-						else{
-							//pay for land owner
-							payout();
-						}
-					}
-					mygame.turn = 0;
-				}
-				//System.out.println(mygame.turn);
+					//System.out.println(mygame.turn);
+				}//for max_p_size
+				
 				mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
 			}///while(mygame.p_id[0] != mygame.p_dest_id[0] ...)
 		}// while(player_number > 1)

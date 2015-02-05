@@ -31,14 +31,14 @@ public class Game_Loop implements Runnable{
 						continue;
 					}
 					else if(mygame.p_stop[i] > 0){
-						mygame.p_status[i] = "Stop "+mygame.p_stop[mygame.turn]+" turn.";
 						mygame.p_stop[i]--;
+						mygame.p_status[i] = "Stop "+mygame.p_stop[mygame.turn]+" turn.";
 						mygame.turn = (mygame.turn + 1) % game.max_p_size;
 						continue;
 					}
 					else{
-						mygame.p_in_jail[mygame.turn] = 0;
-						mygame.p_status[mygame.turn] = "0";
+						mygame.p_in_jail[i] = 0;
+						mygame.p_status[i] = "0";
 						if(false == mygame.move_start && 0 == mygame.p_type[i]){
 							mygame.btnNewButton.setEnabled(true);
 							break;

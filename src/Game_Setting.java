@@ -97,7 +97,10 @@ public class Game_Setting {
 					return;
 				}
 				lblNewLabel_2.setVisible(false);
+				
 				Game.p_type[0] = comboBox.getSelectedIndex();
+				//System.out.println(Game.p_type[0]);
+				
 				Game.p_icon[0] = comboBox_1.getSelectedIndex();
 				Game.p_ic[0] = array[Game.p_icon[0]];
 				Game.p_pawn[0] = parray[Game.p_icon[0]];

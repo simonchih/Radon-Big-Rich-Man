@@ -25,6 +25,9 @@ public class Game_Loop implements Runnable{
 		long cash;
 		boolean no_cross_cash[] = {true, true, true, true};
 		
+		//ini roll dice button to false (for player1 to AI);
+		mygame.btnNewButton.setEnabled(false);
+		
 		while(player_number(mygame) > 1)
 		{	
 			for(i=0; i<game.max_p_size; i++){

@@ -19,10 +19,11 @@ public class Build_House {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void show(int turn_id){
+	public void show(){
 		String h;
 		String button_name;
 		long spent;
+		int turn_id = mygame.turn;
 		
 		if(4 == game_map.level[mygame.p_dest_id[turn_id]]){
 			mygl.susp = false;

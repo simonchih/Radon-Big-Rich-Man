@@ -70,7 +70,7 @@ public class Game_Loop implements Runnable{
 			}
 			
 			// if p_money < 0
-			for(i=0;i<mygame.max_p_size;i++){
+			for(i=0;i<game.max_p_size;i++){
 				if(9 == mygame.p_type[i]){
 					continue;
 				}
@@ -100,75 +100,23 @@ public class Game_Loop implements Runnable{
 					e.printStackTrace();
 				}
 
-				if(mygame.p_id[0] != mygame.p_dest_id[0]){
-					if(false == no_cross_cash[0] && 0 == mygame.p_id[0]){
-						no_cross_cash[0] = true;
-						mygame.deal(mygame.cross_cash, 0);
-					}
-					if(mygame.p_x_now[0] == game_map.p1_x[(mygame.p_id[0]+1)%game_map.Size] && mygame.p_y_now[0] == game_map.p1_y[(mygame.p_id[0]+1)%game_map.Size]) {
-						mygame.p_id[0] = (mygame.p_id[0]+1)%game_map.Size;
-					}
-					if(mygame.p_x_now[0] != game_map.p1_x[(mygame.p_id[0]+1)%game_map.Size]){
-						one_step = game_map.p1_x[(mygame.p_id[0]+1)%game_map.Size] > mygame.p_x_now[0] ? 1 : -1;
-						mygame.p_x_now[0] = mygame.p_x_now[0] + one_step;
-					}
-					if(mygame.p_y_now[0] != game_map.p1_y[(mygame.p_id[0]+1)%game_map.Size]){
-						one_step = game_map.p1_y[(mygame.p_id[0]+1)%game_map.Size] > mygame.p_y_now[0] ? 1 : -1;
-						mygame.p_y_now[0] = mygame.p_y_now[0] + one_step;
-					}
-				}
-				
-				if(mygame.p_id[1] != mygame.p_dest_id[1]){
-					if(false == no_cross_cash[1] && 0 == mygame.p_id[1]){
-						no_cross_cash[1] = true;
-						mygame.deal(mygame.cross_cash, 1);
-					}
-					if(mygame.p_x_now[1] == game_map.p2_x[(mygame.p_id[1]+1)%game_map.Size] && mygame.p_y_now[1] == game_map.p2_y[(mygame.p_id[1]+1)%game_map.Size]) {
-						mygame.p_id[1] = (mygame.p_id[1]+1)%game_map.Size;
-					}
-					if(mygame.p_x_now[1] != game_map.p2_x[(mygame.p_id[1]+1)%game_map.Size]){
-						one_step = game_map.p2_x[(mygame.p_id[1]+1)%game_map.Size] > mygame.p_x_now[1] ? 1 : -1;
-						mygame.p_x_now[1] = mygame.p_x_now[1] + one_step;
-					}
-					if(mygame.p_y_now[1] != game_map.p2_y[(mygame.p_id[1]+1)%game_map.Size]){
-						one_step = game_map.p2_y[(mygame.p_id[1]+1)%game_map.Size] > mygame.p_y_now[1] ? 1 : -1;
-						mygame.p_y_now[1] = mygame.p_y_now[1] + one_step;
-					}
-				}
-				
-				if(mygame.p_id[2] != mygame.p_dest_id[2]){
-					if(false == no_cross_cash[2] && 0 == mygame.p_id[2]){
-						no_cross_cash[2] = true;
-						mygame.deal(mygame.cross_cash, 2);
-					}
-					if(mygame.p_x_now[2] == game_map.p3_x[(mygame.p_id[2]+1)%game_map.Size] && mygame.p_y_now[2] == game_map.p3_y[(mygame.p_id[2]+1)%game_map.Size]) {
-						mygame.p_id[2] = (mygame.p_id[2]+1)%game_map.Size;
-					}
-					if(mygame.p_x_now[2] != game_map.p3_x[(mygame.p_id[2]+1)%game_map.Size]){
-						one_step = game_map.p3_x[(mygame.p_id[2]+1)%game_map.Size] > mygame.p_x_now[2] ? 1 : -1;
-						mygame.p_x_now[2] = mygame.p_x_now[2] + one_step;
-					}
-					if(mygame.p_y_now[2] != game_map.p3_y[(mygame.p_id[2]+1)%game_map.Size]){
-						one_step = game_map.p3_y[(mygame.p_id[2]+1)%game_map.Size] > mygame.p_y_now[2] ? 1 : -1;
-						mygame.p_y_now[2] = mygame.p_y_now[2] + one_step;
-					}
-				}
-				
-				if(mygame.p_id[3] != mygame.p_dest_id[3]){
-					if(false == no_cross_cash[3] && 0 == mygame.p_id[3]){
-						no_cross_cash[3] = true;
-						mygame.deal(mygame.cross_cash, 3);
-					}
-					if(mygame.p_x_now[3] == game_map.p4_x[(mygame.p_id[3]+1)%game_map.Size] && mygame.p_y_now[3] == game_map.p4_y[(mygame.p_id[3]+1)%game_map.Size]) {
-						mygame.p_id[3] = (mygame.p_id[3]+1)%game_map.Size;
-					}
-					if(mygame.p_x_now[3] != game_map.p4_x[(mygame.p_id[3]+1)%game_map.Size]){
-						one_step = game_map.p4_x[(mygame.p_id[3]+1)%game_map.Size] > mygame.p_x_now[3] ? 1 : -1;
-						mygame.p_x_now[3] = mygame.p_x_now[3] + one_step;
-					}
-					if(mygame.p_y_now[3] != game_map.p4_y[(mygame.p_id[3]+1)%game_map.Size]){
-						one_step = game_map.p4_y[(mygame.p_id[3]+1)%game_map.Size] > mygame.p_y_now[3] ? 1 : -1;
-						mygame.p_y_now[3] = mygame.p_y_now[3] + one_step;
+				for(i=0; i<game.max_p_size; i++){
+					if(mygame.p_id[i] != mygame.p_dest_id[i]){
+						if(false == no_cross_cash[i] && 0 == mygame.p_id[i]){
+							no_cross_cash[i] = true;
+							mygame.deal(mygame.cross_cash, i);
+						}
+						if(mygame.p_x_now[i] == game_map.p_x[i][(mygame.p_id[i]+1)%game_map.Size] && mygame.p_y_now[i] == game_map.p_y[i][(mygame.p_id[i]+1)%game_map.Size]) {
+							mygame.p_id[i] = (mygame.p_id[i]+1)%game_map.Size;
+						}
+						if(mygame.p_x_now[i] != game_map.p_x[i][(mygame.p_id[i]+1)%game_map.Size]){
+							one_step = game_map.p_x[i][(mygame.p_id[i]+1)%game_map.Size] > mygame.p_x_now[i] ? 1 : -1;
+							mygame.p_x_now[i] = mygame.p_x_now[i] + one_step;
+						}
+						if(mygame.p_y_now[i] != game_map.p_y[i][(mygame.p_id[i]+1)%game_map.Size]){
+							one_step = game_map.p_y[i][(mygame.p_id[i]+1)%game_map.Size] > mygame.p_y_now[i] ? 1 : -1;
+							mygame.p_y_now[i] = mygame.p_y_now[i] + one_step;
+						}
 					}
 				}
 				if(0 == mygame.turn && true == mygame.move_start && mygame.p_id[0] == mygame.p_dest_id[0]){
@@ -178,9 +126,9 @@ public class Game_Loop implements Runnable{
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
 						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
-							buy_land.show(mygame.turn);
+							buy_land.show();
 						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							build_house.show(mygame.turn);
+							build_house.show();
 						}
 						else{
 							//pay for land owner
@@ -217,9 +165,9 @@ public class Game_Loop implements Runnable{
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
 						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
-							buy_land.show(mygame.turn);
+							buy_land.show();
 						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							build_house.show(mygame.turn);
+							build_house.show();
 						}
 						else{
 							//pay for land owner
@@ -256,9 +204,9 @@ public class Game_Loop implements Runnable{
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
 						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
-							buy_land.show(mygame.turn);
+							buy_land.show();
 						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							build_house.show(mygame.turn);
+							build_house.show();
 						}
 						else{
 							//pay for land owner
@@ -295,9 +243,9 @@ public class Game_Loop implements Runnable{
 					if(0 == game_map.type[mygame.p_dest_id[mygame.turn]] && 0 == mygame.p_type[mygame.turn]){
 						susp = true;
 						if(0 == game_map.owner[mygame.p_dest_id[mygame.turn]])
-							buy_land.show(mygame.turn);
+							buy_land.show();
 						else if(mygame.turn + 1 == game_map.owner[mygame.p_dest_id[mygame.turn]]){
-							build_house.show(mygame.turn);
+							build_house.show();
 						}
 						else{
 							//pay for land owner
@@ -360,5 +308,29 @@ public class Game_Loop implements Runnable{
 			mygame.deal((-1)*fee, mygame.turn);
 			mygame.deal(fee, owner);
 		}
+	}
+	public void land_tax(){
+		int turn_id = mygame.turn;
+		int i, land_number=0;
+		long tax=400, fee=0;
+		for(i=0; i<game_map.Size; i++){
+			if(turn_id + 1 == game_map.owner[i]){
+				land_number++;
+			}
+		}
+		fee = tax*land_number;
+		mygame.deal((-1)*fee, turn_id);
+	}
+	public void house_tax(){
+		int turn_id = mygame.turn;
+		int i, house_number=0;
+		long tax=200, fee=0;
+		for(i=0; i<game_map.Size; i++){
+			if(turn_id + 1 == game_map.owner[i]){
+				house_number += game_map.level[i];
+			}
+		}
+		fee = tax*house_number;
+		mygame.deal((-1)*fee, turn_id);
 	}
 }

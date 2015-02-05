@@ -21,7 +21,7 @@ public class Game_Loop implements Runnable{
 		ai = new AI(Game, gm, this);
 	}
 	public void run(){
-		int one_step, i, j, n, id, move_step;
+		int one_step, i, j, n, id;
 		long cash;
 		boolean no_cross_cash[] = {true, true, true, true};
 		
@@ -148,6 +148,7 @@ public class Game_Loop implements Runnable{
 						else if(2 == game_map.type[id]){
 							Random rand = new Random();
 							n = rand.nextInt(11);
+							
 							if(n < 3){
 								cash = 100*(rand.nextInt(30)+1);
 								mygame.deal((-1)*cash, mygame.turn);
@@ -169,10 +170,12 @@ public class Game_Loop implements Runnable{
 								continue;
 							}
 							else if(9 == n){
-								move_step = rand.nextInt(12)+ 1;
+								forward();
+								continue;
 							}
 							else if(10 == n){
 								//stop once
+								stop(1);
 							}
 						}
 						//Others: 3 == game_map.type[id]
@@ -261,8 +264,10 @@ public class Game_Loop implements Runnable{
 	}
 	public void go_jail(){
 		int turn_id = mygame.turn;
-		mygame.p_stop[turn_id] = 3;
-		mygame.p_status[turn_id] = "Stop "+mygame.p_stop[turn_id]+" turn.";
+		//mygame.p_stop[turn_id] = 3;
+		//mygame.p_status[turn_id] = "Stop "+mygame.p_stop[turn_id]+" turn.";
+		stop(3);
+		
 		mygame.p_in_jail[turn_id] = 1;
 		mygame.move_start = true;
 		mygame.p_id[turn_id] = (game_map.jail_id-1)%game_map.Size;
@@ -270,7 +275,7 @@ public class Game_Loop implements Runnable{
 	}
 	public void go_hospital(){
 		int turn_id = mygame.turn;
-		mygame.p_stop[turn_id] = 1;
+		//mygame.p_stop[turn_id] = 1;
 		//mygame.p_status[turn_id] = "Stop "+mygame.p_stop[turn_id]+" turn.";
 		mygame.move_start = true;
 		mygame.p_dest_id[turn_id] = game_map.hospital_id;
@@ -279,16 +284,30 @@ public class Game_Loop implements Runnable{
 	}
 	public void go_parking(){
 		int turn_id = mygame.turn;
-		mygame.p_status[turn_id] = "Go parking lot.";
+		mygame.p_status[turn_id] = "Go to parking lot.";
 		mygame.move_start = true;
 		mygame.p_id[turn_id] = (game_map.parking_id-1)%game_map.Size;
 		mygame.p_dest_id[turn_id] = game_map.parking_id;
 	}
 	public void go_start(){
 		int turn_id = mygame.turn;
-		mygame.p_status[turn_id] = "Go start point.";
+		mygame.p_status[turn_id] = "Go to start point.";
 		mygame.move_start = true;
 		mygame.p_id[turn_id] = game_map.Size - 1;
 		mygame.p_dest_id[turn_id] = 0;
+	}
+	public void forward(){
+		int move_step, turn_id = mygame.turn;
+		Random rand = new Random();
+		//forward step 1~12
+		move_step = rand.nextInt(12)+ 1;
+		mygame.p_status[turn_id] = "Forward "+move_step+" step(s).";
+		mygame.move_start = true;
+		mygame.p_dest_id[turn_id] = (mygame.p_id[turn_id]+move_step)%game_map.Size;
+	}
+	public void stop(int stop_turn){
+		int turn_id = mygame.turn;
+		mygame.p_stop[turn_id] = stop_turn;
+		mygame.p_status[turn_id] = "Stop "+stop_turn+" turn.";
 	}
 }

@@ -96,7 +96,7 @@ public class game {
 		      try {
 		        Clip clip = AudioSystem.getClip();
 		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-		        game.class.getResourceAsStream(url));
+		        game.class.getResource(url));
 		        clip.open(inputStream);
 		        clip.start(); 
 		      } catch (Exception e) {

@@ -132,7 +132,7 @@ public class game {
 				gs1.show(frame, Game);
 			}
 		});
-		btnANewGame.setBounds(79, 112, 121, 23);
+		btnANewGame.setBounds(10, 112, 264, 23);
 		panel.add(btnANewGame);
 	}
 }

@@ -18,11 +18,12 @@ e. stop once
 
 Following is Chinese user guide:
 遊戲名稱:瑞德大富翁
+遊戲平台：windows 8和其它支援Java的平台
 源起：
 大富翁是我小時候很喜歡的桌遊，
 2014年底，我發現有一款VB寫的Monopolie的project，
 下載回來執行後，發現在Windows 8底下會有fatal error.
-因此興起我想另外寫一款JAVA寫的大富翁遊戲。
+因此興起我想另外寫一款JAVA的大富翁遊戲。
 
 遊戲特色：
 隨機地圖

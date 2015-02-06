@@ -3,6 +3,9 @@ gtkmonop-0.3.0
 kapitalist-0.4
 monopolie-0.9.7
 
+Install precondition:
+Install java 1.8.0
+
 Game Rule:
 1. Monopoly game rule
 2. Land Tax: each land $400
@@ -19,7 +22,7 @@ e. stop once
 Following is Chinese user guide:
 遊戲名稱:瑞德大富翁
 遊戲平台：windows 8和其它支援Java的平台
-源起：
+緣起：
 大富翁是我小時候很喜歡的桌遊，
 2014年底，我發現有一款VB寫的Monopolie的project，
 下載回來執行後，發現在Windows 8底下會有fatal error.

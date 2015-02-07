@@ -6,8 +6,11 @@ monopolie-0.9.7
 Install precondition:
 Install java 1.8.0
 
+Game Feature:
+Random map
+
 Game Rule:
-1. Monopoly game rule
+1. Monopoly-like game rule
 2. Land Tax: each land $400
 3. House Tax: each house $200, hotel is $800
 4. Question Mark event:
@@ -18,6 +21,14 @@ d. go to start point or parking lot
 e. stop once
 ...
 5. Go to hospital will pay $1000
+6. Toll is 20% of land value
+7. Toll is double each house
+8. Toll is 1600% if land have hotel
+9. Player can build hotel if 3 houses on the land
+10. If player buy all same color land, toll is double
+11. Toll free if land owner is in jail
+12. Player exceed start point will give $2000, but $0 if on the start point
+13. Go to jail stop 3 turns
 
 Following is Chinese user guide:
 遊戲名稱:瑞德大富翁
@@ -54,7 +65,8 @@ g. 暫停一個回合
 
 9. 超過起點可以得$2000，但是剛好走到起點不會有錢。
 10. 進到醫院要付$1000，但走到醫院的大格子不會進入醫院(免錢)
-11. 其它規則，大致跟大富翁遊戲一樣
+11. 進入監獄，玩家暫停三回合
+12. 其它規則，大致跟大富翁遊戲一樣
 
 Q&A.
 Q:為什麼在Player Setting，買地或買房屋時，按"X"來關閉視窗沒反應？

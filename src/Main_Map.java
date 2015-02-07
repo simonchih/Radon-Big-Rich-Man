@@ -52,7 +52,7 @@ public class Main_Map extends JFrame{
 				//System.out.println(Game.p_dest_id[0]);
 			}
 		});
-		Game.btnNewButton.setBounds(488, 601, 87, 23);
+		Game.btnNewButton.setBounds(460, 601, 150, 23);
 		getContentPane().add(Game.btnNewButton);
 	}
 	public Game_Map ini_game_map(Game_Map gdata){

@@ -287,29 +287,23 @@ public class mcanvas extends JComponent {
 			g.setColor(Color.black);
 			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
 			g.drawString(sp1, mygame.sp_x[0], mygame.sp_y[0]);
+			g.drawString(sp3, mygame.sp_x[2], mygame.sp_y[2]);
+			g.drawString(sp4, mygame.sp_x[3], mygame.sp_y[3]);
 			
 			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 24));
 			g.setColor(Color.blue);
 			g.drawString(sp2, mygame.sp_x[1], mygame.sp_y[1]);
-			
-			g.setColor(Color.black);
-			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
-			g.drawString(sp3, mygame.sp_x[2], mygame.sp_y[2]);
-			g.drawString(sp4, mygame.sp_x[3], mygame.sp_y[3]);
 		}
 		if(2 == mygame.turn){
 			g.setColor(Color.black);
 			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
 			g.drawString(sp1, mygame.sp_x[0], mygame.sp_y[0]);
 			g.drawString(sp2, mygame.sp_x[1], mygame.sp_y[1]);
+			g.drawString(sp4, mygame.sp_x[3], mygame.sp_y[3]);
 			
 			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 24));
 			g.setColor(Color.blue);
-			g.drawString(sp3, mygame.sp_x[2], mygame.sp_y[2]);
-			
-			g.setColor(Color.black);
-			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
-			g.drawString(sp4, mygame.sp_x[3], mygame.sp_y[3]);
+			g.drawString(sp3, mygame.sp_x[2], mygame.sp_y[2]);			
 		}
 		if(3 == mygame.turn){
 			g.setColor(Color.black);

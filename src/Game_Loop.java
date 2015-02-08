@@ -163,7 +163,7 @@ public class Game_Loop implements Runnable{
 							else if(6 == n){
 								cash = (-1)*(mygame.p_money[mygame.turn]/100)*10;
 								if(0 == cash)mygame.p_status[mygame.turn] = "Nothing happen.";
-								else mygame.deal(cash, mygame.turn, "income tax: ");
+								else mygame.deal(cash, mygame.turn, "Income Tax: ");
 							}
 							else if(7 == n){
 								go_parking();

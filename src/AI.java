@@ -15,7 +15,7 @@ public class AI {
 		// Won't buy if buy land then player money less than 3500
 		if(mygame.p_money[turn_id]-game_map.value[id] < 3500)return;
 		else{
-			mygame.deal((-1)*game_map.value[mygame.p_dest_id[turn_id]], turn_id);
+			mygame.deal((-1)*game_map.value[mygame.p_dest_id[turn_id]], turn_id, "Buy Land: ");
 			game_map.owner[id] = turn_id + 1;
 		}
 	}
@@ -38,7 +38,7 @@ public class AI {
 		// Won't build if build house or hotel then player money less than 2500
 		if(mygame.p_money[turn_id] - spent < 2500)return;
 		else{
-			mygame.deal((-1)*spent, turn_id);
+			mygame.deal((-1)*spent, turn_id, "Building...");
 			game_map.level[id] += 1;
 		}
 		

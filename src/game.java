@@ -106,9 +106,9 @@ public class game {
 		  }).start();
 		}
 	
-	public void deal(long cash, int turn_id){
+	public void deal(long cash, int turn_id, String event){
 		p_money[turn_id] += cash;
-		p_status[turn_id] = "" + cash;
+		p_status[turn_id] = event + cash;
 		if(cash < 0){
 			playSound(skaching);
 		}

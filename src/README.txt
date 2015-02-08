@@ -8,6 +8,7 @@ Install java 1.8.0
 
 Game Feature:
 Random map
+The land name is real TAIWAN Taipei/New Taipei location name
 
 Game Rule:
 1. Monopoly-like game rule
@@ -41,6 +42,7 @@ Following is Chinese user guide:
 
 遊戲特色：
 隨機地圖
+土地名稱是真實台北/新北英文地名
 
 遊戲規則：
 1. 按Roll Dice這個Button來投骰子

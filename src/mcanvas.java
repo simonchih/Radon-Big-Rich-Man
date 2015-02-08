@@ -1,4 +1,5 @@
 import java.awt.*;
+
 import javax.swing.*;
 
 public class mcanvas extends JComponent {
@@ -20,7 +21,7 @@ public class mcanvas extends JComponent {
 	int right_left_ic_d = 20;
 	int left_string_y = 609;
 	int right_string_y = 129;
-	int string_player_d = 20;
+	int string_player_d = 40;
 	
 	int p_gap = 5;
 	
@@ -34,12 +35,14 @@ public class mcanvas extends JComponent {
 
 	public void paintComponent(Graphics g) {
 		int i;
-		String sp1, sp2, sp3, sp4;
+		String sp1, sp2, sp3, sp4;	
 		
 		sp1 = mygame.p_name[0] + ": "+ mygame.p_money[0] +" (" + mygame.p_status[0] + ")";
 		sp2 = mygame.p_name[1] + ": "+ mygame.p_money[1] +" (" + mygame.p_status[1] + ")";
 		sp3 = mygame.p_name[2] + ": "+ mygame.p_money[2] +" (" + mygame.p_status[2] + ")";
 		sp4 = mygame.p_name[3] + ": "+ mygame.p_money[3] +" (" + mygame.p_status[3] + ")";
+		
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 12)); 
 		
 		//ini sp_x, sp_y
 		mygame.sp_x[0] = left_x + string_player_d;
@@ -269,11 +272,58 @@ public class mcanvas extends JComponent {
 		}//end for
 		
 		//draw player total money
+		if(0 == mygame.turn){
+			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 24));
+			g.setColor(Color.blue);
+			g.drawString(sp1, mygame.sp_x[0], mygame.sp_y[0]);
+			
+			g.setColor(Color.black);
+			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
+			g.drawString(sp2, mygame.sp_x[1], mygame.sp_y[1]);
+			g.drawString(sp3, mygame.sp_x[2], mygame.sp_y[2]);
+			g.drawString(sp4, mygame.sp_x[3], mygame.sp_y[3]);
+		}
+		if(1 == mygame.turn){
+			g.setColor(Color.black);
+			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
+			g.drawString(sp1, mygame.sp_x[0], mygame.sp_y[0]);
+			
+			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 24));
+			g.setColor(Color.blue);
+			g.drawString(sp2, mygame.sp_x[1], mygame.sp_y[1]);
+			
+			g.setColor(Color.black);
+			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
+			g.drawString(sp3, mygame.sp_x[2], mygame.sp_y[2]);
+			g.drawString(sp4, mygame.sp_x[3], mygame.sp_y[3]);
+		}
+		if(2 == mygame.turn){
+			g.setColor(Color.black);
+			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
+			g.drawString(sp1, mygame.sp_x[0], mygame.sp_y[0]);
+			g.drawString(sp2, mygame.sp_x[1], mygame.sp_y[1]);
+			
+			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 24));
+			g.setColor(Color.blue);
+			g.drawString(sp3, mygame.sp_x[2], mygame.sp_y[2]);
+			
+			g.setColor(Color.black);
+			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
+			g.drawString(sp4, mygame.sp_x[3], mygame.sp_y[3]);
+		}
+		if(3 == mygame.turn){
+			g.setColor(Color.black);
+			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
+			g.drawString(sp1, mygame.sp_x[0], mygame.sp_y[0]);
+			g.drawString(sp2, mygame.sp_x[1], mygame.sp_y[1]);
+			g.drawString(sp3, mygame.sp_x[2], mygame.sp_y[2]);
+			
+			g.setFont(new Font("wqy-zenhei", Font.PLAIN, 24));
+			g.setColor(Color.blue);
+			g.drawString(sp4, mygame.sp_x[3], mygame.sp_y[3]);
+		}
+		g.setFont(new Font("wqy-zenhei", Font.PLAIN, 12));
 		g.setColor(Color.black);
-		g.drawString(sp1, mygame.sp_x[0], mygame.sp_y[0]);
-		g.drawString(sp2, mygame.sp_x[1], mygame.sp_y[1]);
-		g.drawString(sp3, mygame.sp_x[2], mygame.sp_y[2]);
-		g.drawString(sp4, mygame.sp_x[3], mygame.sp_y[3]);
 		
 		//draw dice
 		g.drawImage(mygame.dice.idice1.getImage(), mygame.dice.idice1_x, mygame.dice.idice1_y, mygame.dice.idice1.getIconWidth(), mygame.dice.idice1.getIconHeight(), this);

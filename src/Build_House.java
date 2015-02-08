@@ -61,7 +61,7 @@ public class Build_House {
 		JButton btnNewButton_1 = new JButton(button_name);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mygame.deal((-1)*spent, turn_id);
+				mygame.deal((-1)*spent, turn_id, "Spent: ");
 				game_map.level[mygame.p_dest_id[turn_id]] += 1;
 				bh.dispose();
 				mygl.susp = false;

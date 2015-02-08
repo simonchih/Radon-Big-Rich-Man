@@ -94,7 +94,7 @@ public class Game_Loop implements Runnable{
 					if(mygame.p_id[i] != mygame.p_dest_id[i]){
 						if(false == no_cross_cash[i] && 0 == mygame.p_id[i]){
 							no_cross_cash[i] = true;
-							mygame.deal(mygame.cross_cash, i);
+							mygame.deal(mygame.cross_cash, i, "Get: ");
 						}
 						if(mygame.p_x_now[i] == game_map.p_x[i][(mygame.p_id[i]+1)%game_map.Size] && mygame.p_y_now[i] == game_map.p_y[i][(mygame.p_id[i]+1)%game_map.Size]) {
 							mygame.p_id[i] = (mygame.p_id[i]+1)%game_map.Size;
@@ -154,16 +154,16 @@ public class Game_Loop implements Runnable{
 							
 							if(n < 3){
 								cash = 100*(rand.nextInt(30)+1);
-								mygame.deal((-1)*cash, mygame.turn);
+								mygame.deal((-1)*cash, mygame.turn, "Lost: ");
 							}
 							else if(n < 6){
 								cash = 100*(rand.nextInt(30)+1);
-								mygame.deal(cash, mygame.turn);
+								mygame.deal(cash, mygame.turn, "Get: ");
 							}
 							else if(6 == n){
 								cash = (-1)*(mygame.p_money[mygame.turn]/100)*10;
 								if(0 == cash)mygame.p_status[mygame.turn] = "Nothing happen.";
-								else mygame.deal(cash, mygame.turn);
+								else mygame.deal(cash, mygame.turn, "income tax: ");
 							}
 							else if(7 == n){
 								go_parking();
@@ -238,8 +238,8 @@ public class Game_Loop implements Runnable{
 		owner = game_map.owner[id] - 1;
 		if(1 == mygame.p_in_jail[owner])return;
 		else{
-			mygame.deal((-1)*fee, mygame.turn);
-			mygame.deal(fee, owner);
+			mygame.deal((-1)*fee, mygame.turn, "Toll: ");
+			mygame.deal(fee, owner, "Get ");
 		}
 	}
 	public void land_tax(){
@@ -252,7 +252,7 @@ public class Game_Loop implements Runnable{
 			}
 		}
 		fee = tax*land_number;
-		mygame.deal((-1)*fee, turn_id);
+		mygame.deal((-1)*fee, turn_id, "Land Tax: ");
 	}
 	public void house_tax(){
 		int turn_id = mygame.turn;
@@ -264,7 +264,7 @@ public class Game_Loop implements Runnable{
 			}
 		}
 		fee = tax*house_number;
-		mygame.deal((-1)*fee, turn_id);
+		mygame.deal((-1)*fee, turn_id, "House Tax: ");
 	}
 	public void go_jail(){
 		int turn_id = mygame.turn;
@@ -284,7 +284,7 @@ public class Game_Loop implements Runnable{
 		mygame.move_start = true;
 		mygame.p_dest_id[turn_id] = game_map.hospital_id;
 		mygame.p_id[turn_id] = (game_map.hospital_id - 1)%game_map.Size;
-		mygame.deal((-1)*mygame.hospital_fee, turn_id);
+		mygame.deal((-1)*mygame.hospital_fee, turn_id, "Hospital Fee: ");
 	}
 	public void go_parking(){
 		int turn_id = mygame.turn;

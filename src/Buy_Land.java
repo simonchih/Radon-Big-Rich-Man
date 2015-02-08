@@ -43,7 +43,7 @@ public class Buy_Land{
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//mygame.p_money[turn_id] -= game_map.value[mygame.p_dest_id[turn_id]];
-				mygame.deal((-1)*game_map.value[mygame.p_dest_id[turn_id]], turn_id);
+				mygame.deal((-1)*game_map.value[mygame.p_dest_id[turn_id]], turn_id, "Buy Land: ");
 				
 				game_map.owner[mygame.p_dest_id[turn_id]] = turn_id + 1;
 				bl.dispose();

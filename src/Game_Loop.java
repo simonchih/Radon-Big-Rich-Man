@@ -312,6 +312,8 @@ public class Game_Loop implements Runnable{
 	public void stop(int stop_turn){
 		int turn_id = mygame.turn;
 		mygame.p_stop[turn_id] = stop_turn;
+		//Bug issue:
+		//Find Bug: won't show "In jail" in "In jail. Stop "+stop_turn+" turn.";
 		if(1 == mygame.p_in_jail[turn_id])mygame.p_status[turn_id] =  "In jail. Stop "+stop_turn+" turn.";
 		else mygame.p_status[turn_id] = "Stop "+stop_turn+" turn.";
 	}

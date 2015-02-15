@@ -313,7 +313,10 @@ public class Game_Loop implements Runnable{
 		int turn_id = mygame.turn;
 		mygame.p_stop[turn_id] = stop_turn;
 		//Bug issue:
-		//Find Bug: won't show "In jail" in "In jail. Stop "+stop_turn+" turn.";
+		//Find Bug: won't show "In jail" in "In jail. Stop "+stop_turn+" turn."; (won't fix)
+		//Bug issue:
+		//go to Jail big block area should NOT Stop 3 turns , go to Jail only if on "go to Jail" block (won't fix)
+		
 		if(1 == mygame.p_in_jail[turn_id])mygame.p_status[turn_id] =  "In jail. Stop "+stop_turn+" turn.";
 		else mygame.p_status[turn_id] = "Stop "+stop_turn+" turn.";
 	}

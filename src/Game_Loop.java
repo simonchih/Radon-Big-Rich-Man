@@ -31,6 +31,9 @@ public class Game_Loop implements Runnable{
 		while(player_number(mygame) > 1)
 		{	
 			for(i=0; i<game.max_p_size; i++){
+				//debug
+				//System.out.println(mygame.p_in_jail[i]);
+				//end debug
 				if(i == mygame.turn){
 					if(9 == mygame.p_type[i]){
 						mygame.turn = (mygame.turn + 1) % game.max_p_size;
@@ -38,7 +41,10 @@ public class Game_Loop implements Runnable{
 					}
 					else if(mygame.p_stop[i] > 0){
 						mygame.p_stop[i]--;
-						mygame.p_status[i] = "Stop "+mygame.p_stop[mygame.turn]+" turn.";
+						if(1 == mygame.p_in_jail[i])mygame.p_status[i] =  "In jail. Stop "+mygame.p_stop[mygame.turn]+" turn.";
+						else{ 
+							mygame.p_status[i] = "Stop "+mygame.p_stop[mygame.turn]+" turn.";
+						}
 						mygame.turn = (mygame.turn + 1) % game.max_p_size;
 						continue;
 					}
@@ -268,14 +274,12 @@ public class Game_Loop implements Runnable{
 	}
 	public void go_jail(){
 		int turn_id = mygame.turn;
-		//mygame.p_stop[turn_id] = 3;
-		//mygame.p_status[turn_id] = "Stop "+mygame.p_stop[turn_id]+" turn.";
-		stop(3);
 		
 		mygame.p_in_jail[turn_id] = 1;
 		mygame.move_start = true;
 		mygame.p_id[turn_id] = (game_map.jail_id-1)%game_map.Size;
 		mygame.p_dest_id[turn_id] = game_map.jail_id;
+		stop(3);
 	}
 	public void go_hospital(){
 		int turn_id = mygame.turn;
@@ -312,9 +316,7 @@ public class Game_Loop implements Runnable{
 	public void stop(int stop_turn){
 		int turn_id = mygame.turn;
 		mygame.p_stop[turn_id] = stop_turn;
-		//Bug issue:
-		//Find Bug: won't show "In jail" in "In jail. Stop "+stop_turn+" turn."; (won't fix)
-		//Bug issue:
+		//Bug issue (Can't reproduce):
 		//go to Jail big block area should NOT Stop 3 turns , go to Jail only if on "go to Jail" block (won't fix)
 		
 		if(1 == mygame.p_in_jail[turn_id])mygame.p_status[turn_id] =  "In jail. Stop "+stop_turn+" turn.";

@@ -38,16 +38,17 @@ public class Property {
 		
 		//temp
 		data1[0][0] = "Guting";
-		data1[0][1] = 2500;
-		data1[0][2] = 0;
+		data1[0][1] = new Integer(2500);
+		data1[0][2] = new Integer(0);
 		data1[0][3] = new Boolean(false);
-		data1[0][4] = 1000;
+		data1[0][4] = new Integer(1000);
 		//end temp
 		
 		tabbedPane.removeAll();
 		//scrollPane.removeAll();
 		
 		table = new JTable(data1, Column_Name);
+		table.setEnabled(false);
 		//scrollPane = new JScrollPane(table);
 		tabbedPane.addTab(mygame.p_name[0] + Property, null, new JScrollPane(table), null);
 		

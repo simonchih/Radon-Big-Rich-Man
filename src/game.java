@@ -61,6 +61,9 @@ public class game {
 	public JButton btnNewButton = new JButton("Roll Dice");
 	public Dice dice = new Dice();
 	
+	public JButton btnPropertyButton = new JButton("Player's Property");
+	public Property property = new Property(this);
+	
 	public static int max_p_size = 4;
 	public int turn = 0;//0: player1
 	public boolean move_start = false;

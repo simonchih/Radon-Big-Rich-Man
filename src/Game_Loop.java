@@ -1,9 +1,11 @@
 import java.util.Random;
+import javax.swing.JFrame;
 
 
 public class Game_Loop implements Runnable{
+	public JFrame jf;
 	public game mygame;
-	public  mcanvas mycanvas;
+	public mcanvas mycanvas;
 	public Game_Map game_map;
 	public Buy_Land buy_land;
 	public Build_House build_house;
@@ -11,10 +13,11 @@ public class Game_Loop implements Runnable{
 	public Thread t_game;
 	public boolean susp;
 	
-	Game_Loop(game Game, mcanvas canvas, Game_Map gm){
+	Game_Loop(game Game, mcanvas canvas, Game_Map gm, JFrame jframe){
 		mygame = Game;
 		mycanvas = canvas;
 		game_map = gm;
+		jf = jframe;
 		t_game = new Thread(this);
 		buy_land = new Buy_Land(Game, gm, this);
 		build_house = new Build_House(Game, gm, this);
@@ -85,7 +88,8 @@ public class Game_Loop implements Runnable{
 				}
 			}
 			
-			mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
+			jf.repaint();
+			//mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
 			
 			
 			while(mygame.p_id[0] != mygame.p_dest_id[0] || mygame.p_id[1] != mygame.p_dest_id[1] || mygame.p_id[2] != mygame.p_dest_id[2] || mygame.p_id[3] != mygame.p_dest_id[3]){
@@ -215,7 +219,8 @@ public class Game_Loop implements Runnable{
 					//System.out.println(mygame.turn);
 				}//for max_p_size
 				
-				mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
+				jf.repaint();
+				//mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
 			}///while(mygame.p_id[0] != mygame.p_dest_id[0] ...)
 		}// while(player_number > 1)
 	}

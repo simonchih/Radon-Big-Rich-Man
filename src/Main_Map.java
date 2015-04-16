@@ -30,6 +30,14 @@ public class Main_Map extends JFrame{
 		this.setSize(767, 790);
 		getContentPane().setLayout(null);
 		
+		Game.btnPropertyButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Game.property.show(game_data);
+			}
+		});
+		Game.btnPropertyButton.setBounds(210, 601, 200, 23);
+		getContentPane().add(Game.btnPropertyButton);
+		
 		Game.btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Game.dice.Roll_Dice();
@@ -433,7 +441,7 @@ public class Main_Map extends JFrame{
 		this.getContentPane().add(canvas);
 		this.getContentPane().setBackground(new Color(233,234,205));
 		this.setVisible(true);
-		game_loop = new Game_Loop(Game, canvas, ini_map);
+		game_loop = new Game_Loop(Game, canvas, ini_map, this);
 		game_loop.t_game.setPriority(Thread.MAX_PRIORITY);
 		game_loop.t_game.start();
 	}

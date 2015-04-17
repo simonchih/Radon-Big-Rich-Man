@@ -1,9 +1,10 @@
+import java.util.Vector;
+
 import javax.swing.*;
 
 public class Property {
 	public game mygame;
 	private JTabbedPane tabbedPane = new JTabbedPane();
-	//private JScrollPane scrollPane = new JScrollPane();
 	private JFrame frame = new JFrame("Property");
 	private JTable table;
 	private JTable table_1;
@@ -12,16 +13,14 @@ public class Property {
 	Property(game g){
 		mygame = g;
 	}
-	private void createAndShowGUI() {
+	private void ShowTab(JTabbedPane tabp) {
 		
 		frame.getContentPane().removeAll();
-		//Create and set up the window.
+
         frame.setSize(650, 300);
         
-        //Add content to the window.
-        frame.getContentPane().add(tabbedPane);
+        frame.getContentPane().add(tabp);
         
-        //Display the window.
         frame.setVisible(true);
     }
 	/**
@@ -30,26 +29,32 @@ public class Property {
 	protected void show(Game_Map game_map){
 		
 		String Property = "'s Property";
-		String[] Column_Name = {
-				"Name", "Value", "House Level", "Double", "Toll" 
-				};
 		
-		Object[][] data1 = new Object[game_map.Size][5];
+		Vector<String> Column_Name = new Vector<String>();
+		//Column_Name.addElement("Color");
+		Column_Name.addElement("Name");
+		Column_Name.addElement("Value");
+		Column_Name.addElement("House Level");
+		Column_Name.addElement("Double");
+		Column_Name.addElement("Toll");
 		
-		//temp
-		data1[0][0] = "Guting";
-		data1[0][1] = new Integer(2500);
-		data1[0][2] = new Integer(0);
-		data1[0][3] = new Boolean(false);
-		data1[0][4] = new Integer(1000);
-		//end temp
+		Vector<Object> data = new Vector<Object>();
 		
+		//data.addElement("Red");
+		data.addElement("Gutting");
+		data.addElement(new Integer(2500));
+		data.addElement(new Integer(0));
+		data.addElement(new Boolean(false));
+		data.addElement(new Integer(1000));
+		
+		Vector<Object> data1 = new Vector<Object>();
+		
+		data1.addElement(data);
+				
 		tabbedPane.removeAll();
-		//scrollPane.removeAll();
 		
 		table = new JTable(data1, Column_Name);
 		table.setEnabled(false);
-		//scrollPane = new JScrollPane(table);
 		tabbedPane.addTab(mygame.p_name[0] + Property, null, new JScrollPane(table), null);
 		
 		table_1 = new JTable();
@@ -61,13 +66,6 @@ public class Property {
 		table_3 = new JTable();
 		tabbedPane.addTab(mygame.p_name[3] + Property, null, new JScrollPane(table_3), null);
 		
-		//tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		//tabbedPane.setVisible(true);
-		
-		//scrollPane = new JScrollPane(tabbedPane);
-		
-		//scrollPane.setVisible(true);
-		
-		createAndShowGUI();
+		ShowTab(tabbedPane);
 	}
 }

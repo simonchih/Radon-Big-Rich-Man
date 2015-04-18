@@ -1,6 +1,8 @@
+import java.awt.Color;
 import java.util.Vector;
 
 import javax.swing.*;
+import javax.swing.table.*;
 
 public class Property {
 	public game mygame;
@@ -51,12 +53,12 @@ public class Property {
 			o = game_map.owner[i];
 			switch(o){
 				case 1:
-					data.addElement("");
+					data.addElement(new Color(153, 0, 153));
 					data.addElement(game_map.name[i]);
 					data.addElement(game_map.value[i]);
 					data.addElement(game_map.level[i]);
 					data.addElement("");
-					data.addElement("");
+					data.addElement(false);
 					Vector<Object> copy = new Vector<Object>(data);
 					data1.addElement(copy);
 					data.removeAll(data);
@@ -94,35 +96,32 @@ public class Property {
 					data4.addElement(copy4);
 					data.removeAll(data);
 					break;
-				default:
-					System.out.println(o);
+				//default:
+					//System.out.println(o);
 			}
 		}
-		
-		/*
-		//data.addElement("Red");
-		data.addElement("Gutting");
-		data.addElement(new Integer(2500));
-		data.addElement(new Integer(0));
-		data.addElement(new Boolean(false));
-		data.addElement(new Integer(1000));
-		*/
 				
 		tabbedPane.removeAll();
 		
-		table = new JTable(data1, Column_Name);
-		table.setEnabled(false);
+		Data_Model dataModel1 = new Data_Model(data1, Column_Name);
+		Data_Model dataModel2 = new Data_Model(data2, Column_Name);
+		Data_Model dataModel3 = new Data_Model(data3, Column_Name);
+		Data_Model dataModel4 = new Data_Model(data4, Column_Name);
+		
+		//table = new JTable(data1, Column_Name);
+		table = new JTable(dataModel1);
+	    table.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[0] + Property, null, new JScrollPane(table), null);
 		
-		table_1 = new JTable(data2, Column_Name);
+		table_1 = new JTable(dataModel2);
 		table_1.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[1] + Property, null, new JScrollPane(table_1), null);
 		
-		table_2 = new JTable(data3, Column_Name);
+		table_2 = new JTable(dataModel3);
 		table_2.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[2] + Property, null, new JScrollPane(table_2), null);
 		
-		table_3 = new JTable(data4, Column_Name);
+		table_3 = new JTable(dataModel4);
 		table_3.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[3] + Property, null, new JScrollPane(table_3), null);
 		

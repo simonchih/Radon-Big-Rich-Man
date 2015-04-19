@@ -11,11 +11,7 @@ public class Property {
 	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
-	private JPanel panel;
-	private JLabel lblNewLabel;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
-	private JButton btnNewButton_2;
+
 	Property(game g){
 		mygame = g;
 	}

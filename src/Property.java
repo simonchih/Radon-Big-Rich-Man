@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.Vector;
+
 import javax.swing.*;
 
 public class Property {
@@ -10,6 +11,11 @@ public class Property {
 	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
+	private JPanel panel;
+	private JLabel lblNewLabel;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
 	Property(game g){
 		mygame = g;
 	}
@@ -98,11 +104,22 @@ public class Property {
 		Data_Model dataModel3 = new Data_Model(data3, Column_Name);
 		Data_Model dataModel4 = new Data_Model(data4, Column_Name);
 		
+		/*
 		//table = new JTable(data1, Column_Name);
 		table = new JTable(dataModel1);
 		//Set up renderer and editor for the Favorite Color column.
         table.setDefaultRenderer(Color.class, new ColorRenderer(true));
 	    table.setEnabled(false);
+		JScrollPane scrollPane = new JScrollPane(table);
+		
+		JPanel panel = new JPanel();
+		panel.add(scrollPane);
+		
+		tabbedPane.addTab(mygame.p_name[0] + Property, null, panel, null);
+		*/
+		table = new JTable(dataModel1);
+		table.setDefaultRenderer(Color.class, new ColorRenderer(true));
+		table.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[0] + Property, null, new JScrollPane(table), null);
 		
 		table_1 = new JTable(dataModel2);

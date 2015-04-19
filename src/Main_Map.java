@@ -32,7 +32,11 @@ public class Main_Map extends JFrame{
 		
 		Game.btnPropertyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Game.property.show(ini_map);
+				javax.swing.SwingUtilities.invokeLater(new Runnable() {
+		            public void run() {
+		            	Game.property.show(ini_map);
+		            }
+		        });
 			}
 		});
 		Game.btnPropertyButton.setBounds(210, 601, 200, 23);

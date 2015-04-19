@@ -60,6 +60,8 @@ public class Property {
 		int i, o;
 		String Property = "'s Property";
 		
+		frame.setVisible(false);
+		
 		Vector<String> Column_Name = new Vector<String>();
 		Column_Name.addElement("Color");
 		Column_Name.addElement("Name");

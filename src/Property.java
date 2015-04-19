@@ -1,8 +1,6 @@
 import java.awt.Color;
 import java.util.Vector;
-
 import javax.swing.*;
-import javax.swing.table.*;
 
 public class Property {
 	public game mygame;
@@ -68,8 +66,6 @@ public class Property {
 		Column_Name.addElement("Double");
 		Column_Name.addElement("Toll");
 		
-		Vector<Object> data = new Vector<Object>();
-		
 		Vector<Object> data1 = new Vector<Object>();
 		Vector<Object> data2 = new Vector<Object>();
 		Vector<Object> data3 = new Vector<Object>();
@@ -104,18 +100,23 @@ public class Property {
 		
 		//table = new JTable(data1, Column_Name);
 		table = new JTable(dataModel1);
+		//Set up renderer and editor for the Favorite Color column.
+        table.setDefaultRenderer(Color.class, new ColorRenderer(true));
 	    table.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[0] + Property, null, new JScrollPane(table), null);
 		
 		table_1 = new JTable(dataModel2);
+		table_1.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table_1.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[1] + Property, null, new JScrollPane(table_1), null);
 		
 		table_2 = new JTable(dataModel3);
+		table_2.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table_2.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[2] + Property, null, new JScrollPane(table_2), null);
 		
 		table_3 = new JTable(dataModel4);
+		table_3.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table_3.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[3] + Property, null, new JScrollPane(table_3), null);
 		

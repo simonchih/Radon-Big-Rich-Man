@@ -19,10 +19,8 @@ class Data_Model extends AbstractTableModel{
 	}
 	public int getColumnCount() { return columnNames.size(); }
 	public int getRowCount() { return rowData.size();}
-	@SuppressWarnings("unchecked")
-	public Object getValueAt(int row, int col) { return ((Vector<Object>) rowData.get(row)).get(col); }
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Class getColumnClass(int column) {
+	public Object getValueAt(int row, int col) { return ((Vector<?>) rowData.get(row)).get(col); }
+	public Class<? extends Object> getColumnClass(int column) {
 		return (getValueAt(0, column).getClass());
 	}
 }

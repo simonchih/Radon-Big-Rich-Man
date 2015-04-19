@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 
 public class Main_Map extends JFrame{
 	private static final long serialVersionUID = 1;
+	private static boolean crit = false;
 	
 	public Game_Map game_data = new Game_Map();
 	public Game_Map ini_map = new Game_Map();
@@ -32,11 +33,16 @@ public class Main_Map extends JFrame{
 		
 		Game.btnPropertyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Game.btnPropertyButton.setEnabled(false);
+				if(true == crit)return;
+				crit = true;
 				javax.swing.SwingUtilities.invokeLater(new Runnable() {
 		            public void run() {
 		            	Game.property.show(ini_map);
 		            }
 		        });
+				crit = false;
+				Game.btnPropertyButton.setEnabled(true);
 			}
 		});
 		Game.btnPropertyButton.setBounds(210, 601, 200, 23);
@@ -446,7 +452,7 @@ public class Main_Map extends JFrame{
 		this.getContentPane().setBackground(new Color(233,234,205));
 		this.setVisible(true);
 		game_loop = new Game_Loop(Game, canvas, ini_map, this);
-		game_loop.t_game.setPriority(Thread.MAX_PRIORITY);
+		//game_loop.t_game.setPriority(Thread.NORM_PRIORITY);
 		game_loop.t_game.start();
 	}
 }

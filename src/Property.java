@@ -15,6 +15,32 @@ public class Property {
 	Property(game g){
 		mygame = g;
 	}
+	private void AddElementToTable(Vector<Object> datat, Game_Map game_map, int i){
+		long fee, basic_money;
+		int doub, owner1, owner2, owner3;
+		boolean db;
+		Vector<Object> data = new Vector<Object>();
+		
+		owner1 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][0]];
+		owner2 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][1]];
+		owner3 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][2]];
+		if(owner1 == owner2 && owner2 == owner3)doub = 2;
+		else doub = 1;
+		
+		if(2 == doub)db = true;
+		else db = false;
+		
+		basic_money = (long)((0.2)*game_map.value[i]);
+		fee = (long) (doub*Math.pow(2, game_map.level[i])*basic_money);
+		
+		data.addElement(game_map.color[i]);
+		data.addElement(game_map.name[i]);
+		data.addElement(game_map.value[i]);
+		data.addElement(game_map.level[i]);
+		data.addElement(db);
+		data.addElement(fee);
+		datat.addElement(data);
+	}
 	private void ShowTab(JTabbedPane tabp) {
 		
 		frame.getContentPane().removeAll();
@@ -53,48 +79,16 @@ public class Property {
 			o = game_map.owner[i];
 			switch(o){
 				case 1:
-					data.addElement(new Color(153, 0, 153));
-					data.addElement(game_map.name[i]);
-					data.addElement(game_map.value[i]);
-					data.addElement(game_map.level[i]);
-					data.addElement("");
-					data.addElement(false);
-					Vector<Object> copy = new Vector<Object>(data);
-					data1.addElement(copy);
-					data.removeAll(data);
+					AddElementToTable(data1, game_map, i);
 					break;
 				case 2:
-					data.addElement("");
-					data.addElement(game_map.name[i]);
-					data.addElement(game_map.value[i]);
-					data.addElement(game_map.level[i]);
-					data.addElement("");
-					data.addElement("");
-					Vector<Object> copy2 = new Vector<Object>(data);
-					data2.addElement(copy2);
-					data.removeAll(data);
+					AddElementToTable(data2, game_map, i);
 					break;
 				case 3:
-					data.addElement("");
-					data.addElement(game_map.name[i]);
-					data.addElement(game_map.value[i]);
-					data.addElement(game_map.level[i]);
-					data.addElement("");
-					data.addElement("");
-					Vector<Object> copy3 = new Vector<Object>(data);
-					data3.addElement(copy3);
-					data.removeAll(data);
+					AddElementToTable(data3, game_map, i);
 					break;
 				case 4:
-					data.addElement("");
-					data.addElement(game_map.name[i]);
-					data.addElement(game_map.value[i]);
-					data.addElement(game_map.level[i]);
-					data.addElement("");
-					data.addElement("");
-					Vector<Object> copy4 = new Vector<Object>(data);
-					data4.addElement(copy4);
-					data.removeAll(data);
+					AddElementToTable(data4, game_map, i);
 					break;
 				//default:
 					//System.out.println(o);

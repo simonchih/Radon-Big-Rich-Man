@@ -22,6 +22,14 @@ public class Game_Loop implements Runnable{
 		buy_land = new Buy_Land(Game, gm, this);
 		build_house = new Build_House(Game, gm, this);
 		ai = new AI(Game, gm, this);
+		
+		//Test Temp
+		/*
+		for(int i=0;i<gm.Size;i++){
+			if(0 == gm.type[i])gm.owner[i] = 1;
+		}
+		*/
+		 
 	}
 	public void run(){
 		int one_step, i, j, n, id;

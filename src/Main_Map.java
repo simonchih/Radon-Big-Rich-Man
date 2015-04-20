@@ -33,7 +33,6 @@ public class Main_Map extends JFrame{
 		
 		Game.btnPropertyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Game.btnPropertyButton.setEnabled(false);
 				if(true == crit)return;
 				crit = true;
 				javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -42,7 +41,6 @@ public class Main_Map extends JFrame{
 		            }
 		        });
 				crit = false;
-				Game.btnPropertyButton.setEnabled(true);
 			}
 		});
 		Game.btnPropertyButton.setBounds(210, 601, 200, 23);

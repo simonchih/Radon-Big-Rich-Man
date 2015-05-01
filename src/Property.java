@@ -41,15 +41,16 @@ public class Property {
 		data.addElement(fee);
 		datat.addElement(data);
 	}
-	private void ShowTab(JTabbedPane tabp) {
+	private void cTab(JTabbedPane tabp) {
 		
 		frame.getContentPane().removeAll();
 
-        frame.setSize(650, 300);
+		frame.setSize(650, 300);
         
-        frame.getContentPane().add(tabp);
+		frame.getContentPane().add(tabp);
         
-        frame.setVisible(true);
+		frame.setVisible(true);
+
     }
 	/**
 	 * @param Vector 
@@ -57,9 +58,12 @@ public class Property {
 	 */
 	protected void show(Game_Map game_map){
 		
-		int i, o;
+		int i, o, t_index = 0;
 		String Property = "'s Property";
 		
+		if(true == frame.isVisible()){
+			t_index = tabbedPane.getSelectedIndex();
+		}
 		Vector<String> Column_Name = new Vector<String>();
 		Column_Name.addElement("Color");
 		Column_Name.addElement("Name");
@@ -92,7 +96,8 @@ public class Property {
 					//System.out.println(o);
 			}
 		}
-				
+		
+		frame.setVisible(false);
 		tabbedPane.removeAll();
 		
 		Data_Model dataModel1 = new Data_Model(data1, Column_Name);
@@ -133,6 +138,8 @@ public class Property {
 		table_3.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[3] + Property, null, new JScrollPane(table_3), null);
 		
-		ShowTab(tabbedPane);
+		tabbedPane.setSelectedIndex(t_index);
+		
+		cTab(tabbedPane);
 	}
 }

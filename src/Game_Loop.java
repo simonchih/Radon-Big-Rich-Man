@@ -230,11 +230,9 @@ public class Game_Loop implements Runnable{
 								house_tax();
 							}
 						}
-						/*
 						if(true == mygame.property.frame.isVisible()){
 							mygame.property.show(game_map);
 						}
-						*/
 						if(1 == mygame.p_type[mygame.turn]){//p_type == AI
 							jf.repaint();
 							try {
@@ -253,6 +251,9 @@ public class Game_Loop implements Runnable{
 				//mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
 			}///while(mygame.p_id[0] != mygame.p_dest_id[0] ...)
 		}// while(player_number > 1)
+		if(true == mygame.property.frame.isVisible()){
+			mygame.property.show(game_map);
+		}
 	}
 	public int player_number(game Game){
 		int n = 0;

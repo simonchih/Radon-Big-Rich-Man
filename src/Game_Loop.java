@@ -1,4 +1,5 @@
 import java.util.Random;
+
 import javax.swing.JFrame;
 
 
@@ -193,6 +194,13 @@ public class Game_Loop implements Runnable{
 							}
 							else if(9 == n){
 								forward();
+								jf.repaint();
+								try {
+									Thread.sleep(2000);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 								continue;
 							}
 							else if(10 == n){
@@ -220,6 +228,20 @@ public class Game_Loop implements Runnable{
 							}
 							else if(39 == game_map.id[id]){
 								house_tax();
+							}
+						}
+						/*
+						if(true == mygame.property.frame.isVisible()){
+							mygame.property.show(game_map);
+						}
+						*/
+						if(1 == mygame.p_type[mygame.turn]){//p_type == AI
+							jf.repaint();
+							try {
+								Thread.sleep(2000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
 						}
 						mygame.turn = (mygame.turn+1)%game.max_p_size;

@@ -5,8 +5,8 @@ import javax.swing.*;
 
 public class Property {
 	public game mygame;
+	public JFrame frame = new JFrame("Property");
 	private JTabbedPane tabbedPane = new JTabbedPane();
-	private JFrame frame = new JFrame("Property");
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;

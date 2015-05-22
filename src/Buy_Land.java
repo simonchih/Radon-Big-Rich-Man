@@ -50,7 +50,7 @@ public class Buy_Land{
 				mygl.susp = false;
 			}
 		});
-		btnNewButton_1.setBounds(299, 214, 87, 23);
+		btnNewButton_1.setBounds(198, 214, 188, 23);
 		bl.getContentPane().add(btnNewButton_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Do you want to buy "+ game_map.name[mygame.p_dest_id[turn_id]]+" with $"+game_map.value[mygame.p_dest_id[turn_id]]+"?");

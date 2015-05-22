@@ -16,22 +16,17 @@ public class Property {
 		mygame = g;
 	}
 	private void AddElementToTable(Vector<Object> datat, Game_Map game_map, int i){
-		long fee, basic_money;
-		int doub, owner1, owner2, owner3;
+		long fee;
+		int doub;
 		boolean db;
 		Vector<Object> data = new Vector<Object>();
 		
-		owner1 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][0]];
-		owner2 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][1]];
-		owner3 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][2]];
-		if(owner1 == owner2 && owner2 == owner3)doub = 2;
-		else doub = 1;
+		doub = mygame.double_fee(game_map, i);
 		
 		if(2 == doub)db = true;
 		else db = false;
 		
-		basic_money = (long)((0.2)*game_map.value[i]);
-		fee = (long) (doub*Math.pow(2, game_map.level[i])*basic_money);
+		fee = mygame.toll(game_map, doub, i);
 		
 		data.addElement(game_map.color[i]);
 		data.addElement(game_map.name[i]);

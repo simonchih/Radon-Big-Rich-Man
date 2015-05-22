@@ -55,7 +55,7 @@ public class Game_Setting3 {
 		games1.getContentPane().add(comboBox_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Money");
-		lblNewLabel_1.setBounds(122, 165, 46, 15);
+		lblNewLabel_1.setBounds(122, 165, 73, 15);
 		games1.getContentPane().add(lblNewLabel_1);
 		
 		JEditorPane editorPane = new JEditorPane();
@@ -70,7 +70,7 @@ public class Game_Setting3 {
 				f.setVisible(true);
 			}
 		});
-		btnCancel.setBounds(103, 214, 87, 23);
+		btnCancel.setBounds(85, 214, 155, 23);
 		games1.getContentPane().add(btnCancel);
 		
 		JLabel lblNewLabel_2 = new JLabel("(error value)");
@@ -129,7 +129,7 @@ public class Game_Setting3 {
 				gs4.show(games1, Game);
 			}
 		});
-		btnNext.setBounds(224, 214, 94, 23);
+		btnNext.setBounds(250, 214, 94, 23);
 		games1.getContentPane().add(btnNext);
 		games1.setVisible(true);
 	}

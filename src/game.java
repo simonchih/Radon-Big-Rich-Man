@@ -117,6 +117,27 @@ public class game {
 		}
 	}
 	
+	public int double_fee(Game_Map game_map, int i){
+		int doub, owner1, owner2, owner3;
+		
+		owner1 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][0]];
+		owner2 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][1]];
+		owner3 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][2]];
+		if(owner1 == owner2 && owner2 == owner3)doub = 2;
+		else doub = 1;
+		
+		return doub;
+	}
+	
+	public long toll(Game_Map game_map, int doub, int i){
+		long fee, basic_money;
+		
+		basic_money = (long)((0.2)*game_map.value[i]);
+		fee = (long) (doub*Math.pow(2, game_map.level[i])*basic_money);
+		
+		return fee;
+	}
+	
 	public static void main(String[] args) {
 		game Game = new game();
 		JFrame frame = new JFrame("Random Big Rich Man");

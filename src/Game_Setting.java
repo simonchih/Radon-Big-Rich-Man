@@ -46,7 +46,7 @@ public class Game_Setting {
 		games1.getContentPane().add(comboBox_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Money");
-		lblNewLabel_1.setBounds(122, 165, 46, 15);
+		lblNewLabel_1.setBounds(122, 165, 73, 15);
 		games1.getContentPane().add(lblNewLabel_1);
 		
 		JEditorPane editorPane = new JEditorPane();

@@ -67,7 +67,7 @@ public class Build_House {
 				mygl.susp = false;
 			}
 		});
-		btnNewButton_1.setBounds(283, 214, 124, 23);
+		btnNewButton_1.setBounds(219, 214, 188, 23);
 		bh.getContentPane().add(btnNewButton_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Do you want to spent $"+ spent+" to build a "+h+"?");

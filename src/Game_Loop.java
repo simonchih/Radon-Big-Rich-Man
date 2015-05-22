@@ -265,18 +265,13 @@ public class Game_Loop implements Runnable{
 		return n;
 	}
 	public void payout(){//pay for land owner
-		long fee, basic_money;
-		int id, doub, owner1, owner2, owner3, owner;
+		long fee;
+		int id, doub, owner;
 		id = mygame.p_dest_id[mygame.turn];
 		
-		owner1 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[id])][0]];
-		owner2 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[id])][1]];
-		owner3 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[id])][2]];
-		if(owner1 == owner2 && owner2 == owner3)doub = 2;
-		else doub = 1;
+		doub = mygame.double_fee(game_map, id);		
+		fee = mygame.toll(game_map, doub, id);
 		
-		basic_money = (long)((0.2)*game_map.value[id]);
-		fee = (long) (doub*Math.pow(2, game_map.level[id])*basic_money);
 		owner = game_map.owner[id] - 1;
 		if(1 == mygame.p_in_jail[owner])return;
 		else{

@@ -139,7 +139,7 @@ public class Main_Map extends JFrame{
 		gdata.value[15] = 3400;
 		gdata.name[15]  = "Xinyi";
 		gdata.value[16] = 3600;
-		gdata.name[16]  = "Dongmen";
+		gdata.name[16]  = "Wende";
 		gdata.value[17] = 3800;
 		gdata.name[17]  = "Nangang";
 		gdata.value[18] = 4000;

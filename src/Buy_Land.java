@@ -19,7 +19,7 @@ public class Buy_Land{
 	 * @wbp.parser.entryPoint
 	 */
 	public void show(){
-		int turn_id = mygame.turn;
+		final int turn_id = mygame.turn;
 		
 		bl.getContentPane().removeAll();
 		bl.setSize(450, 300);

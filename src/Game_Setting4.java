@@ -14,40 +14,40 @@ public class Game_Setting4 {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void show(JFrame f, game Game){
+	public void show(final JFrame f, final game Game){
 		mmap = new Main_Map(Game);
 		
 		games1.getContentPane().removeAll();
 		games1.setSize(450, 320);
 		games1.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Name");
+		final JLabel lblNewLabel = new JLabel("Name");
 		lblNewLabel.setBounds(122, 40, 46, 15);
 		games1.getContentPane().add(lblNewLabel);
 		
-		JEditorPane dtrpnPlayer = new JEditorPane();
+		final JEditorPane dtrpnPlayer = new JEditorPane();
 		dtrpnPlayer.setText("Player4");
 		dtrpnPlayer.setBounds(205, 34, 106, 21);
 		games1.getContentPane().add(dtrpnPlayer);
 		
-		JLabel lblHumanai = new JLabel("Human/AI");
+		final JLabel lblHumanai = new JLabel("Human/AI");
 		lblHumanai.setBounds(122, 79, 68, 15);
 		games1.getContentPane().add(lblHumanai);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
+		final JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "AI"}));
 		comboBox.setSelectedIndex(1);
 		comboBox.setBounds(205, 76, 106, 21);
 		games1.getContentPane().add(comboBox);
 		
-		JLabel lblIcon = new JLabel("Icon");
+		final JLabel lblIcon = new JLabel("Icon");
 		lblIcon.setBounds(122, 124, 46, 15);
 		games1.getContentPane().add(lblIcon);
 		
-		JComboBox<ImageIcon> comboBox_1 = new JComboBox<ImageIcon>();
+		final JComboBox<ImageIcon> comboBox_1 = new JComboBox<ImageIcon>();
 		comboBox_1.setBounds(205, 118, 106, 21);
 		ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
-		List<ImageIcon> list = new ArrayList<ImageIcon>(Arrays.asList(array));
+		final List<ImageIcon> list = new ArrayList<ImageIcon>(Arrays.asList(array));
 		list.remove(Game.p_icon[0]);
 		array = list.toArray(new ImageIcon[0]);
 		list.remove(Game.p_icon[1]);
@@ -58,16 +58,16 @@ public class Game_Setting4 {
 		comboBox_1.setSelectedIndex(1);
 		games1.getContentPane().add(comboBox_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("Money");
+		final JLabel lblNewLabel_1 = new JLabel("Money");
 		lblNewLabel_1.setBounds(122, 165, 68, 15);
 		games1.getContentPane().add(lblNewLabel_1);
 		
-		JEditorPane editorPane = new JEditorPane();
+		final JEditorPane editorPane = new JEditorPane();
 		editorPane.setText("30000");
 		editorPane.setBounds(205, 159, 106, 21);
 		games1.getContentPane().add(editorPane);
 		
-		JButton btnCancel = new JButton("Previous");
+		final JButton btnCancel = new JButton("Previous");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				games1.setVisible(false);
@@ -77,25 +77,25 @@ public class Game_Setting4 {
 		btnCancel.setBounds(85, 214, 155, 23);
 		games1.getContentPane().add(btnCancel);
 		
-		JLabel lblNewLabel_2 = new JLabel("(error value)");
+		final JLabel lblNewLabel_2 = new JLabel("(error value)");
 		lblNewLabel_2.setForeground(Color.RED);
 		lblNewLabel_2.setBounds(321, 165, 103, 15);
 		lblNewLabel_2.setVisible(false);
 		games1.getContentPane().add(lblNewLabel_2);
 		
-		JLabel lblErrorValue = new JLabel("(error value)");
+		final JLabel lblErrorValue = new JLabel("(error value)");
 		lblErrorValue.setForeground(Color.RED);
 		lblErrorValue.setBounds(321, 40, 103, 15);
 		lblErrorValue.setVisible(false);
 		games1.getContentPane().add(lblErrorValue);
 		
-		JButton btnNext = new JButton("Finish");
+		final JButton btnNext = new JButton("Finish");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
 				ImageIcon parray[] = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
 				
-				List<ImageIcon> list = new ArrayList<ImageIcon>(Arrays.asList(array));
+				final List<ImageIcon> list = new ArrayList<ImageIcon>(Arrays.asList(array));
 				list.remove(Game.p_icon[0]);
 				array = list.toArray(new ImageIcon[0]);
 				list.remove(Game.p_icon[1]);
@@ -113,7 +113,7 @@ public class Game_Setting4 {
 				try{
 					Game.p_name[3] = dtrpnPlayer.getText();
 				}
-				catch(Exception e1){
+				catch(final Exception e1){
 					lblErrorValue.setVisible(true);
 					return;
 				}
@@ -122,7 +122,7 @@ public class Game_Setting4 {
 				try{
 					Game.p_money[3] = Long.parseLong(editorPane.getText());
 				}
-				catch(Exception e2){
+				catch(final Exception e2){
 					lblNewLabel_2.setVisible(true);
 					return;
 				}

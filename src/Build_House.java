@@ -22,8 +22,8 @@ public class Build_House {
 	public void show(){
 		String h;
 		String button_name;
-		long spent;
-		int turn_id = mygame.turn;
+		final long spent;
+		final int turn_id = mygame.turn;
 		
 		if(4 == game_map.level[mygame.p_dest_id[turn_id]]){
 			mygl.susp = false;

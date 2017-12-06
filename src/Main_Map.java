@@ -14,7 +14,7 @@ public class Main_Map extends JFrame{
 	public Game_Map game_data = new Game_Map();
 	public Game_Map ini_map = new Game_Map();
 	public Game_Loop game_loop;
-	public Main_Map(game Game){
+	public Main_Map(final game Game){
 		int i;
 		
 		//ini p_id and p_dest_id, p_status, p_in_jail, p_stop

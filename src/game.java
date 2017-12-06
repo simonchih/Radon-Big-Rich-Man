@@ -139,8 +139,8 @@ public class game {
 	}
 	
 	public static void main(String[] args) {
-		game Game = new game();
-		JFrame frame = new JFrame("Random Big Rich Man");
+		final game Game = new game();
+		final JFrame frame = new JFrame("Random Big Rich Man");
 		frame.setSize(300, 300);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

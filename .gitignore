@@ -1,3 +1,9 @@
+# Build directory
+/target/
+
+# Build system files
+/buildNumber.properties
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

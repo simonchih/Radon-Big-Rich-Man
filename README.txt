@@ -1,4 +1,4 @@
-﻿Image or sound from below project or Internet:
+Image or sound from below project or Internet:
 gtkmonop-0.3.0
 kapitalist-0.4
 monopolie-0.9.7
@@ -74,6 +74,9 @@ Q&A.
 Q:為什麼在Player Setting，買地或買房屋時，按"X"來關閉視窗沒反應？
 A:那邊是故意把X關閉功能disable，以避免誤按，請改用當時視窗的button來決定動作。
 
+Q:這個遊戲在Linux效果如何？
+A:這個遊戲的0.1.1 executable jar file，在Linux套件Fedora 20下測過(需手動安裝Java 1.8.0)，是可以玩，
+但是效果有點差強人意…建議可能的話，在Windows下玩。
 
 Q:這個遊戲何時會出正式版？
 A:正式版沒有預定何時會出，甚至最後可能沒有正式版，這也是很有可能。

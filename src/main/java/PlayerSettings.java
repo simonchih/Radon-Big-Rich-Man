@@ -17,6 +17,9 @@
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,15 +28,17 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Game_Setting {
+public class PlayerSettings {
 
-	private final int playerNum = 1;
-	private final int playerIdx = playerNum - 1;
-	public JFrame games1 = new JFrame("Player" + playerNum + " Setting");
-	public Game_Setting2 gs2 = new Game_Setting2();
+	private static final int NUM_PLAYERS = 4;
 
-	public Game_Setting() {
-		games1.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	private final int playerNum;
+	private final int playerIdx;
+
+	public PlayerSettings(final int playerIdx) {
+
+		this.playerIdx = playerIdx;
+		this.playerNum = playerIdx + 1;
 	}
 
 	/**
@@ -42,6 +47,22 @@ public class Game_Setting {
 	 * @wbp.parser.entryPoint
 	 */
 	public void show(final JFrame f, final game Game) {
+
+		final boolean firstPlayer = (playerIdx == 0);
+		final boolean humanPlayer = firstPlayer;
+		final boolean lastPlayer = (playerIdx == (NUM_PLAYERS - 1));
+
+		final PlayerSettings gs3;
+		final Main_Map mmap;
+		if (lastPlayer) {
+			gs3 = null;
+			mmap = new Main_Map(Game);
+		} else {
+			gs3 = new PlayerSettings(playerIdx + 1);
+			mmap = null;
+		}
+		JFrame games1 = new JFrame("Player" + playerNum + " Setting");
+		games1.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		games1.getContentPane().removeAll();
 		games1.setSize(450, 320);
 		games1.getContentPane().setLayout(null);
@@ -61,7 +82,7 @@ public class Game_Setting {
 
 		final JComboBox<String> comboBox = new JComboBox<>();
 		comboBox.setModel(new DefaultComboBoxModel<>(new String[] {"Human", "AI"}));
-		comboBox.setSelectedIndex(0);
+		comboBox.setSelectedIndex(humanPlayer ? 0 : 1);
 		comboBox.setBounds(205, 76, 106, 21);
 		games1.getContentPane().add(comboBox);
 
@@ -72,6 +93,11 @@ public class Game_Setting {
 		final JComboBox<ImageIcon> comboBox_1 = new JComboBox<>();
 		comboBox_1.setBounds(205, 118, 106, 21);
 		ImageIcon[] array = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
+		final List<ImageIcon> list = new ArrayList<>(Arrays.asList(array));
+		for (int i = 0; i < playerIdx; i++) {
+			list.remove(Game.p_icon[i]);
+		}
+		array = list.toArray(new ImageIcon[0]);
 		comboBox_1.setModel(new DefaultComboBoxModel<>(array));
 		comboBox_1.setSelectedIndex(0);
 		games1.getContentPane().add(comboBox_1);
@@ -109,11 +135,25 @@ public class Game_Setting {
 		games1.getContentPane().add(lblErrorValue);
 
 		final JButton btnNext = new JButton("Next");
+		if (lastPlayer) {
+			btnNext.setText("Finish");
+		}
 		btnNext.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ImageIcon[] array = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
 				ImageIcon[] parray = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
+
+				final List<ImageIcon> list = new ArrayList<>(Arrays.asList(array));
+				for (int i = 0; i < playerIdx; i++) {
+					list.remove(Game.p_icon[i]);
+				}
+				array = list.toArray(new ImageIcon[0]);
+				final List<ImageIcon> listp = new ArrayList<>(Arrays.asList(parray));
+				for (int i = 0; i < playerIdx; i++) {
+					listp.remove(Game.p_icon[i]);
+				}
+				parray = listp.toArray(new ImageIcon[0]);
 
 				try {
 					Game.p_name[playerIdx] = dtrpnPlayer.getText();
@@ -137,7 +177,11 @@ public class Game_Setting {
 				Game.p_pawn[playerIdx] = parray[Game.p_icon[playerIdx]];
 
 				games1.setVisible(false);
-				gs2.show(games1, Game);
+				if (lastPlayer) {
+					mmap.generate_map(Game);
+				} else {
+					gs3.show(games1, Game);
+				}
 			}
 		});
 		btnNext.setBounds(250, 214, 94, 23);

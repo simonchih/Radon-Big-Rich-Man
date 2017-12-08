@@ -29,7 +29,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class game {
-	public static Game_Setting gs1 = new Game_Setting();
+	public static PlayerSettings gs1 = new PlayerSettings(0);
 	public ImageIcon image1 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token1.png"));
 	public ImageIcon image2 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token8.png"));
 	public ImageIcon image3 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token7.png"));

@@ -17,7 +17,7 @@
 import java.util.Random;
 import javax.swing.JFrame;
 
-public class Game_Loop implements Runnable {
+public class GameLoop implements Runnable {
 
 	private static final double speedModifier = 1.0;
 
@@ -31,7 +31,7 @@ public class Game_Loop implements Runnable {
 	public Thread t_game;
 	public boolean susp;
 
-	Game_Loop(final Game game, final mcanvas canvas, final GameMap gm, final JFrame jframe) {
+	GameLoop(final Game game, final mcanvas canvas, final GameMap gm, final JFrame jframe) {
 		mygame = game;
 		mycanvas = canvas;
 		game_map = gm;

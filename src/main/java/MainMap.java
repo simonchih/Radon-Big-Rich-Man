@@ -30,7 +30,7 @@ public class MainMap extends JFrame {
 
 	private GameMap game_data;
 	private GameMap ini_map;
-	private Game_Loop game_loop;
+	private GameLoop game_loop;
 
 	public MainMap(final Game game) {
 		this.game_data = new GameMap();
@@ -475,7 +475,7 @@ public class MainMap extends JFrame {
 		this.getContentPane().add(canvas);
 		this.getContentPane().setBackground(new Color(233, 234, 205));
 		this.setVisible(true);
-		game_loop = new Game_Loop(game, canvas, ini_map, this);
+		game_loop = new GameLoop(game, canvas, ini_map, this);
 		//game_loop.t_game.setPriority(Thread.NORM_PRIORITY);
 		game_loop.t_game.start();
 	}

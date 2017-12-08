@@ -21,7 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Buy_Land {
+public class BuyLand {
 
 	public Game mygame;
 	public mcanvas mycanvas;
@@ -29,7 +29,7 @@ public class Buy_Land {
 	public Game_Loop mygl;
 	public JFrame bl;
 
-	Buy_Land(final Game game, final Game_Map gm, final Game_Loop gl) {
+	BuyLand(final Game game, final Game_Map gm, final Game_Loop gl) {
 		this.bl = new JFrame("Buy Lnad");
 		this.bl.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.mygame = game;

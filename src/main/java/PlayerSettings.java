@@ -17,16 +17,18 @@
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 
 public class PlayerSettings {
 
@@ -39,6 +41,18 @@ public class PlayerSettings {
 
 		this.playerIdx = playerIdx;
 		this.playerNum = playerIdx + 1;
+	}
+
+	private static <AVT> AVT[] removeIndices(final AVT[] orig, final Set<Integer> indices) {
+
+		final AVT[] smaller = (AVT[]) Array.newInstance(orig.getClass().getComponentType(), orig.length - indices.size());
+		int iSmaller = 0;
+		for (int i = 0; i < orig.length; i++) {
+			if (!indices.contains(i)) {
+				smaller[iSmaller++] = orig[i];
+			}
+		}
+		return smaller;
 	}
 
 	/**
@@ -61,78 +75,103 @@ public class PlayerSettings {
 			gs3 = new PlayerSettings(playerIdx + 1);
 			mmap = null;
 		}
-		JFrame games1 = new JFrame("Player" + playerNum + " Setting");
-		games1.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		games1.getContentPane().removeAll();
-		games1.setSize(450, 320);
-		games1.getContentPane().setLayout(null);
 
-		final JLabel lblNewLabel = new JLabel("Name");
-		lblNewLabel.setBounds(122, 40, 46, 15);
-		games1.getContentPane().add(lblNewLabel);
+		final ImageIcon[] PLAYER_ICONS = new ImageIcon[] {
+			Game.image1,
+			Game.image2,
+			Game.image3,
+			Game.image4,
+			Game.image5,
+			Game.image6,
+			Game.image7,
+			Game.image8
+		};
+		final ImageIcon[] PLAYER_FIGURES = new ImageIcon[] {
+			Game.imagep1,
+			Game.imagep2,
+			Game.imagep3,
+			Game.imagep4,
+			Game.imagep5,
+			Game.imagep6,
+			Game.imagep7,
+			Game.imagep8
+		};
+		final Integer[] INDICES = new Integer[PLAYER_ICONS.length];
+		for (int i = 0; i < INDICES.length; i++) {
+			INDICES[i] = i;
+		}
 
-		final JEditorPane dtrpnPlayer = new JEditorPane();
-		dtrpnPlayer.setText("Player" + playerNum);
-		dtrpnPlayer.setBounds(205, 34, 106, 21);
-		games1.getContentPane().add(dtrpnPlayer);
+		final Set<Integer> toRemoveInds = new HashSet<>(playerIdx);
+		for (int i = 0; i < playerIdx; i++) {
+			toRemoveInds.add(Game.p_icon[i]);
+		}
 
-		final JLabel lblHumanai = new JLabel("Human/AI");
-		lblHumanai.setBounds(122, 79, 68, 15);
-		games1.getContentPane().add(lblHumanai);
+		final ImageIcon[] filteredIcons = removeIndices(PLAYER_ICONS, toRemoveInds);
+		final Integer[] filteredIndices = removeIndices(INDICES, toRemoveInds);
 
-		final JComboBox<String> comboBox = new JComboBox<>();
-		comboBox.setModel(new DefaultComboBoxModel<>(new String[] {"Human", "AI"}));
-		comboBox.setSelectedIndex(humanPlayer ? 0 : 1);
-		comboBox.setBounds(205, 76, 106, 21);
-		games1.getContentPane().add(comboBox);
+		JFrame playerSettingsFrame = new JFrame("Player" + playerNum + " Setting");
+		playerSettingsFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		playerSettingsFrame.getContentPane().removeAll();
+		playerSettingsFrame.setSize(450, 320);
+		playerSettingsFrame.getContentPane().setLayout(null);
+
+		final JLabel lblName = new JLabel("Name");
+		lblName.setBounds(122, 40, 46, 15);
+		playerSettingsFrame.getContentPane().add(lblName);
+
+		final JTextField name = new JTextField();
+		name.setText("Player" + playerNum);
+		name.setBounds(205, 34, 106, 21);
+		playerSettingsFrame.getContentPane().add(name);
+		lblName.setLabelFor(name);
+
+		final JLabel lblAi = new JLabel("AI");
+		lblAi.setBounds(122, 79, 68, 15);
+		playerSettingsFrame.getContentPane().add(lblAi);
+
+		final JCheckBox ai = new JCheckBox();
+		ai.setSelected(!humanPlayer);
+		ai.setBounds(205, 76, 106, 21);
+		playerSettingsFrame.getContentPane().add(ai);
+		lblAi.setLabelFor(ai);
 
 		final JLabel lblIcon = new JLabel("Icon");
 		lblIcon.setBounds(122, 124, 46, 15);
-		games1.getContentPane().add(lblIcon);
+		playerSettingsFrame.getContentPane().add(lblIcon);
 
-		final JComboBox<ImageIcon> comboBox_1 = new JComboBox<>();
-		comboBox_1.setBounds(205, 118, 106, 21);
-		ImageIcon[] array = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
-		final List<ImageIcon> list = new ArrayList<>(Arrays.asList(array));
-		for (int i = 0; i < playerIdx; i++) {
-			list.remove(Game.p_icon[i]);
-		}
-		array = list.toArray(new ImageIcon[0]);
-		comboBox_1.setModel(new DefaultComboBoxModel<>(array));
-		comboBox_1.setSelectedIndex(0);
-		games1.getContentPane().add(comboBox_1);
+		final JComboBox<ImageIcon> icon = new JComboBox<>();
+		icon.setBounds(205, 118, 106, 21);
+		icon.setModel(new DefaultComboBoxModel<>(filteredIcons));
+		icon.setSelectedIndex(0);
+		playerSettingsFrame.getContentPane().add(icon);
+		lblIcon.setLabelFor(icon);
 
-		final JLabel lblNewLabel_1 = new JLabel("Money");
-		lblNewLabel_1.setBounds(122, 165, 68, 15);
-		games1.getContentPane().add(lblNewLabel_1);
+		final JLabel lblStartingMoney = new JLabel("Starting money");
+		lblStartingMoney.setBounds(122, 165, 68, 15);
+		playerSettingsFrame.getContentPane().add(lblStartingMoney);
 
-		final JEditorPane editorPane = new JEditorPane();
-		editorPane.setText("30000");
-		editorPane.setBounds(205, 159, 106, 21);
-		games1.getContentPane().add(editorPane);
+		final JSpinner startingMoney = new JSpinner();
+		startingMoney.setValue(30000);
+		startingMoney.setBounds(205, 159, 106, 21);
+		playerSettingsFrame.getContentPane().add(startingMoney);
+		lblStartingMoney.setLabelFor(startingMoney);
 
 		final JButton btnCancel = new JButton("Previous");
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				games1.setVisible(false);
+				playerSettingsFrame.setVisible(false);
 				f.setVisible(true);
 			}
 		});
 		btnCancel.setBounds(85, 214, 155, 23);
-		games1.getContentPane().add(btnCancel);
-
-		final JLabel lblNewLabel_2 = new JLabel("(error value)");
-		lblNewLabel_2.setForeground(Color.RED);
-		lblNewLabel_2.setBounds(321, 165, 103, 15);
-		lblNewLabel_2.setVisible(false);
-		games1.getContentPane().add(lblNewLabel_2);
+		playerSettingsFrame.getContentPane().add(btnCancel);
 
 		final JLabel lblErrorValue = new JLabel("(error value)");
 		lblErrorValue.setForeground(Color.RED);
 		lblErrorValue.setBounds(321, 40, 103, 15);
 		lblErrorValue.setVisible(false);
-		games1.getContentPane().add(lblErrorValue);
+		playerSettingsFrame.getContentPane().add(lblErrorValue);
 
 		final JButton btnNext = new JButton("Next");
 		if (lastPlayer) {
@@ -141,51 +180,30 @@ public class PlayerSettings {
 		btnNext.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ImageIcon[] array = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
-				ImageIcon[] parray = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
-
-				final List<ImageIcon> list = new ArrayList<>(Arrays.asList(array));
-				for (int i = 0; i < playerIdx; i++) {
-					list.remove(Game.p_icon[i]);
-				}
-				array = list.toArray(new ImageIcon[0]);
-				final List<ImageIcon> listp = new ArrayList<>(Arrays.asList(parray));
-				for (int i = 0; i < playerIdx; i++) {
-					listp.remove(Game.p_icon[i]);
-				}
-				parray = listp.toArray(new ImageIcon[0]);
-
 				try {
-					Game.p_name[playerIdx] = dtrpnPlayer.getText();
+					Game.p_name[playerIdx] = name.getText();
 				} catch(final Exception e1) {
 					lblErrorValue.setVisible(true);
 					return;
 				}
 				lblErrorValue.setVisible(false);
 
-				try {
-					Game.p_money[playerIdx] = Long.parseLong(editorPane.getText());
-				} catch(final NumberFormatException e2) {
-					lblNewLabel_2.setVisible(true);
-					return;
-				}
-				lblNewLabel_2.setVisible(false);
+				Game.p_money[playerIdx] = (Integer) startingMoney.getValue();
+				Game.p_type[playerIdx] = ai.isSelected() ? 1 : 0;
+				Game.p_icon[playerIdx] = filteredIndices[icon.getSelectedIndex()];
+				Game.p_ic[playerIdx] = PLAYER_ICONS[Game.p_icon[playerIdx]];
+				Game.p_pawn[playerIdx] = PLAYER_FIGURES[Game.p_icon[playerIdx]];
 
-				Game.p_type[playerIdx] = comboBox.getSelectedIndex();
-				Game.p_icon[playerIdx] = comboBox_1.getSelectedIndex();
-				Game.p_ic[playerIdx] = array[Game.p_icon[playerIdx]];
-				Game.p_pawn[playerIdx] = parray[Game.p_icon[playerIdx]];
-
-				games1.setVisible(false);
+				playerSettingsFrame.setVisible(false);
 				if (lastPlayer) {
 					mmap.generate_map(Game);
 				} else {
-					gs3.show(games1, Game);
+					gs3.show(playerSettingsFrame, Game);
 				}
 			}
 		});
 		btnNext.setBounds(250, 214, 94, 23);
-		games1.getContentPane().add(btnNext);
-		games1.setVisible(true);
+		playerSettingsFrame.getContentPane().add(btnNext);
+		playerSettingsFrame.setVisible(true);
 	}
 }

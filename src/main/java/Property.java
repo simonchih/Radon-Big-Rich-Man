@@ -21,6 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.table.TableModel;
 
 public class Property {
 	public Game mygame;
@@ -111,10 +112,10 @@ public class Property {
 		frame.setVisible(false);
 		tabbedPane.removeAll();
 
-		final Data_Model dataModel1 = new Data_Model(data1, Column_Name);
-		final Data_Model dataModel2 = new Data_Model(data2, Column_Name);
-		final Data_Model dataModel3 = new Data_Model(data3, Column_Name);
-		final Data_Model dataModel4 = new Data_Model(data4, Column_Name);
+		final TableModel dataModel1 = new ListBasedDataModel(data1, Column_Name);
+		final TableModel dataModel2 = new ListBasedDataModel(data2, Column_Name);
+		final TableModel dataModel3 = new ListBasedDataModel(data3, Column_Name);
+		final TableModel dataModel4 = new ListBasedDataModel(data4, Column_Name);
 
 		table = new JTable(dataModel1);
 		table.setDefaultRenderer(Color.class, new ColorRenderer(true));

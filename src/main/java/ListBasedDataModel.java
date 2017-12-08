@@ -17,13 +17,13 @@
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-class Data_Model extends AbstractTableModel {
+class ListBasedDataModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
 	private final List<String> columnNames;
 	private final List<List<?>> rowData;
 
-	Data_Model(final List<List<?>> rowData, final List<String> columnNames) {
+	ListBasedDataModel(final List<List<?>> rowData, final List<String> columnNames) {
 		this.columnNames = columnNames;
 		this.rowData = rowData;
 	}

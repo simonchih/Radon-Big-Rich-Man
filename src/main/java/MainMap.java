@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -28,11 +29,13 @@ public class MainMap extends JFrame {
 	private static final long serialVersionUID = 1;
 	private static boolean crit = false;
 
+	private Game game;
 	private GameMap game_data;
 	private GameMap ini_map;
 	private GameLoop game_loop;
 
 	public MainMap(final Game game) {
+		this.game = game;
 		this.game_data = new GameMap();
 		this.ini_map = new GameMap();
 
@@ -191,21 +194,21 @@ public class MainMap extends JFrame {
 		// 27: Hospital
 		Integer[] array = {25, 26, 27};
 		List<Integer> list = new ArrayList<>(Arrays.asList(array));
-		Random_Pick_List pick = new Random_Pick_List();
+		final Random random = game.getRandom();
 
 		Integer temp, temp_data;
-		temp = pick.getRandomList(list);
+		temp = Util.getRandomItem(list, random);
 		ini_map.id[10] = temp;
 		ini_map.type[10] = 1;
 		list.remove(temp);
 
-		temp = pick.getRandomList(list);
+		temp = Util.getRandomItem(list, random);
 		ini_map.id[20] = temp;
 		ini_map.type[20] = 1;
 		list.remove(temp);
 		array = list.toArray(new Integer[0]);
 
-		temp = pick.getRandomList(list);
+		temp = Util.getRandomItem(list, random);
 		ini_map.id[30] = temp;
 		ini_map.type[30] = 1;
 
@@ -256,8 +259,8 @@ public class MainMap extends JFrame {
 			}
 			list = new ArrayList<>(Arrays.asList(array));
 
-			temp = pick.getRandomList(list);
-			temp_data = pick.getRandomList(list1);
+			temp = Util.getRandomItem(list, random);
+			temp_data = Util.getRandomItem(list1, random);
 			ini_map.id[temp] = temp_data;
 			ini_map.type[temp] = 2;
 			list.remove(temp);
@@ -265,8 +268,8 @@ public class MainMap extends JFrame {
 			list1.remove(temp_data);
 //			array1 = list1.toArray(new Integer[0]);
 
-			temp = pick.getRandomList(list);
-			temp_data = pick.getRandomList(list1);
+			temp = Util.getRandomItem(list, random);
+			temp_data = Util.getRandomItem(list1, random);
 			ini_map.id[temp] = temp_data;
 			ini_map.type[temp] = 2;
 			list.remove(temp);
@@ -274,8 +277,8 @@ public class MainMap extends JFrame {
 			list1.remove(temp_data);
 //			array1 = list1.toArray(new Integer[0]);
 
-			temp = pick.getRandomList(list);
-			temp_data = pick.getRandomList(list2);
+			temp = Util.getRandomItem(list, random);
+			temp_data = Util.getRandomItem(list2, random);
 			ini_map.id[temp] = temp_data;
 			ini_map.type[temp] = 3;
 			list.remove(temp);
@@ -283,8 +286,8 @@ public class MainMap extends JFrame {
 			list2.remove(temp_data);
 
 			for (int j = 0; j < 6; j++) {
-				temp = pick.getRandomList(list);
-				temp_data = pick.getRandomList(list3);
+				temp = Util.getRandomItem(list, random);
+				temp_data = Util.getRandomItem(list3, random);
 				ini_map.id[temp] = temp_data;
 				ini_map.type[temp] = 0;
 				list.remove(temp);

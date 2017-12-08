@@ -83,19 +83,19 @@ public class Dice {
 	public int idice2X = 540;
 	public int idice2Y = 520;
 
-	private final Random r;
+	private final Game game;
 
-	Dice() {
-		this.r = new Random();
+	Dice(final Game game) {
 		this.idice1 = ddice[dice1Raw];
 		this.idice2 = ddice[dice2Raw];
 		this.dice1 = dice1Raw / 4 + 1;
 		this.dice2 = dice2Raw / 4 + 1;
 		this.count = dice1 + dice2;
+		this.game = game;
 	}
 
 	public int generateRandomNumber() {
-		return r.nextInt(ddice.length);
+		return game.getRandom().nextInt(ddice.length);
 	}
 
 	public void rollDice() {

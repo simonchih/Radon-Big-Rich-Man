@@ -21,6 +21,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.Random;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
@@ -111,10 +112,12 @@ public class Game {
 	public long cross_cash;
 	public long hospital_fee;
 
-	public  Game() {
+	public Random random;
+
+	public Game(final long seed) {
 		this.skaching = "/Sound/kaching.wav";
 		this.btnNewButton = new JButton("Roll Dice");
-		this.dice = new Dice();
+		this.dice = new Dice(this);
 		this.btnPropertyButton = new JButton("Player's Property");
 		this.property = new Property(this);
 		this.turn = 0;
@@ -136,7 +139,16 @@ public class Game {
 		this.p_icon = new int[maxPSize];
 		this.p_type = new int[maxPSize];
 		this.p_name = new String[maxPSize];
+		this.random = new Random(seed);
+		System.out.println("random seed: " + seed);
+	}
 
+	public Game() {
+		this(System.currentTimeMillis());
+	}
+
+	public Random getRandom() {
+		return random;
 	}
 
 	//playSound modified from http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java

@@ -175,7 +175,7 @@ public class GameLoop implements Runnable {
 						}
 						// Chance: 2 == gameMap.type[id]
 						else if (2 == gameMap.type[id]) {
-							Random rand = new Random();
+							final Random rand = mygame.getRandom();
 							n = rand.nextInt(11);
 
 							if (n < 3) {
@@ -349,7 +349,7 @@ public class GameLoop implements Runnable {
 	}
 	public void forward() {
 		int move_step, turn_id = mygame.turn;
-		final Random rand = new Random();
+		final Random rand = mygame.getRandom();
 		// forward step 1~12
 		move_step = rand.nextInt(12)+ 1;
 		mygame.p_status[turn_id] = "Forward " + move_step + " step(s).";

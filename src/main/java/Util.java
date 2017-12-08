@@ -17,11 +17,9 @@
 import java.util.List;
 import java.util.Random;
 
-public class Random_Pick_List {
+public class Util {
 
-	private final Random random = new Random();
-
-	public int getRandomList(final List<Integer> list) {
+	public static int getRandomItem(final List<Integer> list, final Random random) {
 		final int index = random.nextInt(list.size());
 		return list.get(index);
 	}

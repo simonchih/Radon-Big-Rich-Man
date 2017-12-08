@@ -67,47 +67,77 @@ public class Game {
 	public ImageIcon iquestionmark_right = new ImageIcon(Game.class.getResource("/Image/questionmark_60x79_right.png"));
 	public ImageIcon iquestionmark_up = new ImageIcon(Game.class.getResource("/Image/questionmark_60x79_up.png"));
 
-	public String s36_1 = "Go to";
-	public String s36_2 = "Jail";
-	public String s37_1 = "Go to";
-	public String s37_2 = "Hospital";
-	public String s38_1 = "Land";
-	public String s38_2 = "Tax";
-	public String s39_1 = "House";
-	public String s39_2 = "Tax";
+	public static final String s36_1 = "Go to";
+	public static final String s36_2 = "Jail";
+	public static final String s37_1 = "Go to";
+	public static final String s37_2 = "Hospital";
+	public static final String s38_1 = "Land";
+	public static final String s38_2 = "Tax";
+	public static final String s39_1 = "House";
+	public static final String s39_2 = "Tax";
 
-	public String skaching = "/Sound/kaching.wav";
+	public String skaching;
 
-	public JButton btnNewButton = new JButton("Roll Dice");
-	public Dice dice = new Dice();
+	public JButton btnNewButton;
+	public Dice dice;
 
-	public JButton btnPropertyButton = new JButton("Player's Property");
-	public Property property = new Property(this);
+	public JButton btnPropertyButton;
+	public Property property;
 
 	public static int maxPSize = 4;
-	public int turn = 0; // 0: player1
-	public boolean move_start = false;
+	/** 0: player1 */
+	public int turn;
+	public boolean move_start;
+	/** 0: player 1, 3: player 4 */
+	public String[] p_name;
+	/** 0:human, 1:AI, 9:out */
+	public int[] p_type;
+	public int[] p_icon;
+	public ImageIcon[] p_ic;
+	public ImageIcon[] p_pawn;
+	public long[] p_money;
+	public int[] p_x_now;
+	public int[] p_y_now;
+	public int[] p_id;
+	public int[] p_dest_id;
+	public String[] p_status;
+	public int[] sp_x;
+	public int[] sp_y;
+	/** 0:out of jail, 1: in jail */
+	public int[] p_in_jail;
+	/** 0:continue, 1: stop 1 turn ... */
+	public int[] p_stop;
 
-	// 0: player 1 ...
-	// 3: player 4
-	public String[] p_name = new String[maxPSize];
-	public int[] p_type = new int[maxPSize]; // 0:human, 1:AI, 9:out
-	public int[] p_icon = new int[maxPSize];
-	public ImageIcon[] p_ic = new ImageIcon[maxPSize];
-	public ImageIcon[] p_pawn = new ImageIcon[maxPSize];
-	public long[] p_money = new long[maxPSize];
-	public int[] p_x_now = new int[maxPSize];
-	public int[] p_y_now = new int[maxPSize];
-	public int[] p_id = new int[maxPSize];
-	public int[] p_dest_id = new int[maxPSize];
-	public String[] p_status = new String[maxPSize];
-	public int[] sp_x = new int[maxPSize];
-	public int[] sp_y = new int[maxPSize];
-	public int[] p_in_jail = new int[maxPSize]; // 0:out of jail, 1: in jail
-	public int[] p_stop = new int[maxPSize]; // 0:continue, 1: stop 1 turn...
+	public long cross_cash;
+	public long hospital_fee;
 
-	public long cross_cash = 2000;
-	public long hospital_fee = 1000;
+	public  Game() {
+		this.skaching = "/Sound/kaching.wav";
+		this.btnNewButton = new JButton("Roll Dice");
+		this.dice = new Dice();
+		this.btnPropertyButton = new JButton("Player's Property");
+		this.property = new Property(this);
+		this.turn = 0;
+		this.move_start = false;
+		this.hospital_fee = 1000;
+		this.cross_cash = 2000;
+		this.p_pawn = new ImageIcon[maxPSize];
+		this.p_money = new long[maxPSize];
+		this.p_x_now = new int[maxPSize];
+		this.p_id = new int[maxPSize];
+		this.p_dest_id = new int[maxPSize];
+		this.sp_x = new int[maxPSize];
+		this.p_stop = new int[maxPSize];
+		this.p_in_jail = new int[maxPSize];
+		this.sp_y = new int[maxPSize];
+		this.p_status = new String[maxPSize];
+		this.p_y_now = new int[maxPSize];
+		this.p_ic = new ImageIcon[maxPSize];
+		this.p_icon = new int[maxPSize];
+		this.p_type = new int[maxPSize];
+		this.p_name = new String[maxPSize];
+
+	}
 
 	//playSound modified from http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
 	//I personally made this code that works fine. I think it only works with .wav format.

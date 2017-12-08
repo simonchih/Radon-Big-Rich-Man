@@ -26,7 +26,7 @@ public class Game_Loop implements Runnable {
 	public mcanvas mycanvas;
 	public Game_Map game_map;
 	public BuyLand buy_land;
-	public Build_House build_house;
+	public BuildHouse build_house;
 	public AI ai;
 	public Thread t_game;
 	public boolean susp;
@@ -38,7 +38,7 @@ public class Game_Loop implements Runnable {
 		jf = jframe;
 		t_game = new Thread(this);
 		buy_land = new BuyLand(game, gm, this);
-		build_house = new Build_House(game, gm, this);
+		build_house = new BuildHouse(game, gm, this);
 		ai = new AI(game, gm, this);
 	}
 

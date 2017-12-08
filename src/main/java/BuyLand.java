@@ -23,32 +23,30 @@ import javax.swing.JLabel;
 
 public class BuyLand {
 
-	public Game mygame;
-	public mcanvas mycanvas;
-	public GameMap game_map;
-	public GameLoop mygl;
-	public JFrame bl;
+	private final Game game;
+	private final GameMap gameMap;
+	private final GameLoop gameLoop;
+	private final JFrame bl;
 
-	BuyLand(final Game game, final GameMap gm, final GameLoop gl) {
+	BuyLand(final Game game, final GameMap gameMap, final GameLoop gameLoop) {
 		this.bl = new JFrame("Buy Lnad");
 		this.bl.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.mygame = game;
-		//mycanvas = canvas;
-		this.game_map = gm;
-		this.mygl = gl;
+		this.game = game;
+		this.gameMap = gameMap;
+		this.gameLoop = gameLoop;
 	}
 
 	/**
 	 * @wbp.parser.entryPoint
 	 */
 	public void show() {
-		final int turn_id = mygame.turn;
+		final int turn_id = game.turn;
 
 		bl.getContentPane().removeAll();
 		bl.setSize(450, 300);
 		bl.getContentPane().setLayout(null);
 
-		final JLabel lblNewLabel = new JLabel("Hi, "+mygame.p_name[turn_id]+":");
+		final JLabel lblNewLabel = new JLabel("Hi, "+game.p_name[turn_id]+":");
 		lblNewLabel.setBounds(10, 10, 414, 15);
 		bl.getContentPane().add(lblNewLabel);
 
@@ -57,7 +55,7 @@ public class BuyLand {
 			@Override
 			public void actionPerformed(final ActionEvent arg0) {
 				bl.dispose();
-				mygl.susp = false;
+				gameLoop.susp = false;
 			}
 		});
 		btnNewButton.setBounds(55, 214, 87, 23);
@@ -67,22 +65,22 @@ public class BuyLand {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				//mygame.p_money[turn_id] -= game_map.value[mygame.p_dest_id[turn_id]];
-				mygame.deal((-1) * game_map.value[mygame.p_dest_id[turn_id]], turn_id, "Buy Land: ");
+				//mygame.p_money[turn_id] -= gameMap.value[mygame.p_dest_id[turn_id]];
+				game.deal((-1) * gameMap.value[game.p_dest_id[turn_id]], turn_id, "Buy Land: ");
 
-				game_map.owner[mygame.p_dest_id[turn_id]] = turn_id + 1;
+				gameMap.owner[game.p_dest_id[turn_id]] = turn_id + 1;
 				bl.dispose();
-				mygl.susp = false;
+				gameLoop.susp = false;
 			}
 		});
 		btnNewButton_1.setBounds(198, 214, 188, 23);
 		bl.getContentPane().add(btnNewButton_1);
 
-		final JLabel lblNewLabel_1 = new JLabel("Do you want to buy " + game_map.name[mygame.p_dest_id[turn_id]]+" with $"+game_map.value[mygame.p_dest_id[turn_id]]+"?");
+		final JLabel lblNewLabel_1 = new JLabel("Do you want to buy " + gameMap.name[game.p_dest_id[turn_id]]+" with $"+gameMap.value[game.p_dest_id[turn_id]]+"?");
 		lblNewLabel_1.setBounds(20, 26, 404, 15);
 		bl.getContentPane().add(lblNewLabel_1);
 
-		if(game_map.value[mygame.p_dest_id[turn_id]] > mygame.p_money[turn_id]){
+		if(gameMap.value[game.p_dest_id[turn_id]] > game.p_money[turn_id]) {
 			final JLabel lblNewLabel_2 = new JLabel("You have NOT enough money!");
 			lblNewLabel_2.setBounds(20, 189, 404, 15);
 			lblNewLabel_2.setForeground(Color.RED);

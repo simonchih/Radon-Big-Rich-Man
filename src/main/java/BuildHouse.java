@@ -23,17 +23,17 @@ import javax.swing.JLabel;
 
 public class BuildHouse {
 
-	private final Game mygame;
-	private final GameMap game_map;
-	private final GameLoop mygl;
+	private final Game game;
+	private final GameMap gameMap;
+	private final GameLoop gameLoop;
 	private final JFrame bh;
 
-	BuildHouse(final Game game, final GameMap gm, final GameLoop gl) {
+	BuildHouse(final Game game, final GameMap gameMap, final GameLoop gameLoop) {
 		this.bh = new JFrame("Building");
 		this.bh.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.mygame = game;
-		this.game_map = gm;
-		this.mygl = gl;
+		this.game = game;
+		this.gameMap = gameMap;
+		this.gameLoop = gameLoop;
 	}
 
 	/**
@@ -43,21 +43,21 @@ public class BuildHouse {
 		String h;
 		String button_name;
 		final long spent;
-		final int turn_id = mygame.turn;
+		final int turn_id = game.turn;
 
-		switch (game_map.level[mygame.p_dest_id[turn_id]]) {
+		switch (gameMap.level[game.p_dest_id[turn_id]]) {
 			case 4:
-				mygl.susp = false;
+				gameLoop.susp = false;
 				return;
 			case 3:
 				h = "hotel";
 				button_name = "Build Hotel";
-				spent = (long) (game_map.value[mygame.p_dest_id[turn_id]] * 0.4);
+				spent = (long) (gameMap.value[game.p_dest_id[turn_id]] * 0.4);
 				break;
 			default:
 				h = "house";
 				button_name = "Build House";
-				spent = (long) (game_map.value[mygame.p_dest_id[turn_id]] * 0.2);
+				spent = (long) (gameMap.value[game.p_dest_id[turn_id]] * 0.2);
 				break;
 		}
 
@@ -65,7 +65,7 @@ public class BuildHouse {
 		bh.setSize(450, 300);
 		bh.getContentPane().setLayout(null);
 
-		final JLabel lblNewLabel = new JLabel("Hi, " + mygame.p_name[turn_id] + ":");
+		final JLabel lblNewLabel = new JLabel("Hi, " + game.p_name[turn_id] + ":");
 		lblNewLabel.setBounds(10, 10, 414, 15);
 		bh.getContentPane().add(lblNewLabel);
 
@@ -74,7 +74,7 @@ public class BuildHouse {
 			@Override
 			public void actionPerformed(final ActionEvent arg0) {
 				bh.dispose();
-				mygl.susp = false;
+				gameLoop.susp = false;
 			}
 		});
 		btnNewButton.setBounds(55, 214, 124, 23);
@@ -84,10 +84,10 @@ public class BuildHouse {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				mygame.deal(-1 * spent, turn_id, "Spent: ");
-				game_map.level[mygame.p_dest_id[turn_id]] += 1;
+				game.deal(-1 * spent, turn_id, "Spent: ");
+				gameMap.level[game.p_dest_id[turn_id]] += 1;
 				bh.dispose();
-				mygl.susp = false;
+				gameLoop.susp = false;
 			}
 		});
 		btnNewButton_1.setBounds(219, 214, 188, 23);
@@ -97,7 +97,7 @@ public class BuildHouse {
 		lblNewLabel_1.setBounds(20, 26, 404, 15);
 		bh.getContentPane().add(lblNewLabel_1);
 
-		if (spent > mygame.p_money[turn_id]) {
+		if (spent > game.p_money[turn_id]) {
 			final JLabel lblNewLabel_2 = new JLabel("You have NOT enough money!");
 			lblNewLabel_2.setBounds(20, 189, 404, 15);
 			lblNewLabel_2.setForeground(Color.RED);

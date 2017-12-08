@@ -24,35 +24,36 @@ import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
 public class Property {
-	public Game mygame;
-	public JFrame frame;
+
+	private final Game game;
+	private final JFrame frame;
 	private final JTabbedPane tabbedPane;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
 
-	Property(Game g){
+	Property(final Game game) {
 		this.tabbedPane = new JTabbedPane();
 		this.frame = new JFrame("Property");
-		mygame = g;
+		this.game = game;
 	}
-	private void AddElementToTable(final List<List<?>> datat, final GameMap game_map, final int i){
+	private void AddElementToTable(final List<List<?>> datat, final GameMap gameMap, final int i) {
 		long fee;
 		int doub;
 		boolean db;
 		final List<Object> data = new ArrayList<>();
 
-		doub = mygame.double_fee(game_map, i);
+		doub = game.double_fee(gameMap, i);
 
 		db = (2 == doub);
 
-		fee = mygame.toll(game_map, doub, i);
+		fee = game.toll(gameMap, doub, i);
 
-		data.add(game_map.color[i]);
-		data.add(game_map.name[i]);
-		data.add(game_map.value[i]);
-		data.add(game_map.level[i]);
+		data.add(gameMap.color[i]);
+		data.add(gameMap.name[i]);
+		data.add(gameMap.value[i]);
+		data.add(gameMap.level[i]);
 		data.add(db);
 		data.add(fee);
 		datat.add(data);
@@ -64,11 +65,16 @@ public class Property {
 		frame.getContentPane().add(tabp);
 		frame.setVisible(true);
 	}
+
+    public boolean isVisible() {
+		return frame.isVisible();
+	}
+
 	/**
-	 * @param game_map
+	 * @param gameMap
 	 * @wbp.parser.entryPoint
 	 */
-	protected void show(final GameMap game_map){
+	protected void show(final GameMap gameMap) {
 
 		int t_index = 0;
 		String Property = "'s Property";
@@ -89,20 +95,20 @@ public class Property {
 		final List<List<?>> data3 = new ArrayList<>();
 		final List<List<?>> data4 = new ArrayList<>();
 
-		for (int i = 0; i < game_map.Size; i++) {
-			final int o = game_map.owner[i];
+		for (int i = 0; i < gameMap.size; i++) {
+			final int o = gameMap.owner[i];
 			switch(o) {
 				case 1:
-					AddElementToTable(data1, game_map, i);
+					AddElementToTable(data1, gameMap, i);
 					break;
 				case 2:
-					AddElementToTable(data2, game_map, i);
+					AddElementToTable(data2, gameMap, i);
 					break;
 				case 3:
-					AddElementToTable(data3, game_map, i);
+					AddElementToTable(data3, gameMap, i);
 					break;
 				case 4:
-					AddElementToTable(data4, game_map, i);
+					AddElementToTable(data4, gameMap, i);
 					break;
 				//default:
 					//System.out.println(o);
@@ -120,22 +126,22 @@ public class Property {
 		table = new JTable(dataModel1);
 		table.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table.setEnabled(false);
-		tabbedPane.addTab(mygame.p_name[0] + Property, null, new JScrollPane(table), null);
+		tabbedPane.addTab(game.p_name[0] + Property, null, new JScrollPane(table), null);
 
 		table_1 = new JTable(dataModel2);
 		table_1.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table_1.setEnabled(false);
-		tabbedPane.addTab(mygame.p_name[1] + Property, null, new JScrollPane(table_1), null);
+		tabbedPane.addTab(game.p_name[1] + Property, null, new JScrollPane(table_1), null);
 
 		table_2 = new JTable(dataModel3);
 		table_2.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table_2.setEnabled(false);
-		tabbedPane.addTab(mygame.p_name[2] + Property, null, new JScrollPane(table_2), null);
+		tabbedPane.addTab(game.p_name[2] + Property, null, new JScrollPane(table_2), null);
 
 		table_3 = new JTable(dataModel4);
 		table_3.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table_3.setEnabled(false);
-		tabbedPane.addTab(mygame.p_name[3] + Property, null, new JScrollPane(table_3), null);
+		tabbedPane.addTab(game.p_name[3] + Property, null, new JScrollPane(table_3), null);
 
 		tabbedPane.setSelectedIndex(t_index);
 

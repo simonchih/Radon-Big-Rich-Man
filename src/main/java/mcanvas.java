@@ -149,7 +149,7 @@ public class mcanvas extends JComponent {
 				mygame.iarrow.getIconHeight(),
 				null);
 
-		for (int i = 1; i < game_data.Size; i++) {
+		for (int i = 1; i < game_data.size; i++) {
 			switch (game_data.type[i]) {
 				case 0:
 					if (i >= 1 && i <= 9) {
@@ -519,22 +519,20 @@ public class mcanvas extends JComponent {
 		g.setColor(Color.black);
 
 		// draw dice
-		g.drawImage(
-				mygame.dice.idice1.getImage(),
-				mygame.dice.idice1_x,
-				mygame.dice.idice1_y,
+		g.drawImage(mygame.dice.idice1.getImage(),
+				mygame.dice.idice1X,
+				mygame.dice.idice1Y,
 				mygame.dice.idice1.getIconWidth(),
 				mygame.dice.idice1.getIconHeight(),
 				this);
-		g.drawImage(
-				mygame.dice.idice2.getImage(),
-				mygame.dice.idice2_x,
-				mygame.dice.idice2_y,
+		g.drawImage(mygame.dice.idice2.getImage(),
+				mygame.dice.idice2X,
+				mygame.dice.idice2Y,
 				mygame.dice.idice2.getIconWidth(),
 				mygame.dice.idice2.getIconHeight(),
 				this);
 
-		// draw pawn at p_x, p_y;
+		// draw pawn at pX, pY;
 		for (int playerIdx = 0; playerIdx < numPlayers; playerIdx++) {
 			if (mygame.p_type[playerIdx] != 9) {
 				g.drawImage(

@@ -84,27 +84,27 @@ public class Game {
 	public JButton btnPropertyButton = new JButton("Player's Property");
 	public Property property = new Property(this);
 
-	public static int max_p_size = 4;
+	public static int maxPSize = 4;
 	public int turn = 0; // 0: player1
 	public boolean move_start = false;
 
 	// 0: player 1 ...
 	// 3: player 4
-	public String[] p_name = new String[max_p_size];
-	public int[] p_type = new int[max_p_size]; // 0:human, 1:AI, 9:out
-	public int[] p_icon = new int[max_p_size];
-	public ImageIcon[] p_ic = new ImageIcon[max_p_size];
-	public ImageIcon[] p_pawn = new ImageIcon[max_p_size];
-	public long[] p_money = new long[max_p_size];
-	public int[] p_x_now = new int[max_p_size];
-	public int[] p_y_now = new int[max_p_size];
-	public int[] p_id = new int[max_p_size];
-	public int[] p_dest_id = new int[max_p_size];
-	public String[] p_status = new String[max_p_size];
-	public int[] sp_x = new int[max_p_size];
-	public int[] sp_y = new int[max_p_size];
-	public int[] p_in_jail = new int[max_p_size]; // 0:out of jail, 1: in jail
-	public int[] p_stop = new int[max_p_size]; // 0:continue, 1: stop 1 turn...
+	public String[] p_name = new String[maxPSize];
+	public int[] p_type = new int[maxPSize]; // 0:human, 1:AI, 9:out
+	public int[] p_icon = new int[maxPSize];
+	public ImageIcon[] p_ic = new ImageIcon[maxPSize];
+	public ImageIcon[] p_pawn = new ImageIcon[maxPSize];
+	public long[] p_money = new long[maxPSize];
+	public int[] p_x_now = new int[maxPSize];
+	public int[] p_y_now = new int[maxPSize];
+	public int[] p_id = new int[maxPSize];
+	public int[] p_dest_id = new int[maxPSize];
+	public String[] p_status = new String[maxPSize];
+	public int[] sp_x = new int[maxPSize];
+	public int[] sp_y = new int[maxPSize];
+	public int[] p_in_jail = new int[maxPSize]; // 0:out of jail, 1: in jail
+	public int[] p_stop = new int[maxPSize]; // 0:continue, 1: stop 1 turn...
 
 	public long cross_cash = 2000;
 	public long hospital_fee = 1000;
@@ -138,12 +138,12 @@ public class Game {
 		}
 	}
 
-	public int double_fee(final GameMap game_map, final int i) {
+	public int double_fee(final GameMap gameMap, final int i) {
 		int doub, owner1, owner2, owner3;
 
-		owner1 = game_map.owner[game_map.same_color[GameMap.color_index(game_map.color[i])][0]];
-		owner2 = game_map.owner[game_map.same_color[GameMap.color_index(game_map.color[i])][1]];
-		owner3 = game_map.owner[game_map.same_color[GameMap.color_index(game_map.color[i])][2]];
+		owner1 = gameMap.owner[gameMap.sameColor[GameMap.colorIndex(gameMap.color[i])][0]];
+		owner2 = gameMap.owner[gameMap.sameColor[GameMap.colorIndex(gameMap.color[i])][1]];
+		owner3 = gameMap.owner[gameMap.sameColor[GameMap.colorIndex(gameMap.color[i])][2]];
 		if (owner1 == owner2 && owner2 == owner3) {
 			doub = 2;
 		} else {
@@ -153,11 +153,11 @@ public class Game {
 		return doub;
 	}
 
-	public long toll(final GameMap game_map, final int doub, final int i) {
-		long fee, basic_money;
+	public long toll(final GameMap gameMap, final int doub, final int i) {
+		long fee, basicMoney;
 
-		basic_money = (long)(0.2 * game_map.value[i]);
-		fee = (long) (doub * Math.pow(2, game_map.level[i]) * basic_money);
+		basicMoney = (long)(0.2 * gameMap.value[i]);
+		fee = (long) (doub * Math.pow(2, gameMap.level[i]) * basicMoney);
 
 		return fee;
 	}

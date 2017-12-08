@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>C:\Users\Simon\Random_Big_Rich_Man\Random_Big_Rich_Man.jar</jar>
-  <outfile>C:\Users\Simon\Random_Big_Rich_Man_EXE\Random_Big_Rich_Man.exe</outfile>
+  <jar>target/random-big-rich-man-1.0.0-SNAPSHOT.jar</jar>
+  <outfile>target/Random_Big_Rich_Man.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -13,7 +13,7 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>C:\Users\Simon\Pictures\Radom_Big_Rich_Man\randombigrich_default.ico</icon>
+  <icon>src/main/resources/Image/randombigrich_default.ico</icon>
   <jre>
     <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>

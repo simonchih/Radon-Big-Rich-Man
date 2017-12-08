@@ -57,10 +57,10 @@ public class PlayerSettings {
 
 	/**
 	 * @param f
-	 * @param Game
+	 * @param game
 	 * @wbp.parser.entryPoint
 	 */
-	public void show(final JFrame f, final game Game) {
+	public void show(final JFrame f, final Game game) {
 
 		final boolean firstPlayer = (playerIdx == 0);
 		final boolean humanPlayer = firstPlayer;
@@ -70,31 +70,31 @@ public class PlayerSettings {
 		final Main_Map mmap;
 		if (lastPlayer) {
 			gs3 = null;
-			mmap = new Main_Map(Game);
+			mmap = new Main_Map(game);
 		} else {
 			gs3 = new PlayerSettings(playerIdx + 1);
 			mmap = null;
 		}
 
 		final ImageIcon[] PLAYER_ICONS = new ImageIcon[] {
-			Game.image1,
-			Game.image2,
-			Game.image3,
-			Game.image4,
-			Game.image5,
-			Game.image6,
-			Game.image7,
-			Game.image8
+			game.image1,
+			game.image2,
+			game.image3,
+			game.image4,
+			game.image5,
+			game.image6,
+			game.image7,
+			game.image8
 		};
 		final ImageIcon[] PLAYER_FIGURES = new ImageIcon[] {
-			Game.imagep1,
-			Game.imagep2,
-			Game.imagep3,
-			Game.imagep4,
-			Game.imagep5,
-			Game.imagep6,
-			Game.imagep7,
-			Game.imagep8
+			game.imagep1,
+			game.imagep2,
+			game.imagep3,
+			game.imagep4,
+			game.imagep5,
+			game.imagep6,
+			game.imagep7,
+			game.imagep8
 		};
 		final Integer[] INDICES = new Integer[PLAYER_ICONS.length];
 		for (int i = 0; i < INDICES.length; i++) {
@@ -103,7 +103,7 @@ public class PlayerSettings {
 
 		final Set<Integer> toRemoveInds = new HashSet<>(playerIdx);
 		for (int i = 0; i < playerIdx; i++) {
-			toRemoveInds.add(Game.p_icon[i]);
+			toRemoveInds.add(game.p_icon[i]);
 		}
 
 		final ImageIcon[] filteredIcons = removeIndices(PLAYER_ICONS, toRemoveInds);
@@ -181,24 +181,24 @@ public class PlayerSettings {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Game.p_name[playerIdx] = name.getText();
+					game.p_name[playerIdx] = name.getText();
 				} catch(final Exception e1) {
 					lblErrorValue.setVisible(true);
 					return;
 				}
 				lblErrorValue.setVisible(false);
 
-				Game.p_money[playerIdx] = (Integer) startingMoney.getValue();
-				Game.p_type[playerIdx] = ai.isSelected() ? 1 : 0;
-				Game.p_icon[playerIdx] = filteredIndices[icon.getSelectedIndex()];
-				Game.p_ic[playerIdx] = PLAYER_ICONS[Game.p_icon[playerIdx]];
-				Game.p_pawn[playerIdx] = PLAYER_FIGURES[Game.p_icon[playerIdx]];
+				game.p_money[playerIdx] = (Integer) startingMoney.getValue();
+				game.p_type[playerIdx] = ai.isSelected() ? 1 : 0;
+				game.p_icon[playerIdx] = filteredIndices[icon.getSelectedIndex()];
+				game.p_ic[playerIdx] = PLAYER_ICONS[game.p_icon[playerIdx]];
+				game.p_pawn[playerIdx] = PLAYER_FIGURES[game.p_icon[playerIdx]];
 
 				playerSettingsFrame.setVisible(false);
 				if (lastPlayer) {
-					mmap.generate_map(Game);
+					mmap.generate_map(game);
 				} else {
-					gs3.show(playerSettingsFrame, Game);
+					gs3.show(playerSettingsFrame, game);
 				}
 			}
 		});

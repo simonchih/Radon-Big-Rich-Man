@@ -23,7 +23,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
 public class Property {
-	public game mygame;
+	public Game mygame;
 	public JFrame frame;
 	private final JTabbedPane tabbedPane;
 	private JTable table;
@@ -31,7 +31,7 @@ public class Property {
 	private JTable table_2;
 	private JTable table_3;
 
-	Property(game g){
+	Property(Game g){
 		this.tabbedPane = new JTabbedPane();
 		this.frame = new JFrame("Property");
 		mygame = g;

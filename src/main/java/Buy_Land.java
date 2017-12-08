@@ -23,16 +23,16 @@ import javax.swing.JLabel;
 
 public class Buy_Land {
 
-	public game mygame;
+	public Game mygame;
 	public mcanvas mycanvas;
 	public Game_Map game_map;
 	public Game_Loop mygl;
 	public JFrame bl;
 
-	Buy_Land(final game Game, final Game_Map gm, final Game_Loop gl) {
+	Buy_Land(final Game game, final Game_Map gm, final Game_Loop gl) {
 		this.bl = new JFrame("Buy Lnad");
 		this.bl.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.mygame = Game;
+		this.mygame = game;
 		//mycanvas = canvas;
 		this.game_map = gm;
 		this.mygl = gl;

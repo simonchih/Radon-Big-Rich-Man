@@ -54,15 +54,15 @@ public class mcanvas extends JComponent {
 	int p_gap = 5;
 
 	public Game_Map game_data;
-	public game mygame;
+	public Game mygame;
 	private Image offscreenConst;
 	private Image offscreen;
 
-	public mcanvas(final Game_Map gm, final game Game) {
-		this.mygame = new game();
+	public mcanvas(final Game_Map gm, final Game game) {
+		this.mygame = new Game();
 		this.game_data = new Game_Map();
 		this.game_data = gm;
-		this.mygame = Game;
+		this.mygame = game;
 		this.offscreenConst = null;
 		this.offscreen = null;
 	}

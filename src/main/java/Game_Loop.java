@@ -22,7 +22,7 @@ public class Game_Loop implements Runnable {
 	private static final double speedModifier = 1.0;
 
 	public JFrame jf;
-	public game mygame;
+	public Game mygame;
 	public mcanvas mycanvas;
 	public Game_Map game_map;
 	public Buy_Land buy_land;
@@ -31,15 +31,15 @@ public class Game_Loop implements Runnable {
 	public Thread t_game;
 	public boolean susp;
 
-	Game_Loop(final game Game, final mcanvas canvas, final Game_Map gm, final JFrame jframe) {
-		mygame = Game;
+	Game_Loop(final Game game, final mcanvas canvas, final Game_Map gm, final JFrame jframe) {
+		mygame = game;
 		mycanvas = canvas;
 		game_map = gm;
 		jf = jframe;
 		t_game = new Thread(this);
-		buy_land = new Buy_Land(Game, gm, this);
-		build_house = new Build_House(Game, gm, this);
-		ai = new AI(Game, gm, this);
+		buy_land = new Buy_Land(game, gm, this);
+		build_house = new Build_House(game, gm, this);
+		ai = new AI(game, gm, this);
 	}
 
 	@Override
@@ -53,10 +53,10 @@ public class Game_Loop implements Runnable {
 
 		while (player_number(mygame) > 1)
 		{
-			for (int i = 0; i < game.max_p_size; i++) {
+			for (int i = 0; i < Game.max_p_size; i++) {
 				if (i == mygame.turn) {
 					if (9 == mygame.p_type[i]) {
-						mygame.turn = (mygame.turn + 1) % game.max_p_size;
+						mygame.turn = (mygame.turn + 1) % Game.max_p_size;
 					} else if (mygame.p_stop[i] > 0) {
 						mygame.p_stop[i]--;
 						if (1 == mygame.p_in_jail[i]) {
@@ -64,7 +64,7 @@ public class Game_Loop implements Runnable {
 						} else {
 							mygame.p_status[i] = "Stop " + mygame.p_stop[mygame.turn] + " turn.";
 						}
-						mygame.turn = (mygame.turn + 1) % game.max_p_size;
+						mygame.turn = (mygame.turn + 1) % Game.max_p_size;
 					} else {
 						mygame.p_in_jail[i] = 0;
 						mygame.p_status[i] = "0";
@@ -82,7 +82,7 @@ public class Game_Loop implements Runnable {
 			}
 
 			// if p_money < 0
-			for (int i = 0; i < game.max_p_size; i++) {
+			for (int i = 0; i < Game.max_p_size; i++) {
 				if (9 != mygame.p_type[i]) {
 					if (mygame.p_money[i] < 0) {
 						for (int j = 0; j < game_map.Size; j++) {
@@ -113,7 +113,7 @@ public class Game_Loop implements Runnable {
 					e.printStackTrace();
 				}
 
-				for (int i = 0; i < game.max_p_size; i++) {
+				for (int i = 0; i < Game.max_p_size; i++) {
 					if (mygame.p_id[i] != mygame.p_dest_id[i]) {
 						if (!no_cross_cash[i] && 0 == mygame.p_id[i]) {
 							no_cross_cash[i] = true;
@@ -250,7 +250,7 @@ public class Game_Loop implements Runnable {
 								e.printStackTrace();
 							}
 						}
-						mygame.turn = (mygame.turn + 1) % game.max_p_size;
+						mygame.turn = (mygame.turn + 1) % Game.max_p_size;
 					}
 				}
 
@@ -263,11 +263,11 @@ public class Game_Loop implements Runnable {
 		}
 	}
 
-	public static int player_number(final game Game) {
+	public static int player_number(final Game game) {
 		int n = 0;
 		final int numPlayers = 4;
 		for (int pi = 0; pi < numPlayers; pi++) {
-			if (Game.p_type[pi] != 9) {
+			if (game.p_type[pi] != 9) {
 				n++;
 			}
 		}

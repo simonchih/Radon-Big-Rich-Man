@@ -28,8 +28,8 @@ public class Game_Map {
 	// type 9, NOT assign
 	int[] type = new int[Size];
 	int[] id = new int[Size];
-	int [][] p_x = new int[game.max_p_size][Size];
-	int [][] p_y = new int[game.max_p_size][Size];
+	int [][] p_x = new int[Game.max_p_size][Size];
+	int [][] p_y = new int[Game.max_p_size][Size];
 
 	// owner 0, No one
 	// owner 1, player 1...

@@ -23,15 +23,15 @@ import javax.swing.JLabel;
 
 public class Build_House {
 
-	private final game mygame;
+	private final Game mygame;
 	private final Game_Map game_map;
 	private final Game_Loop mygl;
 	private final JFrame bh;
 
-	Build_House(final game Game, final Game_Map gm, final Game_Loop gl) {
+	Build_House(final Game game, final Game_Map gm, final Game_Loop gl) {
 		this.bh = new JFrame("Building");
 		this.bh.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.mygame = Game;
+		this.mygame = game;
 		this.game_map = gm;
 		this.mygl = gl;
 	}

@@ -16,11 +16,11 @@
 
 public class AI {
 
-	private final game mygame;
+	private final Game mygame;
 	private final Game_Map game_map;
 
-	public AI(final game Game, final Game_Map gm, final Game_Loop gl) {
-		this.mygame = Game;
+	public AI(final Game game, final Game_Map gm, final Game_Loop gl) {
+		this.mygame = game;
 		this.game_map = gm;
 	}
 

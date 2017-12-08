@@ -28,44 +28,44 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class game {
+public class Game {
 	public static PlayerSettings gs1 = new PlayerSettings(0);
-	public ImageIcon image1 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token1.png"));
-	public ImageIcon image2 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token8.png"));
-	public ImageIcon image3 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token7.png"));
-	public ImageIcon image4 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token6.png"));
-	public ImageIcon image5 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token5.png"));
-	public ImageIcon image6 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token4.png"));
-	public ImageIcon image7 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token3.png"));
-	public ImageIcon image8 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token2.png"));
+	public ImageIcon image1 = new ImageIcon(Game.class.getResource("/Image/gtkmonop-token1.png"));
+	public ImageIcon image2 = new ImageIcon(Game.class.getResource("/Image/gtkmonop-token8.png"));
+	public ImageIcon image3 = new ImageIcon(Game.class.getResource("/Image/gtkmonop-token7.png"));
+	public ImageIcon image4 = new ImageIcon(Game.class.getResource("/Image/gtkmonop-token6.png"));
+	public ImageIcon image5 = new ImageIcon(Game.class.getResource("/Image/gtkmonop-token5.png"));
+	public ImageIcon image6 = new ImageIcon(Game.class.getResource("/Image/gtkmonop-token4.png"));
+	public ImageIcon image7 = new ImageIcon(Game.class.getResource("/Image/gtkmonop-token3.png"));
+	public ImageIcon image8 = new ImageIcon(Game.class.getResource("/Image/gtkmonop-token2.png"));
 
-	public ImageIcon imagep1 = new ImageIcon(game.class.getResource("/Image/pawn1.gif"));
-	public ImageIcon imagep2 = new ImageIcon(game.class.getResource("/Image/pawn2.gif"));
-	public ImageIcon imagep3 = new ImageIcon(game.class.getResource("/Image/pawn3.gif"));
-	public ImageIcon imagep4 = new ImageIcon(game.class.getResource("/Image/pawn4.gif"));
-	public ImageIcon imagep5 = new ImageIcon(game.class.getResource("/Image/pawn5.gif"));
-	public ImageIcon imagep6 = new ImageIcon(game.class.getResource("/Image/pawn6.gif"));
-	public ImageIcon imagep7 = new ImageIcon(game.class.getResource("/Image/pawn7.gif"));
-	public ImageIcon imagep8 = new ImageIcon(game.class.getResource("/Image/pawn8.gif"));
+	public ImageIcon imagep1 = new ImageIcon(Game.class.getResource("/Image/pawn1.gif"));
+	public ImageIcon imagep2 = new ImageIcon(Game.class.getResource("/Image/pawn2.gif"));
+	public ImageIcon imagep3 = new ImageIcon(Game.class.getResource("/Image/pawn3.gif"));
+	public ImageIcon imagep4 = new ImageIcon(Game.class.getResource("/Image/pawn4.gif"));
+	public ImageIcon imagep5 = new ImageIcon(Game.class.getResource("/Image/pawn5.gif"));
+	public ImageIcon imagep6 = new ImageIcon(Game.class.getResource("/Image/pawn6.gif"));
+	public ImageIcon imagep7 = new ImageIcon(Game.class.getResource("/Image/pawn7.gif"));
+	public ImageIcon imagep8 = new ImageIcon(Game.class.getResource("/Image/pawn8.gif"));
 
-	public ImageIcon iarrow = new ImageIcon(game.class.getResource("/Image/gtkmonop-go-0.png"));
-	public ImageIcon ijail = new ImageIcon(game.class.getResource("/Image/jail.jpg"));
-	public ImageIcon iparking = new ImageIcon(game.class.getResource("/Image/Parking.jpg"));
-	public ImageIcon ihospital = new ImageIcon(game.class.getResource("/Image/Hospital.jpg"));
+	public ImageIcon iarrow = new ImageIcon(Game.class.getResource("/Image/gtkmonop-go-0.png"));
+	public ImageIcon ijail = new ImageIcon(Game.class.getResource("/Image/jail.jpg"));
+	public ImageIcon iparking = new ImageIcon(Game.class.getResource("/Image/Parking.jpg"));
+	public ImageIcon ihospital = new ImageIcon(Game.class.getResource("/Image/Hospital.jpg"));
 
-	public ImageIcon ihouse = new ImageIcon(game.class.getResource("/Image/house.png"));
-	public ImageIcon ihouse_left = new ImageIcon(game.class.getResource("/Image/house_left.png"));
-	public ImageIcon ihouse_up = new ImageIcon(game.class.getResource("/Image/house_up.png"));
-	public ImageIcon ihouse_right = new ImageIcon(game.class.getResource("/Image/house_right.png"));
-	public ImageIcon ihotel = new ImageIcon(game.class.getResource("/Image/hotel.png"));
-	public ImageIcon ihotel_left = new ImageIcon(game.class.getResource("/Image/hotel_left.png"));
-	public ImageIcon ihotel_up = new ImageIcon(game.class.getResource("/Image/hotel_up.png"));
-	public ImageIcon ihotel_right = new ImageIcon(game.class.getResource("/Image/hotel_right.png"));
+	public ImageIcon ihouse = new ImageIcon(Game.class.getResource("/Image/house.png"));
+	public ImageIcon ihouse_left = new ImageIcon(Game.class.getResource("/Image/house_left.png"));
+	public ImageIcon ihouse_up = new ImageIcon(Game.class.getResource("/Image/house_up.png"));
+	public ImageIcon ihouse_right = new ImageIcon(Game.class.getResource("/Image/house_right.png"));
+	public ImageIcon ihotel = new ImageIcon(Game.class.getResource("/Image/hotel.png"));
+	public ImageIcon ihotel_left = new ImageIcon(Game.class.getResource("/Image/hotel_left.png"));
+	public ImageIcon ihotel_up = new ImageIcon(Game.class.getResource("/Image/hotel_up.png"));
+	public ImageIcon ihotel_right = new ImageIcon(Game.class.getResource("/Image/hotel_right.png"));
 
-	public ImageIcon iquestionmark = new ImageIcon(game.class.getResource("/Image/questionmark_60x79.png"));
-	public ImageIcon iquestionmark_left = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_left.png"));
-	public ImageIcon iquestionmark_right = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_right.png"));
-	public ImageIcon iquestionmark_up = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_up.png"));
+	public ImageIcon iquestionmark = new ImageIcon(Game.class.getResource("/Image/questionmark_60x79.png"));
+	public ImageIcon iquestionmark_left = new ImageIcon(Game.class.getResource("/Image/questionmark_60x79_left.png"));
+	public ImageIcon iquestionmark_right = new ImageIcon(Game.class.getResource("/Image/questionmark_60x79_right.png"));
+	public ImageIcon iquestionmark_up = new ImageIcon(Game.class.getResource("/Image/questionmark_60x79_up.png"));
 
 	public String s36_1 = "Go to";
 	public String s36_2 = "Jail";
@@ -120,7 +120,7 @@ public class game {
 				try {
 					final Clip clip = AudioSystem.getClip();
 					final AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-							game.class.getResource(url));
+							Game.class.getResource(url));
 					clip.open(inputStream);
 					clip.start();
 				} catch (final IOException | LineUnavailableException | UnsupportedAudioFileException e) {
@@ -163,7 +163,7 @@ public class game {
 	}
 
 	public static void main(final String[] args) {
-		final game Game = new game();
+		final Game game = new Game();
 		final JFrame frame = new JFrame("Random Big Rich Man");
 		frame.setSize(300, 300);
 		frame.setVisible(true);
@@ -178,7 +178,7 @@ public class game {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				frame.setVisible(false);
-				gs1.show(frame, Game);
+				gs1.show(frame, game);
 			}
 		});
 		btnANewGame.setBounds(10, 112, 264, 23);

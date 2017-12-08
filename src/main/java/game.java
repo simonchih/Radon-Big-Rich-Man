@@ -85,13 +85,13 @@ public class game {
 	public Property property = new Property(this);
 
 	public static int max_p_size = 4;
-	public int turn = 0;//0: player1
+	public int turn = 0; // 0: player1
 	public boolean move_start = false;
 
-	//0: player 1 ...
-	//3: player 4
+	// 0: player 1 ...
+	// 3: player 4
 	public String[] p_name = new String[max_p_size];
-	public int[] p_type = new int[max_p_size];//0:human, 1:AI, 9:out
+	public int[] p_type = new int[max_p_size]; // 0:human, 1:AI, 9:out
 	public int[] p_icon = new int[max_p_size];
 	public ImageIcon[] p_ic = new ImageIcon[max_p_size];
 	public ImageIcon[] p_pawn = new ImageIcon[max_p_size];
@@ -103,8 +103,8 @@ public class game {
 	public String[] p_status = new String[max_p_size];
 	public int[] sp_x = new int[max_p_size];
 	public int[] sp_y = new int[max_p_size];
-	public int[] p_in_jail = new int[max_p_size];//0:out of jail, 1: in jail
-	public int[] p_stop = new int[max_p_size];//0:continue, 1: stop 1 turn...
+	public int[] p_in_jail = new int[max_p_size]; // 0:out of jail, 1: in jail
+	public int[] p_stop = new int[max_p_size]; // 0:continue, 1: stop 1 turn...
 
 	public long cross_cash = 2000;
 	public long hospital_fee = 1000;
@@ -133,7 +133,7 @@ public class game {
 	public void deal(final long cash, final int turn_id, final String event) {
 		p_money[turn_id] += cash;
 		p_status[turn_id] = event + cash;
-		if(cash < 0) {
+		if (cash < 0) {
 			playSound(skaching);
 		}
 	}
@@ -156,7 +156,7 @@ public class game {
 	public long toll(final Game_Map game_map, final int doub, final int i) {
 		long fee, basic_money;
 
-		basic_money = (long)((0.2)*game_map.value[i]);
+		basic_money = (long)(0.2 * game_map.value[i]);
 		fee = (long) (doub * Math.pow(2, game_map.level[i]) * basic_money);
 
 		return fee;

@@ -28,8 +28,8 @@ public class mcanvas extends JComponent {
 
 	private static final long serialVersionUID = 1;
 
-	private static final Font FONT_WGY_12 = new Font("wqy-zenhei", Font.PLAIN, 12);
-	private static final Font FONT_WGY_24 = new Font("wqy-zenhei", Font.PLAIN, 24);
+	private static final Font FONT_WGY_12 = new Font("wqy - zenhei", Font.PLAIN, 12);
+	private static final Font FONT_WGY_24 = new Font("wqy - zenhei", Font.PLAIN, 24);
 	private static final Font FONT_TIMES_12 = new Font("TimesRoman", Font.PLAIN, 12);
 
 	int max_size = 760;
@@ -122,22 +122,22 @@ public class mcanvas extends JComponent {
 		g.drawLine(0, down_y, max_size, down_y);
 
 		// Up
-		for (int i=left_x+block_size; i<right_x; i+=block_size) {
+		for (int i = left_x + block_size; i < right_x; i += block_size) {
 			g.drawLine(i, 0, i, up_y);
 		}
 
 		// Down
-		for (int i=left_x+block_size; i<right_x; i+=block_size) {
+		for (int i = left_x + block_size; i < right_x; i += block_size) {
 			g.drawLine(i, down_y, i, max_size);
 		}
 
 		// Left
-		for (int i=up_y+block_size; i<down_y; i+=block_size) {
+		for (int i = up_y + block_size; i < down_y; i += block_size) {
 			g.drawLine(0, i, left_x, i);
 		}
 
 		// Right
-		for (int i=up_y+block_size; i<down_y; i+=block_size) {
+		for (int i = up_y + block_size; i < down_y; i += block_size) {
 			g.drawLine(right_x, i, max_size, i);
 		}
 
@@ -145,102 +145,102 @@ public class mcanvas extends JComponent {
 		g.drawImage(
 				mygame.iarrow.getImage(),
 				right_x + (max_size - right_x-mygame.iarrow.getIconWidth()) / 2,
-				down_y + (max_size - down_y-mygame.iarrow.getIconHeight()) / 2,
+				down_y + (max_size - down_y - mygame.iarrow.getIconHeight()) / 2,
 				mygame.iarrow.getIconWidth(),
 				mygame.iarrow.getIconHeight(),
 				null);
 
-		for (int i=1; i<game_data.Size; i++) {
+		for (int i = 1; i < game_data.Size; i++) {
 			switch (game_data.type[i]) {
 				case 0:
-					if (i>=1 && i<=9) {
+					if (i >= 1 && i <= 9) {
 						// Down
 						g.setColor(Color.black);
-						g.drawLine(right_x-block_size*(i-1), down_y+color_small+1, right_x-block_size*i, down_y+color_small+1);
-						g.drawString(game_data.name[i], down_string_x_start-block_size*(i-1), down_y+color_small+up_down_d);
-						g.drawString("$"+game_data.value[i], down_string_x_start-block_size*(i-1), down_y+color_small+2*up_down_d);
+						g.drawLine(right_x-block_size * (i - 1), down_y + color_small+1, right_x-block_size * i, down_y + color_small+1);
+						g.drawString(game_data.name[i], down_string_x_start-block_size * (i - 1), down_y + color_small+up_down_d);
+						g.drawString("$"+game_data.value[i], down_string_x_start-block_size * (i - 1), down_y + color_small + 2 * up_down_d);
 						g.setColor(game_data.color[i]);
-						g.fillRect(right_x-block_size*i+1, down_y+1, color_long, color_small);
+						g.fillRect(right_x-block_size * i + 1, down_y + 1, color_long, color_small);
 						if (4 == game_data.level[i]) {
 							g.drawImage(
 									mygame.ihotel.getImage(),
-									right_x-block_size*i+1,
-									down_y+1,
+									right_x-block_size * i + 1,
+									down_y + 1,
 									mygame.ihotel.getIconWidth(),
 									mygame.ihotel.getIconHeight(),
 									null);
-						} else if(game_data.level[i] > 0) {
+						} else if (game_data.level[i] > 0) {
 							g.drawImage(
 									mygame.ihouse.getImage(),
-									right_x-block_size*i+1,
-									down_y+1,
+									right_x-block_size * i + 1,
+									down_y + 1,
 									mygame.ihouse.getIconWidth(),
 									mygame.ihouse.getIconHeight(),
 									null);
 
-							if(game_data.level[i] >= 2){
+							if (game_data.level[i] >= 2) {
 								g.drawImage(
 										mygame.ihouse.getImage(),
-										right_x-block_size*i+mygame.ihouse.getIconWidth()+1,
-										down_y+1,
+										right_x-block_size * i+mygame.ihouse.getIconWidth() + 1,
+										down_y + 1,
 										mygame.ihouse.getIconWidth(),
 										mygame.ihouse.getIconHeight(),
 										null);
 							}
-							if(3 == game_data.level[i]){
+							if (3 == game_data.level[i]) {
 								g.drawImage(
 										mygame.ihouse.getImage(),
-										right_x-block_size*i+2*mygame.ihouse.getIconWidth()+1,
-										down_y+1,
+										right_x-block_size * i + 2 * mygame.ihouse.getIconWidth() + 1,
+										down_y + 1,
 										mygame.ihouse.getIconWidth(),
 										mygame.ihouse.getIconHeight(),
 										null);
 							}
 						}
-						if(game_data.owner[i] > 0){
+						if (game_data.owner[i] > 0) {
 							g.drawImage(
 									mygame.p_ic[game_data.owner[i]-1].getImage(),
-									right_x-block_size*i+(block_size-mygame.p_ic[game_data.owner[i]-1].getIconWidth())/2, down_y+color_small+3*up_down_d, mygame.p_ic[game_data.owner[i]-1].getIconWidth(), mygame.p_ic[game_data.owner[i]-1].getIconHeight(), null);
+									right_x-block_size * i + (block_size-mygame.p_ic[game_data.owner[i]-1].getIconWidth()) / 2, down_y + color_small+3*up_down_d, mygame.p_ic[game_data.owner[i]-1].getIconWidth(), mygame.p_ic[game_data.owner[i]-1].getIconHeight(), null);
 						}
-					} else if (i>=11 && i<=19) {
+					} else if (i >= 11 && i <= 19) {
 						// Left
 						g.setColor(Color.black);
-						g.drawLine(left_x-color_small-1, down_y-block_size*(i-11), left_x-color_small-1, down_y-block_size*(i-10));
-						g.drawString(game_data.name[i], left_string_x_start, left_string_y-block_size*(i-11));
-						g.drawString("$"+game_data.value[i], left_string_x_start, left_string_y+right_left_d-block_size*(i-11));
+						g.drawLine(left_x-color_small-1, down_y - block_size * (i - 11), left_x-color_small-1, down_y - block_size * (i - 10));
+						g.drawString(game_data.name[i], left_string_x_start, left_string_y - block_size * (i - 11));
+						g.drawString("$"+game_data.value[i], left_string_x_start, left_string_y + right_left_d-block_size * (i - 11));
 						g.setColor(game_data.color[i]);
-						g.fillRect(left_x-color_small, down_y-block_size*(i-10)+1, color_small, color_long);
+						g.fillRect(left_x-color_small, down_y - block_size * (i - 10) + 1, color_small, color_long);
 						if (4 == game_data.level[i]) {
 							g.drawImage(
 									mygame.ihotel_left.getImage(),
 									left_x-color_small,
-									down_y-block_size*(i-10)+1,
+									down_y - block_size * (i - 10) + 1,
 									mygame.ihotel_left.getIconWidth(),
 									mygame.ihotel_left.getIconHeight(),
 									null);
-						} else if(game_data.level[i] > 0){
+						} else if (game_data.level[i] > 0) {
 							g.drawImage(
 									mygame.ihouse_left.getImage(),
 									left_x-color_small,
-									down_y-block_size*(i-10)+1,
+									down_y - block_size * (i - 10) + 1,
 									mygame.ihouse_left.getIconWidth(),
 									mygame.ihouse_left.getIconHeight(),
 									null);
 
-							if(game_data.level[i] >= 2) {
+							if (game_data.level[i] >= 2) {
 								g.drawImage(
 										mygame.ihouse_left.getImage(),
 										left_x-color_small,
-										down_y-block_size*(i-10)+mygame.ihouse_left.getIconHeight()+1,
+										down_y - block_size * (i - 10) + mygame.ihouse_left.getIconHeight() + 1,
 										mygame.ihouse_left.getIconWidth(),
 										mygame.ihouse_left.getIconHeight(),
 										null);
 							}
-							if(3 == game_data.level[i]) {
+							if (3 == game_data.level[i]) {
 								g.drawImage(
 										mygame.ihouse_left.getImage(),
 										left_x-color_small,
-										down_y-block_size*(i-10)+2*mygame.ihouse_left.getIconHeight()+1,
+										down_y - block_size * (i - 10) + 2 * mygame.ihouse_left.getIconHeight() + 1,
 										mygame.ihouse_left.getIconWidth(),
 										mygame.ihouse_left.getIconHeight(),
 										null);
@@ -249,33 +249,33 @@ public class mcanvas extends JComponent {
 						if (game_data.owner[i] > 0) {
 							g.drawImage(
 									mygame.p_ic[game_data.owner[i]-1].getImage(),
-									(left_x - color_small - mygame.p_ic[game_data.owner[i]-1].getIconWidth())/2,
-									left_string_y+right_left_ic_d-block_size*(i-11),
+									(left_x - color_small - mygame.p_ic[game_data.owner[i]-1].getIconWidth()) / 2,
+									left_string_y + right_left_ic_d-block_size * (i - 11),
 									mygame.p_ic[game_data.owner[i]-1].getIconWidth(),
 									mygame.p_ic[game_data.owner[i]-1].getIconHeight(),
 									null);
 						}
-					} else if (i>=21 && i<=29) {
+					} else if (i >= 21 && i <= 29) {
 						// Up
 						g.setColor(Color.black);
-						g.drawLine(left_x+block_size*(i-21), up_y-color_small-1, left_x+block_size*(i-20), up_y-color_small-1);
-						g.drawString(game_data.name[i], up_string_x_start+block_size*(i-21),up_y-color_small-up_down_d);
-						g.drawString("$"+game_data.value[i], up_string_x_start+block_size*(i-21),up_y-color_small-2*up_down_d);
+						g.drawLine(left_x + block_size * (i - 21), up_y - color_small-1, left_x + block_size * (i - 20), up_y - color_small - 1);
+						g.drawString(game_data.name[i], up_string_x_start + block_size * (i - 21), up_y - color_small - up_down_d);
+						g.drawString("$" + game_data.value[i], up_string_x_start + block_size * (i - 21), up_y - color_small - 2 * up_down_d);
 						g.setColor(game_data.color[i]);
-						g.fillRect(left_x+block_size*(i-21)+1, up_y-color_small, color_long, color_small);
+						g.fillRect(left_x + block_size * (i - 21) + 1, up_y - color_small, color_long, color_small);
 						if (4 == game_data.level[i]) {
 							g.drawImage(mygame.ihotel_up.getImage(),
-									left_x+block_size*(i-21)+1,
-									up_y-color_small,
+									left_x + block_size * (i - 21) + 1,
+									up_y - color_small,
 									mygame.ihotel_up.getIconWidth(),
 									mygame.ihotel_up.getIconHeight(),
 									null);
 						}
-						else if(game_data.level[i] > 0){
+						else if (game_data.level[i] > 0) {
 							g.drawImage(
 									mygame.ihouse_up.getImage(),
-									left_x+block_size*(i-21)+1,
-									up_y-color_small,
+									left_x + block_size * (i - 21) + 1,
+									up_y - color_small,
 									mygame.ihouse_up.getIconWidth(),
 									mygame.ihouse_up.getIconHeight(),
 									null);
@@ -283,8 +283,8 @@ public class mcanvas extends JComponent {
 							if (game_data.level[i] >= 2) {
 								g.drawImage(
 										mygame.ihouse_up.getImage(),
-										left_x+block_size*(i-21)+ mygame.ihouse_up.getIconWidth()+1,
-										up_y-color_small,
+										left_x + block_size * (i - 21) + mygame.ihouse_up.getIconWidth() + 1,
+										up_y - color_small,
 										mygame.ihouse_up.getIconWidth(),
 										mygame.ihouse_up.getIconHeight(),
 										null);
@@ -292,43 +292,43 @@ public class mcanvas extends JComponent {
 							if (3 == game_data.level[i]) {
 								g.drawImage(
 										mygame.ihouse_up.getImage(),
-										left_x+block_size*(i-21)+ 2*mygame.ihouse_up.getIconWidth()+1,
-										up_y-color_small,
+										left_x + block_size * (i - 21) + 2 * mygame.ihouse_up.getIconWidth() + 1,
+										up_y - color_small,
 										mygame.ihouse_up.getIconWidth(),
 										mygame.ihouse_up.getIconHeight(),
 										null);
 							}
 						}
-						if(game_data.owner[i] > 0){
+						if (game_data.owner[i] > 0) {
 							g.drawImage(
 									mygame.p_ic[game_data.owner[i]-1].getImage(),
-									left_x+block_size*(i-21)+(block_size-mygame.p_ic[game_data.owner[i]-1].getIconWidth())/2,
-									up_y-color_small-3*up_down_d-mygame.p_ic[game_data.owner[i]-1].getIconHeight(),
+									left_x + block_size * (i - 21) + (block_size-mygame.p_ic[game_data.owner[i]-1].getIconWidth()) / 2,
+									up_y - color_small-3*up_down_d-mygame.p_ic[game_data.owner[i]-1].getIconHeight(),
 									mygame.p_ic[game_data.owner[i]-1].getIconWidth(),
 									mygame.p_ic[game_data.owner[i]-1].getIconHeight(),
 									null);
 						}
-					} else if (i>=31 && i<=39) {
+					} else if (i >= 31 && i <= 39) {
 						// Right
 						g.setColor(Color.black);
-						g.drawLine(right_x+color_small+1, up_y+block_size*(i-31), right_x+color_small+1, up_y+block_size*(i-30));
-						g.drawString(game_data.name[i], right_string_x_start, right_string_y+block_size*(i-31));
-						g.drawString("$"+game_data.value[i], right_string_x_start, right_string_y+right_left_d+block_size*(i-31));
+						g.drawLine(right_x + color_small+1, up_y + block_size * (i - 31), right_x + color_small+1, up_y + block_size * (i - 30));
+						g.drawString(game_data.name[i], right_string_x_start, right_string_y + block_size * (i - 31));
+						g.drawString("$"+game_data.value[i], right_string_x_start, right_string_y + right_left_d + block_size * (i - 31));
 						g.setColor(game_data.color[i]);
-						g.fillRect(right_x+1, up_y+block_size*(i-31)+1, color_small, color_long);
+						g.fillRect(right_x + 1, up_y + block_size * (i - 31) + 1, color_small, color_long);
 						if (4 == game_data.level[i]) {
 							g.drawImage(
 									mygame.ihotel_right.getImage(),
-									right_x+1,
-									up_y+block_size*(i-31)+1,
+									right_x + 1,
+									up_y + block_size * (i - 31) + 1,
 									mygame.ihotel_right.getIconWidth(),
 									mygame.ihotel_right.getIconHeight(),
 									null);
 						} else if (game_data.level[i] > 0) {
 							g.drawImage(
 									mygame.ihouse_right.getImage(),
-									right_x+1,
-									up_y+block_size*(i-31)+1,
+									right_x + 1,
+									up_y + block_size * (i - 31) + 1,
 									mygame.ihouse_right.getIconWidth(),
 									mygame.ihouse_right.getIconHeight(),
 									null);
@@ -336,8 +336,8 @@ public class mcanvas extends JComponent {
 							if (game_data.level[i] >= 2) {
 								g.drawImage(
 										mygame.ihouse_right.getImage(),
-										right_x+1,
-										up_y+block_size*(i-31)+mygame.ihouse_right.getIconHeight()+1,
+										right_x + 1,
+										up_y + block_size * (i - 31) + mygame.ihouse_right.getIconHeight() + 1,
 										mygame.ihouse_right.getIconWidth(),
 										mygame.ihouse_right.getIconHeight(),
 										null);
@@ -345,8 +345,8 @@ public class mcanvas extends JComponent {
 							if (3 == game_data.level[i]) {
 								g.drawImage(
 										mygame.ihouse_right.getImage(),
-										right_x+1,
-										up_y+block_size*(i-31)+2*mygame.ihouse_right.getIconHeight()+1,
+										right_x + 1,
+										up_y + block_size * (i - 31) + 2 * mygame.ihouse_right.getIconHeight() + 1,
 										mygame.ihouse_right.getIconWidth(),
 										mygame.ihouse_right.getIconHeight(),
 										null);
@@ -355,8 +355,8 @@ public class mcanvas extends JComponent {
 						if (game_data.owner[i] > 0) {
 							g.drawImage(
 									mygame.p_ic[game_data.owner[i]-1].getImage(),
-									right_x + color_small + (block_size- mygame.p_ic[game_data.owner[i]-1].getIconWidth())/2,
-									right_string_y+right_left_ic_d+block_size*(i-31),
+									right_x + color_small + (block_size- mygame.p_ic[game_data.owner[i]-1].getIconWidth()) / 2,
+									right_string_y + right_left_ic_d + block_size * (i - 31),
 									mygame.p_ic[game_data.owner[i]-1].getIconWidth(),
 									mygame.p_ic[game_data.owner[i]-1].getIconHeight(),
 									null);
@@ -386,8 +386,8 @@ public class mcanvas extends JComponent {
 						case 10:
 							g.drawImage(
 									iblock.getImage(),
-									(left_x-iblock.getIconWidth())/2,
-									down_y+(max_size-down_y-iblock.getIconHeight())/2,
+									(left_x - iblock.getIconWidth()) / 2,
+									down_y + (max_size-down_y - iblock.getIconHeight()) / 2,
 									iblock.getIconWidth(),
 									iblock.getIconHeight(),
 									null);
@@ -395,8 +395,8 @@ public class mcanvas extends JComponent {
 						case 20:
 							g.drawImage(
 									iblock.getImage(),
-									(left_x-iblock.getIconWidth())/2,
-									(up_y-iblock.getIconHeight())/2,
+									(left_x - iblock.getIconWidth()) / 2,
+									(up_y - iblock.getIconHeight()) / 2,
 									iblock.getIconWidth(),
 									iblock.getIconHeight(),
 									null);
@@ -404,8 +404,8 @@ public class mcanvas extends JComponent {
 						case 30:
 							g.drawImage(
 									iblock.getImage(),
-									right_x + (max_size-right_x-iblock.getIconWidth())/2,
-									(up_y-iblock.getIconHeight())/2,
+									right_x + (max_size-right_x - iblock.getIconWidth()) / 2,
+									(up_y - iblock.getIconHeight()) / 2,
 									iblock.getIconWidth(),
 									iblock.getIconHeight(),
 									null);
@@ -415,35 +415,35 @@ public class mcanvas extends JComponent {
 					}
 					break;
 				case 2:
-					if (i>=1 && i<=9) {
+					if (i >= 1 && i <= 9) {
 						g.drawImage(
 								mygame.iquestionmark.getImage(),
-								right_x-block_size*i,
-								down_y+color_small+1,
+								right_x-block_size * i,
+								down_y + color_small+1,
 								mygame.iquestionmark.getIconWidth(),
 								mygame.iquestionmark.getIconHeight(),
 								null);
-					} else if(i>=11 && i<=19) {
+					} else if (i >= 11 && i <= 19) {
 						g.drawImage(
 								mygame.iquestionmark_left.getImage(),
 								left_x-color_small-mygame.iquestionmark_left.getIconWidth()-1,
-								down_y-block_size*(i-10),
+								down_y - block_size * (i - 10),
 								mygame.iquestionmark_left.getIconWidth(),
 								mygame.iquestionmark_left.getIconHeight(),
 								null);
-					} else if(i>=21 && i<=29) {
+					} else if (i >= 21 && i <= 29) {
 						g.drawImage(
 								mygame.iquestionmark_up.getImage(),
-								left_x+block_size*(i-21),
-								up_y-color_small-mygame.iquestionmark_up.getIconHeight()-1,
+								left_x + block_size * (i - 21),
+								up_y - color_small-mygame.iquestionmark_up.getIconHeight()-1,
 								mygame.iquestionmark_up.getIconWidth(),
 								mygame.iquestionmark_up.getIconHeight(),
 								null);
-					} else if(i>=31 && i<=39) {
+					} else if (i >= 31 && i <= 39) {
 						g.drawImage(
 								mygame.iquestionmark_right.getImage(),
-								right_x+color_small+1,
-								up_y+block_size*(i-31),
+								right_x + color_small+1,
+								up_y + block_size * (i - 31),
 								mygame.iquestionmark_right.getIconWidth(),
 								mygame.iquestionmark_right.getIconHeight(),
 								null);
@@ -473,22 +473,22 @@ public class mcanvas extends JComponent {
 							break;
 						default:
 							break;
-					}	if(i>=1 && i<=9){
+					}	if (i >= 1 && i <= 9) {
 						g.setColor(Color.black);
-						g.drawString(s1, down_string_x_start-block_size*(i-1), down_y+color_small+up_down_d);
-						g.drawString(s2, down_string_x_start-block_size*(i-1), down_y+color_small+2*up_down_d);
-					} else if(i>=11 && i<=19){
+						g.drawString(s1, down_string_x_start-block_size * (i - 1), down_y + color_small+up_down_d);
+						g.drawString(s2, down_string_x_start-block_size * (i - 1), down_y + color_small + 2 * up_down_d);
+					} else if (i >= 11 && i <= 19) {
 						g.setColor(Color.black);
-						g.drawString(s1, left_string_x_start, left_string_y-block_size*(i-11));
-						g.drawString(s2, left_string_x_start, left_string_y+right_left_d-block_size*(i-11));
-					} else if(i>=21 && i<=29){
+						g.drawString(s1, left_string_x_start, left_string_y - block_size * (i - 11));
+						g.drawString(s2, left_string_x_start, left_string_y + right_left_d-block_size * (i - 11));
+					} else if (i >= 21 && i <= 29) {
 						g.setColor(Color.black);
-						g.drawString(s2, up_string_x_start+block_size*(i-21),up_y-color_small-up_down_d);
-						g.drawString(s1, up_string_x_start+block_size*(i-21),up_y-color_small-2*up_down_d);
-					} else if(i>=31 && i<=39){
+						g.drawString(s2, up_string_x_start + block_size * (i - 21), up_y - color_small-up_down_d);
+						g.drawString(s1, up_string_x_start + block_size * (i - 21), up_y - color_small-2 * up_down_d);
+					} else if (i >= 31 && i <= 39) {
 						g.setColor(Color.black);
-						g.drawString(s1, right_string_x_start, right_string_y+block_size*(i-31));
-						g.drawString(s2, right_string_x_start, right_string_y+right_left_d+block_size*(i-31));
+						g.drawString(s1, right_string_x_start, right_string_y + block_size * (i - 31));
+						g.drawString(s2, right_string_x_start, right_string_y + right_left_d + block_size * (i - 31));
 					}	break;
 				default:
 					break;

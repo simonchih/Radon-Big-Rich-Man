@@ -69,10 +69,10 @@ public class Property {
 	 */
 	protected void show(final Game_Map game_map){
 
-		int i, o, t_index = 0;
+		int t_index = 0;
 		String Property = "'s Property";
 
-		if(true == frame.isVisible()){
+		if (frame.isVisible()) {
 			t_index = tabbedPane.getSelectedIndex();
 		}
 		final List<String> Column_Name = new ArrayList<>();
@@ -88,8 +88,8 @@ public class Property {
 		final List<List<?>> data3 = new ArrayList<>();
 		final List<List<?>> data4 = new ArrayList<>();
 
-		for(i=0; i<game_map.Size; i++){
-			o = game_map.owner[i];
+		for (int i = 0; i < game_map.Size; i++) {
+			final int o = game_map.owner[i];
 			switch(o) {
 				case 1:
 					AddElementToTable(data1, game_map, i);

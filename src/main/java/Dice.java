@@ -43,7 +43,7 @@ public class Dice {
 	public static final ImageIcon idice6_3 = new ImageIcon(Dice.class.getResource("/Image/die-6+3.gif"));
 	public static final ImageIcon idice6_4 = new ImageIcon(Dice.class.getResource("/Image/die-6+4.gif"));
 	public static final ImageIcon idice6_5 = new ImageIcon(Dice.class.getResource("/Image/die-6+5.gif"));
-	public static final ImageIcon ddice[] = {idice1_2, idice1_3, idice1_4, idice1_5, idice2_1, idice2_3, idice2_4, idice2_6,
+	public static final ImageIcon[] ddice = {idice1_2, idice1_3, idice1_4, idice1_5, idice2_1, idice2_3, idice2_4, idice2_6,
 			idice3_1, idice3_2, idice3_5, idice3_6, idice4_1, idice4_2, idice4_5, idice4_6,
 			idice5_1, idice5_3, idice5_4, idice5_6, idice6_2, idice6_3, idice6_4, idice6_5};
 	public ImageIcon idice1;

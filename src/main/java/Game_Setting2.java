@@ -74,7 +74,7 @@ public class Game_Setting2 {
 
 		final JComboBox<ImageIcon> comboBox_1 = new JComboBox<>();
 		comboBox_1.setBounds(205, 118, 106, 21);
-		ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
+		ImageIcon[] array = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
 		final List<ImageIcon> list = new ArrayList<>(Arrays.asList(array));
 		list.remove(Game.p_icon[0]);
 		array = list.toArray(new ImageIcon[0]);
@@ -118,8 +118,8 @@ public class Game_Setting2 {
 		btnNext.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
-				ImageIcon parray[] = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
+				ImageIcon[] array = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
+				ImageIcon[] parray = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
 
 				final List<ImageIcon> list = new ArrayList<>(Arrays.asList(array));
 				list.remove(Game.p_icon[0]);

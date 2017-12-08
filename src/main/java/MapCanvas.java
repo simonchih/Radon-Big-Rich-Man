@@ -24,7 +24,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-public class mcanvas extends JComponent {
+public class MapCanvas extends JComponent {
 
 	private static final long serialVersionUID = 1;
 
@@ -58,7 +58,7 @@ public class mcanvas extends JComponent {
 	private Image offscreenConst;
 	private Image offscreen;
 
-	public mcanvas(final GameMap gm, final Game game) {
+	public MapCanvas(final GameMap gm, final Game game) {
 		this.game_data = gm;
 		this.mygame = game;
 		this.offscreenConst = null;

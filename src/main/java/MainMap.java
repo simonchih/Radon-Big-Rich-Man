@@ -324,7 +324,7 @@ public class MainMap extends JFrame {
 			game.p_y_now[i] = ini_map.pY[i][0];
 		}
 
-		mcanvas canvas = new mcanvas(ini_map, game);
+		MapCanvas canvas = new MapCanvas(ini_map, game);
 		canvas.setBounds(0, 0, canvas.max_size, canvas.max_size);
 
 		// ini_map pX[0], pY[0]

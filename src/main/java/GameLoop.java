@@ -23,7 +23,7 @@ public class GameLoop implements Runnable {
 
 	public JFrame jf;
 	public Game mygame;
-	public mcanvas mycanvas;
+	public MapCanvas mycanvas;
 	public GameMap gameMap;
 	public BuyLand buy_land;
 	public BuildHouse build_house;
@@ -31,7 +31,7 @@ public class GameLoop implements Runnable {
 	public Thread t_game;
 	public boolean susp;
 
-	GameLoop(final Game game, final mcanvas canvas, final GameMap gm, final JFrame jframe) {
+	GameLoop(final Game game, final MapCanvas canvas, final GameMap gm, final JFrame jframe) {
 		mygame = game;
 		mycanvas = canvas;
 		gameMap = gm;

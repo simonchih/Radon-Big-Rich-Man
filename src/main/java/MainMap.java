@@ -23,7 +23,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-public class Main_Map extends JFrame {
+public class MainMap extends JFrame {
 
 	private static final long serialVersionUID = 1;
 	private static boolean crit = false;
@@ -32,7 +32,7 @@ public class Main_Map extends JFrame {
 	private Game_Map ini_map;
 	private Game_Loop game_loop;
 
-	public Main_Map(final Game game) {
+	public MainMap(final Game game) {
 		this.game_data = new Game_Map();
 		this.ini_map = new Game_Map();
 

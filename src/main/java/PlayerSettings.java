@@ -67,10 +67,10 @@ public class PlayerSettings {
 		final boolean lastPlayer = (playerIdx == (NUM_PLAYERS - 1));
 
 		final PlayerSettings gs3;
-		final Main_Map mmap;
+		final MainMap mmap;
 		if (lastPlayer) {
 			gs3 = null;
-			mmap = new Main_Map(game);
+			mmap = new MainMap(game);
 		} else {
 			gs3 = new PlayerSettings(playerIdx + 1);
 			mmap = null;

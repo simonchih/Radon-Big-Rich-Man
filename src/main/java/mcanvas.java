@@ -48,31 +48,58 @@ public class mcanvas extends JComponent {
 		this.game_data = new Game_Map();
 		this.game_data = gm;
 		this.mygame = Game;
+		this.offscreenConst = null;
+		this.offscreen = null;
 	}
 
-	public void paintComponent(Graphics g) {
-		int i;
-		String sp1, sp2, sp3, sp4;	
-		
-		sp1 = mygame.p_name[0] + ": "+ mygame.p_money[0] +" (" + mygame.p_status[0] + ")";
-		sp2 = mygame.p_name[1] + ": "+ mygame.p_money[1] +" (" + mygame.p_status[1] + ")";
-		sp3 = mygame.p_name[2] + ": "+ mygame.p_money[2] +" (" + mygame.p_status[2] + ")";
-		sp4 = mygame.p_name[3] + ": "+ mygame.p_money[3] +" (" + mygame.p_status[3] + ")";
-		
-		g.setFont(new Font("TimesRoman", Font.PLAIN, 12)); 
-		
-		//ini sp_x, sp_y
-		mygame.sp_x[0] = left_x + string_player_d;
-		mygame.sp_y[0] = up_y + string_player_d;
-		mygame.sp_x[1] = left_x + string_player_d;
-		mygame.sp_y[1] = up_y + 2*string_player_d;
-		mygame.sp_x[2] = left_x + string_player_d;
-		mygame.sp_y[2] = up_y + 3*string_player_d;
-		mygame.sp_x[3] = left_x + string_player_d;
-		mygame.sp_y[3] = up_y + 4*string_player_d;
-		
-		
-		super.paintComponent(g);
+	@Override
+	public void paintComponent(final Graphics g) {
+
+		final Dimension d = getSize();
+
+		// create the offscreen buffer and associated Graphics
+		offscreen = createImage(d.width, d.height);
+		final Graphics offGc = offscreen.getGraphics();
+		// clear the exposed area
+		offGc.setColor(getBackground());
+		offGc.fillRect(0, 0, d.width, d.height);
+		offGc.setColor(getForeground());
+		// do normal redraw ...
+
+		super.paintComponent(offGc);
+
+//		if (offscreenConst == null) {
+		if (1 == 1) { // XXX As long as fixed an dconstant drawing is not yet propperly separated, repaint all constant stuff each time
+			// create the offscreen buffer and associated Graphics
+			offscreenConst = createImage(d.width, d.height);
+			final Graphics offConstGc = offscreenConst.getGraphics();
+			// clear the exposed area
+			offConstGc.setColor(getBackground());
+			offConstGc.fillRect(0, 0, d.width, d.height);
+			offConstGc.setColor(getForeground());
+			// do normal redraw
+			paintConstantField(offConstGc);
+		}
+		// transfer offscreenConst to offscreen
+		offGc.drawImage(offscreenConst, 0, 0, this);
+
+		paintVariableThings(offGc);
+
+		// transfer offscreen to window
+		g.drawImage(offscreen, 0, 0, this);
+	}
+
+	public void paintConstantField(final Graphics g) {
+
+		final int numPlayers = 4;
+
+		g.setFont(FONT_TIMES_12);
+
+		// ini sp_x, sp_y
+		for (int playerIdx = 0; playerIdx < numPlayers; playerIdx++) {
+			mygame.sp_x[playerIdx] = left_x + string_player_d;
+			mygame.sp_y[playerIdx] = up_y + (playerIdx + 1) * string_player_d;
+		}
 
 		g.drawLine(left_x, 0, left_x, max_size);
 		g.drawLine(right_x, 0, right_x, max_size);
@@ -452,6 +479,15 @@ public class mcanvas extends JComponent {
 					break;
 			}
 		}
+	}
+
+	public void paintVariableThings(final Graphics g) {
+
+		final int numPlayers = 4;
+		final List<String> sps = new ArrayList<>(numPlayers);
+
+		for (int playerIdx = 0; playerIdx < numPlayers; playerIdx++) {
+			sps.add(String.format("%s: %d (%s)", mygame.p_name[playerIdx], mygame.p_money[playerIdx], mygame.p_status[playerIdx]));
 		}
 
 		// draw player total money

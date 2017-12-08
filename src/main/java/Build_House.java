@@ -1,67 +1,75 @@
-import javax.swing.*;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Build_House {
-	public game mygame;
-	public  mcanvas mycanvas;
-	public Game_Map game_map;
-	public Game_Loop mygl;
-	public JFrame bh = new JFrame("Building");
-	Build_House(game Game, Game_Map gm, Game_Loop gl){
-		bh.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		mygame = Game;
-		//mycanvas = canvas;
-		game_map = gm;
-		mygl = gl;
+
+	private final game mygame;
+	private final Game_Map game_map;
+	private final Game_Loop mygl;
+	private final JFrame bh;
+
+	Build_House(final game Game, final Game_Map gm, final Game_Loop gl) {
+		this.bh = new JFrame("Building");
+		this.bh.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.mygame = Game;
+		this.game_map = gm;
+		this.mygl = gl;
 	}
+
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void show(){
+	public void show() {
 		String h;
 		String button_name;
 		final long spent;
 		final int turn_id = mygame.turn;
-		
-		if(4 == game_map.level[mygame.p_dest_id[turn_id]]){
-			mygl.susp = false;
-			return;
+
+		switch (game_map.level[mygame.p_dest_id[turn_id]]) {
+			case 4:
+				mygl.susp = false;
+				return;
+			case 3:
+				h = "hotel";
+				button_name = "Build Hotel";
+				spent = (long) (game_map.value[mygame.p_dest_id[turn_id]]*(0.4));
+				break;
+			default:
+				h = "house";
+				button_name = "Build House";
+				spent = (long) (game_map.value[mygame.p_dest_id[turn_id]]*(0.2));
+				break;
 		}
-		else if(3 == game_map.level[mygame.p_dest_id[turn_id]]){
-			h = "hotel";
-			button_name = "Build Hotel";
-			spent = (long) (game_map.value[mygame.p_dest_id[turn_id]]*(0.4));
-		}
-		else {
-			h = "house";
-			button_name = "Build House";
-			spent = (long) (game_map.value[mygame.p_dest_id[turn_id]]*(0.2));
-		}
-		
+
 		bh.getContentPane().removeAll();
 		bh.setSize(450, 300);
 		bh.getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Hi, "+mygame.p_name[turn_id]+":");
+
+		final JLabel lblNewLabel = new JLabel("Hi, " + mygame.p_name[turn_id] + ":");
 		lblNewLabel.setBounds(10, 10, 414, 15);
 		bh.getContentPane().add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("Cancel");
+
+		final JButton btnNewButton = new JButton("Cancel");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			@Override
+			public void actionPerformed(final ActionEvent arg0) {
 				bh.dispose();
 				mygl.susp = false;
 			}
 		});
 		btnNewButton.setBounds(55, 214, 124, 23);
 		bh.getContentPane().add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton(button_name);
+
+		final JButton btnNewButton_1 = new JButton(button_name);
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mygame.deal((-1)*spent, turn_id, "Spent: ");
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				mygame.deal(-1 * spent, turn_id, "Spent: ");
 				game_map.level[mygame.p_dest_id[turn_id]] += 1;
 				bh.dispose();
 				mygl.susp = false;
@@ -69,13 +77,13 @@ public class Build_House {
 		});
 		btnNewButton_1.setBounds(219, 214, 188, 23);
 		bh.getContentPane().add(btnNewButton_1);
-		
-		JLabel lblNewLabel_1 = new JLabel("Do you want to spent $"+ spent+" to build a "+h+"?");
+
+		final JLabel lblNewLabel_1 = new JLabel("Do you want to spent $"+ spent+" to build a "+h+"?");
 		lblNewLabel_1.setBounds(20, 26, 404, 15);
 		bh.getContentPane().add(lblNewLabel_1);
-		
-		if(spent > mygame.p_money[turn_id]){
-			JLabel lblNewLabel_2 = new JLabel("You have NOT enough money!");
+
+		if (spent > mygame.p_money[turn_id]) {
+			final JLabel lblNewLabel_2 = new JLabel("You have NOT enough money!");
 			lblNewLabel_2.setBounds(20, 189, 404, 15);
 			lblNewLabel_2.setForeground(Color.RED);
 			bh.getContentPane().add(lblNewLabel_2);

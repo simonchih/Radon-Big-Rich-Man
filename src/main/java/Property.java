@@ -1,80 +1,81 @@
-import java.awt.Color;
-import java.util.Vector;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 
 public class Property {
 	public game mygame;
-	public JFrame frame = new JFrame("Property");
-	private JTabbedPane tabbedPane = new JTabbedPane();
+	public JFrame frame;
+	private final JTabbedPane tabbedPane;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
 
 	Property(game g){
+		this.tabbedPane = new JTabbedPane();
+		this.frame = new JFrame("Property");
 		mygame = g;
 	}
-	private void AddElementToTable(Vector<Object> datat, Game_Map game_map, int i){
+	private void AddElementToTable(final List<List<?>> datat, final Game_Map game_map, final int i){
 		long fee;
 		int doub;
 		boolean db;
-		Vector<Object> data = new Vector<Object>();
-		
+		final List<Object> data = new ArrayList<>();
+
 		doub = mygame.double_fee(game_map, i);
-		
-		if(2 == doub)db = true;
-		else db = false;
-		
+
+		db = (2 == doub);
+
 		fee = mygame.toll(game_map, doub, i);
-		
-		data.addElement(game_map.color[i]);
-		data.addElement(game_map.name[i]);
-		data.addElement(game_map.value[i]);
-		data.addElement(game_map.level[i]);
-		data.addElement(db);
-		data.addElement(fee);
-		datat.addElement(data);
+
+		data.add(game_map.color[i]);
+		data.add(game_map.name[i]);
+		data.add(game_map.value[i]);
+		data.add(game_map.level[i]);
+		data.add(db);
+		data.add(fee);
+		datat.add(data);
 	}
 	private void cTab(JTabbedPane tabp) {
-		
+
 		frame.getContentPane().removeAll();
-
 		frame.setSize(650, 300);
-        
 		frame.getContentPane().add(tabp);
-        
 		frame.setVisible(true);
-
     }
 	/**
-	 * @param Vector 
+	 * @param game_map
 	 * @wbp.parser.entryPoint
 	 */
-	protected void show(Game_Map game_map){
-		
+	protected void show(final Game_Map game_map){
+
 		int i, o, t_index = 0;
 		String Property = "'s Property";
-		
+
 		if(true == frame.isVisible()){
 			t_index = tabbedPane.getSelectedIndex();
 		}
-		Vector<String> Column_Name = new Vector<String>();
-		Column_Name.addElement("Color");
-		Column_Name.addElement("Name");
-		Column_Name.addElement("Value");
-		Column_Name.addElement("House Level");
-		Column_Name.addElement("Double");
-		Column_Name.addElement("Toll");
-		
-		Vector<Object> data1 = new Vector<Object>();
-		Vector<Object> data2 = new Vector<Object>();
-		Vector<Object> data3 = new Vector<Object>();
-		Vector<Object> data4 = new Vector<Object>();
-		
+		final List<String> Column_Name = new ArrayList<>();
+		Column_Name.add("Color");
+		Column_Name.add("Name");
+		Column_Name.add("Value");
+		Column_Name.add("House Level");
+		Column_Name.add("Double");
+		Column_Name.add("Toll");
+
+		final List<List<?>> data1 = new ArrayList<>();
+		final List<List<?>> data2 = new ArrayList<>();
+		final List<List<?>> data3 = new ArrayList<>();
+		final List<List<?>> data4 = new ArrayList<>();
+
 		for(i=0; i<game_map.Size; i++){
 			o = game_map.owner[i];
-			switch(o){
+			switch(o) {
 				case 1:
 					AddElementToTable(data1, game_map, i);
 					break;
@@ -91,50 +92,37 @@ public class Property {
 					//System.out.println(o);
 			}
 		}
-		
+
 		frame.setVisible(false);
 		tabbedPane.removeAll();
-		
-		Data_Model dataModel1 = new Data_Model(data1, Column_Name);
-		Data_Model dataModel2 = new Data_Model(data2, Column_Name);
-		Data_Model dataModel3 = new Data_Model(data3, Column_Name);
-		Data_Model dataModel4 = new Data_Model(data4, Column_Name);
-		
-		/*
-		//table = new JTable(data1, Column_Name);
-		table = new JTable(dataModel1);
-		//Set up renderer and editor for the Favorite Color column.
-        table.setDefaultRenderer(Color.class, new ColorRenderer(true));
-	    table.setEnabled(false);
-		JScrollPane scrollPane = new JScrollPane(table);
-		
-		JPanel panel = new JPanel();
-		panel.add(scrollPane);
-		
-		tabbedPane.addTab(mygame.p_name[0] + Property, null, panel, null);
-		*/
+
+		final Data_Model dataModel1 = new Data_Model(data1, Column_Name);
+		final Data_Model dataModel2 = new Data_Model(data2, Column_Name);
+		final Data_Model dataModel3 = new Data_Model(data3, Column_Name);
+		final Data_Model dataModel4 = new Data_Model(data4, Column_Name);
+
 		table = new JTable(dataModel1);
 		table.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[0] + Property, null, new JScrollPane(table), null);
-		
+
 		table_1 = new JTable(dataModel2);
 		table_1.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table_1.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[1] + Property, null, new JScrollPane(table_1), null);
-		
+
 		table_2 = new JTable(dataModel3);
 		table_2.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table_2.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[2] + Property, null, new JScrollPane(table_2), null);
-		
+
 		table_3 = new JTable(dataModel4);
 		table_3.setDefaultRenderer(Color.class, new ColorRenderer(true));
 		table_3.setEnabled(false);
 		tabbedPane.addTab(mygame.p_name[3] + Property, null, new JScrollPane(table_3), null);
-		
+
 		tabbedPane.setSelectedIndex(t_index);
-		
+
 		cTab(tabbedPane);
 	}
 }

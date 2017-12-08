@@ -1,12 +1,17 @@
-import java.awt.*;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.*;
-
+import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class game {
 	public static Game_Setting gs1 = new Game_Setting();
@@ -18,7 +23,7 @@ public class game {
 	public ImageIcon image6 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token4.png"));
 	public ImageIcon image7 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token3.png"));
 	public ImageIcon image8 = new ImageIcon(game.class.getResource("/Image/gtkmonop-token2.png"));
-	
+
 	public ImageIcon imagep1 = new ImageIcon(game.class.getResource("/Image/pawn1.gif"));
 	public ImageIcon imagep2 = new ImageIcon(game.class.getResource("/Image/pawn2.gif"));
 	public ImageIcon imagep3 = new ImageIcon(game.class.getResource("/Image/pawn3.gif"));
@@ -27,12 +32,12 @@ public class game {
 	public ImageIcon imagep6 = new ImageIcon(game.class.getResource("/Image/pawn6.gif"));
 	public ImageIcon imagep7 = new ImageIcon(game.class.getResource("/Image/pawn7.gif"));
 	public ImageIcon imagep8 = new ImageIcon(game.class.getResource("/Image/pawn8.gif"));
-	
+
 	public ImageIcon iarrow = new ImageIcon(game.class.getResource("/Image/gtkmonop-go-0.png"));
 	public ImageIcon ijail = new ImageIcon(game.class.getResource("/Image/jail.jpg"));
 	public ImageIcon iparking = new ImageIcon(game.class.getResource("/Image/Parking.jpg"));
 	public ImageIcon ihospital = new ImageIcon(game.class.getResource("/Image/Hospital.jpg"));
-	
+
 	public ImageIcon ihouse = new ImageIcon(game.class.getResource("/Image/house.png"));
 	public ImageIcon ihouse_left = new ImageIcon(game.class.getResource("/Image/house_left.png"));
 	public ImageIcon ihouse_up = new ImageIcon(game.class.getResource("/Image/house_up.png"));
@@ -41,12 +46,12 @@ public class game {
 	public ImageIcon ihotel_left = new ImageIcon(game.class.getResource("/Image/hotel_left.png"));
 	public ImageIcon ihotel_up = new ImageIcon(game.class.getResource("/Image/hotel_up.png"));
 	public ImageIcon ihotel_right = new ImageIcon(game.class.getResource("/Image/hotel_right.png"));
-	
+
 	public ImageIcon iquestionmark = new ImageIcon(game.class.getResource("/Image/questionmark_60x79.png"));
 	public ImageIcon iquestionmark_left = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_left.png"));
 	public ImageIcon iquestionmark_right = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_right.png"));
 	public ImageIcon iquestionmark_up = new ImageIcon(game.class.getResource("/Image/questionmark_60x79_up.png"));
-	
+
 	public String s36_1 = "Go to";
 	public String s36_2 = "Jail";
 	public String s37_1 = "Go to";
@@ -55,19 +60,19 @@ public class game {
 	public String s38_2 = "Tax";
 	public String s39_1 = "House";
 	public String s39_2 = "Tax";
-	
+
 	public String skaching = "/Sound/kaching.wav";
-	
+
 	public JButton btnNewButton = new JButton("Roll Dice");
 	public Dice dice = new Dice();
-	
+
 	public JButton btnPropertyButton = new JButton("Player's Property");
 	public Property property = new Property(this);
-	
+
 	public static int max_p_size = 4;
 	public int turn = 0;//0: player1
 	public boolean move_start = false;
-	
+
 	//0: player 1 ...
 	//3: player 4
 	public String[] p_name = new String[max_p_size];
@@ -85,73 +90,78 @@ public class game {
 	public int[] sp_y = new int[max_p_size];
 	public int[] p_in_jail = new int[max_p_size];//0:out of jail, 1: in jail
 	public int[] p_stop = new int[max_p_size];//0:continue, 1: stop 1 turn...
-	
+
 	public long cross_cash = 2000;
 	public long hospital_fee = 1000;
-	
+
 	//playSound modified from http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
 	//I personally made this code that works fine. I think it only works with .wav format.
 	public static synchronized void playSound(final String url) {
 		  new Thread(new Runnable() {
 		  // The wrapper thread is unnecessary, unless it blocks on the
 		  // Clip finishing
+			@Override
 		    public void run() {
 		      try {
-		        Clip clip = AudioSystem.getClip();
-		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+		        final Clip clip = AudioSystem.getClip();
+		        final AudioInputStream inputStream = AudioSystem.getAudioInputStream(
 		        game.class.getResource(url));
 		        clip.open(inputStream);
-		        clip.start(); 
-		      } catch (Exception e) {
+		        clip.start();
+		      } catch (final IOException | LineUnavailableException | UnsupportedAudioFileException e) {
 		        System.err.println(e.getMessage());
 		      }
 		    }
 		  }).start();
 		}
-	
-	public void deal(long cash, int turn_id, String event){
+
+	public void deal(final long cash, final int turn_id, final String event) {
 		p_money[turn_id] += cash;
 		p_status[turn_id] = event + cash;
-		if(cash < 0){
+		if(cash < 0) {
 			playSound(skaching);
 		}
 	}
-	
-	public int double_fee(Game_Map game_map, int i){
+
+	public int double_fee(final Game_Map game_map, final int i) {
 		int doub, owner1, owner2, owner3;
-		
-		owner1 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][0]];
-		owner2 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][1]];
-		owner3 = game_map.owner[game_map.same_color[game_map.color_index(game_map.color[i])][2]];
-		if(owner1 == owner2 && owner2 == owner3)doub = 2;
-		else doub = 1;
-		
+
+		owner1 = game_map.owner[game_map.same_color[Game_Map.color_index(game_map.color[i])][0]];
+		owner2 = game_map.owner[game_map.same_color[Game_Map.color_index(game_map.color[i])][1]];
+		owner3 = game_map.owner[game_map.same_color[Game_Map.color_index(game_map.color[i])][2]];
+		if (owner1 == owner2 && owner2 == owner3) {
+			doub = 2;
+		} else {
+			doub = 1;
+		}
+
 		return doub;
 	}
-	
-	public long toll(Game_Map game_map, int doub, int i){
+
+	public long toll(final Game_Map game_map, final int doub, final int i) {
 		long fee, basic_money;
-		
+
 		basic_money = (long)((0.2)*game_map.value[i]);
-		fee = (long) (doub*Math.pow(2, game_map.level[i])*basic_money);
-		
+		fee = (long) (doub * Math.pow(2, game_map.level[i]) * basic_money);
+
 		return fee;
 	}
-	
-	public static void main(String[] args) {
+
+	public static void main(final String[] args) {
 		final game Game = new game();
 		final JFrame frame = new JFrame("Random Big Rich Man");
 		frame.setSize(300, 300);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel panel = new JPanel();
+
+		final JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
-		JButton btnANewGame = new JButton("A New Game");
+
+		final JButton btnANewGame = new JButton("A New Game");
 		btnANewGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+			public void actionPerformed(final ActionEvent e) {
 				frame.setVisible(false);
 				gs1.show(frame, Game);
 			}

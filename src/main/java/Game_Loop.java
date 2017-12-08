@@ -1,9 +1,10 @@
 import java.util.Random;
-
 import javax.swing.JFrame;
 
+public class Game_Loop implements Runnable {
 
-public class Game_Loop implements Runnable{
+	private static final double speedModifier = 1.0;
+
 	public JFrame jf;
 	public game mygame;
 	public mcanvas mycanvas;
@@ -13,8 +14,8 @@ public class Game_Loop implements Runnable{
 	public AI ai;
 	public Thread t_game;
 	public boolean susp;
-	
-	Game_Loop(game Game, mcanvas canvas, Game_Map gm, JFrame jframe){
+
+	Game_Loop(final game Game, final mcanvas canvas, final Game_Map gm, final JFrame jframe) {
 		mygame = Game;
 		mycanvas = canvas;
 		game_map = gm;
@@ -23,51 +24,38 @@ public class Game_Loop implements Runnable{
 		buy_land = new Buy_Land(Game, gm, this);
 		build_house = new Build_House(Game, gm, this);
 		ai = new AI(Game, gm, this);
-		
-		//Test Temp
-		/*
-		for(int i=0;i<gm.Size;i++){
-			if(0 == gm.type[i])gm.owner[i] = 1;
-		}
-		*/
-		 
 	}
-	public void run(){
+
+	@Override
+	public void run() {
 		int one_step, i, j, n, id;
 		long cash;
 		boolean no_cross_cash[] = {true, true, true, true};
-		
+
 		//ini roll dice button to false (for player1 to AI);
 		mygame.btnNewButton.setEnabled(false);
-		
+
 		while(player_number(mygame) > 1)
-		{	
-			for(i=0; i<game.max_p_size; i++){
-				//debug
-				//System.out.println(mygame.p_in_jail[i]);
-				//end debug
+		{
+			for(i=0; i<game.max_p_size; i++) {
 				if(i == mygame.turn){
-					if(9 == mygame.p_type[i]){
+					if(9 == mygame.p_type[i]) {
 						mygame.turn = (mygame.turn + 1) % game.max_p_size;
-						continue;
-					}
-					else if(mygame.p_stop[i] > 0){
+					} else if(mygame.p_stop[i] > 0) {
 						mygame.p_stop[i]--;
-						if(1 == mygame.p_in_jail[i])mygame.p_status[i] =  "In jail. Stop "+mygame.p_stop[mygame.turn]+" turn.";
-						else{ 
-							mygame.p_status[i] = "Stop "+mygame.p_stop[mygame.turn]+" turn.";
+						if (1 == mygame.p_in_jail[i]) {
+							mygame.p_status[i] =  "In jail. Stop " + mygame.p_stop[mygame.turn] + " turn.";
+						} else {
+							mygame.p_status[i] = "Stop " + mygame.p_stop[mygame.turn] + " turn.";
 						}
 						mygame.turn = (mygame.turn + 1) % game.max_p_size;
-						continue;
-					}
-					else{
+					} else {
 						mygame.p_in_jail[i] = 0;
 						mygame.p_status[i] = "0";
-						if(false == mygame.move_start && 0 == mygame.p_type[i]){
+						if (false == mygame.move_start && 0 == mygame.p_type[i]) {
 							mygame.btnNewButton.setEnabled(true);
 							break;
-						}
-						else if(1 == mygame.p_type[i]){
+						} else if(1 == mygame.p_type[i]) {
 							mygame.dice.Roll_Dice();
 							mygame.move_start = true;
 							mygame.p_dest_id[i] = (mygame.p_id[i] + mygame.dice.count) % game_map.Size;
@@ -76,79 +64,84 @@ public class Game_Loop implements Runnable{
 					}
 				}
 			}
-			
+
 			// if p_money < 0
-			for(i=0;i<game.max_p_size;i++){
-				if(9 == mygame.p_type[i]){
-					continue;
-				}
-				else{
-					if(mygame.p_money[i] < 0){
-						for(j=0;j<game_map.Size;j++){
-							if(i + 1 == game_map.owner[j]){
+			for (i=0; i<game.max_p_size; i++) {
+				if (9 != mygame.p_type[i]) {
+					if (mygame.p_money[i] < 0) {
+						for (j=0; j<game_map.Size; j++) {
+							if(i + 1 == game_map.owner[j]) {
 								game_map.owner[j] = 0;
 								game_map.level[j] = 0;
 							}
 						}
-						
+
 						mygame.p_status[i] = "Broken";
 						mygame.p_type[i] = 9;
 					}
 				}
 			}
-			
+
 			jf.repaint();
 			//mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
-			
-			
-			while(mygame.p_id[0] != mygame.p_dest_id[0] || mygame.p_id[1] != mygame.p_dest_id[1] || mygame.p_id[2] != mygame.p_dest_id[2] || mygame.p_id[3] != mygame.p_dest_id[3]){
+
+			while (mygame.p_id[0] != mygame.p_dest_id[0]
+					|| mygame.p_id[1] != mygame.p_dest_id[1]
+					|| mygame.p_id[2] != mygame.p_dest_id[2]
+					|| mygame.p_id[3] != mygame.p_dest_id[3])
+			{
 				try {
-					Thread.sleep(5);
-				} catch (InterruptedException e) {
+					Thread.sleep((long) Math.max(1, speedModifier * 5));
+				} catch (final InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
-				for(i=0; i<game.max_p_size; i++){
-					if(mygame.p_id[i] != mygame.p_dest_id[i]){
-						if(false == no_cross_cash[i] && 0 == mygame.p_id[i]){
+				for (i=0; i<game.max_p_size; i++) {
+					if (mygame.p_id[i] != mygame.p_dest_id[i]) {
+						if (false == no_cross_cash[i] && 0 == mygame.p_id[i]) {
 							no_cross_cash[i] = true;
 							mygame.deal(mygame.cross_cash, i, "Get: ");
 						}
-						if(mygame.p_x_now[i] == game_map.p_x[i][(mygame.p_id[i]+1)%game_map.Size] && mygame.p_y_now[i] == game_map.p_y[i][(mygame.p_id[i]+1)%game_map.Size]) {
-							mygame.p_id[i] = (mygame.p_id[i]+1)%game_map.Size;
+						if (mygame.p_x_now[i] == game_map.p_x[i][(mygame.p_id[i]+1) % game_map.Size]
+								&& mygame.p_y_now[i] == game_map.p_y[i][(mygame.p_id[i]+1) % game_map.Size])
+						{
+							mygame.p_id[i] = (mygame.p_id[i]+1) % game_map.Size;
 						}
-						if(mygame.p_x_now[i] != game_map.p_x[i][(mygame.p_id[i]+1)%game_map.Size]){
-							one_step = game_map.p_x[i][(mygame.p_id[i]+1)%game_map.Size] > mygame.p_x_now[i] ? 1 : -1;
+						if (mygame.p_x_now[i] != game_map.p_x[i][(mygame.p_id[i]+1) % game_map.Size])
+						{
+							one_step = (game_map.p_x[i][(mygame.p_id[i]+1) % game_map.Size] > mygame.p_x_now[i]) ? 1 : -1;
 							mygame.p_x_now[i] = mygame.p_x_now[i] + one_step;
 						}
-						if(mygame.p_y_now[i] != game_map.p_y[i][(mygame.p_id[i]+1)%game_map.Size]){
-							one_step = game_map.p_y[i][(mygame.p_id[i]+1)%game_map.Size] > mygame.p_y_now[i] ? 1 : -1;
+						if (mygame.p_y_now[i] != game_map.p_y[i][(mygame.p_id[i]+1) % game_map.Size])
+						{
+							one_step = (game_map.p_y[i][(mygame.p_id[i]+1) % game_map.Size] > mygame.p_y_now[i]) ? 1 : -1;
 							mygame.p_y_now[i] = mygame.p_y_now[i] + one_step;
 						}
 					}
-					if(i == mygame.turn && true == mygame.move_start && mygame.p_id[i] == mygame.p_dest_id[i]){
+					if (i == mygame.turn
+							&& true == mygame.move_start
+							&& mygame.p_id[i] == mygame.p_dest_id[i])
+					{
 						mygame.move_start = false;
 						id = mygame.p_dest_id[mygame.turn];
-						if(0 == mygame.p_dest_id[i])no_cross_cash[i] = true;
-						else no_cross_cash[i] = false;
+						no_cross_cash[i] = (0 == mygame.p_dest_id[i]);
 						//land: 0 == mygame.p_type[mygame.turn]
-						if(0 == game_map.type[id] && 0 == mygame.p_type[mygame.turn]){
+						if (0 == game_map.type[id] && 0 == mygame.p_type[mygame.turn]) {
 							susp = true;
-							if(0 == game_map.owner[id])
+							if (0 == game_map.owner[id]) {
 								buy_land.show();
-							else if(mygame.turn + 1 == game_map.owner[id]){
+							} else if (mygame.turn + 1 == game_map.owner[id]) {
 								build_house.show();
-							}
-							else{
+							} else {
 								//pay for land owner
 								payout();
 								susp = false;
 							}
-							while(true == susp){
+							while(true == susp) {
 								try {
-									Thread.sleep(500);
-								} catch (InterruptedException e) {
+									Thread.sleep((long) (speedModifier * 500));
+								} catch (final InterruptedException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
@@ -170,7 +163,7 @@ public class Game_Loop implements Runnable{
 						else if(2 == game_map.type[id]){
 							Random rand = new Random();
 							n = rand.nextInt(11);
-							
+
 							if(n < 3){
 								cash = 100*(rand.nextInt(30)+1);
 								mygame.deal((-1)*cash, mygame.turn, "Lost: ");
@@ -196,7 +189,7 @@ public class Game_Loop implements Runnable{
 								forward();
 								jf.repaint();
 								try {
-									Thread.sleep(2000);
+									Thread.sleep((long) (speedModifier * 2000));
 								} catch (InterruptedException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -236,7 +229,7 @@ public class Game_Loop implements Runnable{
 						if(1 == mygame.p_type[mygame.turn]){//p_type == AI
 							jf.repaint();
 							try {
-								Thread.sleep(2000);
+								Thread.sleep((long) (speedModifier * 2000));
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -246,7 +239,7 @@ public class Game_Loop implements Runnable{
 					}
 					//System.out.println(mygame.turn);
 				}//for max_p_size
-				
+
 				jf.repaint();
 				//mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);
 			}///while(mygame.p_id[0] != mygame.p_dest_id[0] ...)
@@ -268,10 +261,10 @@ public class Game_Loop implements Runnable{
 		long fee;
 		int id, doub, owner;
 		id = mygame.p_dest_id[mygame.turn];
-		
-		doub = mygame.double_fee(game_map, id);		
+
+		doub = mygame.double_fee(game_map, id);
 		fee = mygame.toll(game_map, doub, id);
-		
+
 		owner = game_map.owner[id] - 1;
 		if(1 == mygame.p_in_jail[owner])return;
 		else{
@@ -305,7 +298,7 @@ public class Game_Loop implements Runnable{
 	}
 	public void go_jail(){
 		int turn_id = mygame.turn;
-		
+
 		mygame.p_in_jail[turn_id] = 1;
 		mygame.move_start = true;
 		mygame.p_id[turn_id] = (game_map.jail_id-1)%game_map.Size;
@@ -349,7 +342,7 @@ public class Game_Loop implements Runnable{
 		mygame.p_stop[turn_id] = stop_turn;
 		//Bug issue (Can't reproduce):
 		//go to Jail big block area should NOT Stop 3 turns , go to Jail only if on "go to Jail" block (won't fix)
-		
+
 		if(1 == mygame.p_in_jail[turn_id])mygame.p_status[turn_id] =  "In jail. Stop "+stop_turn+" turn.";
 		else mygame.p_status[turn_id] = "Stop "+stop_turn+" turn.";
 	}

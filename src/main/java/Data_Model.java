@@ -1,26 +1,40 @@
-import java.util.Vector;
 
-import javax.swing.table.*;
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
 
-class Data_Model extends AbstractTableModel{
-			  /**
-	 * 
-	 */
+class Data_Model extends AbstractTableModel {
+
 	private static final long serialVersionUID = 1L;
-	Vector<String> columnNames;
-	Vector<Object> rowData;
-			
-	Data_Model(Vector<Object> data1, Vector<String> Column_Name){
-		columnNames = Column_Name;
-		rowData = data1;
-	};
-	public String getColumnName(int column) {
-		return columnNames.elementAt(column);
+	private final List<String> columnNames;
+	private final List<List<?>> rowData;
+
+	Data_Model(final List<List<?>> rowData, final List<String> columnNames) {
+		this.columnNames = columnNames;
+		this.rowData = rowData;
 	}
-	public int getColumnCount() { return columnNames.size(); }
-	public int getRowCount() { return rowData.size();}
-	public Object getValueAt(int row, int col) { return ((Vector<?>) rowData.get(row)).get(col); }
-	public Class<? extends Object> getColumnClass(int column) {
-		return (getValueAt(0, column).getClass());
+
+	@Override
+	public String getColumnName(final int column) {
+		return columnNames.get(column);
+	}
+
+	@Override
+	public int getColumnCount() {
+		return columnNames.size();
+	}
+
+	@Override
+	public int getRowCount() {
+		return rowData.size();
+	}
+
+	@Override
+	public Object getValueAt(final int row, final int col) {
+		return rowData.get(row).get(col);
+	}
+
+	@Override
+	public Class<? extends Object> getColumnClass(final int column) {
+		return getValueAt(0, column).getClass();
 	}
 }

@@ -36,3 +36,16 @@ Image or Sound from these projects or the Internet:
 11. Toll free if land owner is in jail
 12. Player exceed start point will give $2000, but $0 if on the start point
 13. Go to jail stop 3 turns
+
+## How to build and run
+
+to build:
+
+	mvn package
+
+to run:
+
+	mvn exec:java
+	# or
+	java -jar target/random-big-rich-man-*.jar
+

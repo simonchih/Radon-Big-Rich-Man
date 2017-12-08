@@ -60,7 +60,7 @@ public class Game_Loop implements Runnable {
 					} else if (mygame.p_stop[i] > 0) {
 						mygame.p_stop[i]--;
 						if (1 == mygame.p_in_jail[i]) {
-							mygame.p_status[i] =  "In jail. Stop " + mygame.p_stop[mygame.turn] + " turn.";
+							mygame.p_status[i] = "In jail. Stop " + mygame.p_stop[mygame.turn] + " turn.";
 						} else {
 							mygame.p_status[i] = "Stop " + mygame.p_stop[mygame.turn] + " turn.";
 						}
@@ -363,7 +363,7 @@ public class Game_Loop implements Runnable {
 		//go to Jail big block area should NOT Stop 3 turns , go to Jail only if on "go to Jail" block (won't fix)
 
 		if (1 == mygame.p_in_jail[turn_id]) {
-			mygame.p_status[turn_id] =  "In jail. Stop " + stop_turn + " turn.";
+			mygame.p_status[turn_id] = "In jail. Stop " + stop_turn + " turn.";
 		} else {
 			mygame.p_status[turn_id] = "Stop " + stop_turn + " turn.";
 		}

@@ -52,12 +52,12 @@ public class Build_House {
 			case 3:
 				h = "hotel";
 				button_name = "Build Hotel";
-				spent = (long) (game_map.value[mygame.p_dest_id[turn_id]]*(0.4));
+				spent = (long) (game_map.value[mygame.p_dest_id[turn_id]] * 0.4);
 				break;
 			default:
 				h = "house";
 				button_name = "Build House";
-				spent = (long) (game_map.value[mygame.p_dest_id[turn_id]]*(0.2));
+				spent = (long) (game_map.value[mygame.p_dest_id[turn_id]] * 0.2);
 				break;
 		}
 
@@ -93,7 +93,7 @@ public class Build_House {
 		btnNewButton_1.setBounds(219, 214, 188, 23);
 		bh.getContentPane().add(btnNewButton_1);
 
-		final JLabel lblNewLabel_1 = new JLabel("Do you want to spent $"+ spent+" to build a "+h+"?");
+		final JLabel lblNewLabel_1 = new JLabel("Do you want to spent $" + spent + " to build a " + h + "?");
 		lblNewLabel_1.setBounds(20, 26, 404, 15);
 		bh.getContentPane().add(lblNewLabel_1);
 

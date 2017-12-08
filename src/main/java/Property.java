@@ -62,7 +62,7 @@ public class Property {
 		frame.setSize(650, 300);
 		frame.getContentPane().add(tabp);
 		frame.setVisible(true);
-    }
+	}
 	/**
 	 * @param game_map
 	 * @wbp.parser.entryPoint

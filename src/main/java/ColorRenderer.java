@@ -11,15 +11,19 @@ public class ColorRenderer extends JLabel implements TableCellRenderer {
 	private static final long serialVersionUID = 1L;
 
 	public ColorRenderer(boolean isBordered) {
-        setOpaque(true); // MUST do this for background to show up.
-    }
+		setOpaque(true); // MUST do this for background to show up.
+	}
 
 	@Override
-    public Component getTableCellRendererComponent(
-                            JTable table, Object color,
-                            boolean isSelected, boolean hasFocus,
-                            int row, int column) {
-        setBackground((Color)color);
-        return this;
-    }
+	public Component getTableCellRendererComponent(
+			final JTable table,
+			final Object color,
+			final boolean isSelected,
+			final boolean hasFocus,
+			final int row,
+			final int column)
+	{
+		setBackground((Color)color);
+		return this;
+	}
 }

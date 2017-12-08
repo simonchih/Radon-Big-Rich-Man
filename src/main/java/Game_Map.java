@@ -58,7 +58,7 @@ public class Game_Map {
 		else if (Color.orange == c) return 4;
 		else if (Color.pink == c) return 5;
 		else if (Color.yellow == c) return 6;
-		else if (Color.gray == c) return  7;
+		else if (Color.gray == c) return 7;
 		else
 			// impossible
 			return -1;

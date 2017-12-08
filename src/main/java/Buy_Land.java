@@ -24,7 +24,7 @@ import javax.swing.JLabel;
 public class Buy_Land {
 
 	public game mygame;
-	public  mcanvas mycanvas;
+	public mcanvas mycanvas;
 	public Game_Map game_map;
 	public Game_Loop mygl;
 	public JFrame bl;

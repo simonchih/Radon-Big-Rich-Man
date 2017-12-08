@@ -112,22 +112,22 @@ public class game {
 	//playSound modified from http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
 	//I personally made this code that works fine. I think it only works with .wav format.
 	public static synchronized void playSound(final String url) {
-		  new Thread(new Runnable() {
-		  // The wrapper thread is unnecessary, unless it blocks on the
-		  // Clip finishing
+		new Thread(new Runnable() {
+			// The wrapper thread is unnecessary, unless it blocks on the
+			// Clip finishing
 			@Override
-		    public void run() {
-		      try {
-		        final Clip clip = AudioSystem.getClip();
-		        final AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-		        game.class.getResource(url));
-		        clip.open(inputStream);
-		        clip.start();
-		      } catch (final IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-		        System.err.println(e.getMessage());
-		      }
-		    }
-		  }).start();
+			public void run() {
+				try {
+					final Clip clip = AudioSystem.getClip();
+					final AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+							game.class.getResource(url));
+					clip.open(inputStream);
+					clip.start();
+				} catch (final IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+					System.err.println(e.getMessage());
+				}
+			}
+		}).start();
 		}
 
 	public void deal(final long cash, final int turn_id, final String event) {

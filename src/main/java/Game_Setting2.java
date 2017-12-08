@@ -127,9 +127,10 @@ public class Game_Setting2 {
 				final List<ImageIcon> listp = new ArrayList<>(Arrays.asList(parray));
 				listp.remove(Game.p_icon[0]);
 				parray = listp.toArray(new ImageIcon[0]);
-				try{
+
+				try {
 					Game.p_name[playerIdx] = dtrpnPlayer.getText();
-				} catch(final Exception e1){
+				} catch(final Exception e1) {
 					lblErrorValue.setVisible(true);
 					return;
 				}

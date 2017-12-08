@@ -32,7 +32,7 @@ public class Game_Setting {
 	public JFrame games1 = new JFrame("Player" + playerNum + " Setting");
 	public Game_Setting2 gs2 = new Game_Setting2();
 
-	public Game_Setting(){
+	public Game_Setting() {
 		games1.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
 
@@ -41,7 +41,7 @@ public class Game_Setting {
 	 * @param Game
 	 * @wbp.parser.entryPoint
 	 */
-	public void show(final JFrame f, final game Game){
+	public void show(final JFrame f, final game Game) {
 		games1.getContentPane().removeAll();
 		games1.setSize(450, 320);
 		games1.getContentPane().setLayout(null);
@@ -114,6 +114,7 @@ public class Game_Setting {
 			public void actionPerformed(ActionEvent e) {
 				ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
 				ImageIcon parray[] = new ImageIcon[] {Game.imagep1, Game.imagep2, Game.imagep3, Game.imagep4, Game.imagep5, Game.imagep6, Game.imagep7, Game.imagep8};
+
 				try {
 					Game.p_name[playerIdx] = dtrpnPlayer.getText();
 				} catch(final Exception e1) {

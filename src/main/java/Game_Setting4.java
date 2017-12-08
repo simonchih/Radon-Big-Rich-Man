@@ -79,9 +79,7 @@ public class Game_Setting4 {
 		ImageIcon array[] = new ImageIcon[] {Game.image1, Game.image2, Game.image3, Game.image4, Game.image5, Game.image6, Game.image7, Game.image8};
 		final List<ImageIcon> list = new ArrayList<>(Arrays.asList(array));
 		list.remove(Game.p_icon[0]);
-//		array = list.toArray(new ImageIcon[0]);
 		list.remove(Game.p_icon[1]);
-//		array = list.toArray(new ImageIcon[0]);
 		list.remove(Game.p_icon[2]);
 		array = list.toArray(new ImageIcon[0]);
 		comboBox_1.setModel(new DefaultComboBoxModel<>(array));
@@ -129,22 +127,18 @@ public class Game_Setting4 {
 
 				final List<ImageIcon> list = new ArrayList<>(Arrays.asList(array));
 				list.remove(Game.p_icon[0]);
-//				array = list.toArray(new ImageIcon[0]);
 				list.remove(Game.p_icon[1]);
-//				array = list.toArray(new ImageIcon[0]);
 				list.remove(Game.p_icon[2]);
 				array = list.toArray(new ImageIcon[0]);
 				final List<ImageIcon> listp = new ArrayList<>(Arrays.asList(parray));
 				listp.remove(Game.p_icon[0]);
-//				parray = listp.toArray(new ImageIcon[0]);
 				listp.remove(Game.p_icon[1]);
-//				parray = listp.toArray(new ImageIcon[0]);
 				listp.remove(Game.p_icon[2]);
 				parray = listp.toArray(new ImageIcon[0]);
 
 				try {
 					Game.p_name[playerIdx] = dtrpnPlayer.getText();
-				} catch(final Exception e1){
+				} catch(final Exception e1) {
 					lblErrorValue.setVisible(true);
 					return;
 				}

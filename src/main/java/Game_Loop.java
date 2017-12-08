@@ -24,14 +24,14 @@ public class Game_Loop implements Runnable {
 	public JFrame jf;
 	public Game mygame;
 	public mcanvas mycanvas;
-	public Game_Map game_map;
+	public GameMap game_map;
 	public BuyLand buy_land;
 	public BuildHouse build_house;
 	public AI ai;
 	public Thread t_game;
 	public boolean susp;
 
-	Game_Loop(final Game game, final mcanvas canvas, final Game_Map gm, final JFrame jframe) {
+	Game_Loop(final Game game, final mcanvas canvas, final GameMap gm, final JFrame jframe) {
 		mygame = game;
 		mycanvas = canvas;
 		game_map = gm;

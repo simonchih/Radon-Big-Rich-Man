@@ -28,13 +28,13 @@ public class MainMap extends JFrame {
 	private static final long serialVersionUID = 1;
 	private static boolean crit = false;
 
-	private Game_Map game_data;
-	private Game_Map ini_map;
+	private GameMap game_data;
+	private GameMap ini_map;
 	private Game_Loop game_loop;
 
 	public MainMap(final Game game) {
-		this.game_data = new Game_Map();
-		this.ini_map = new Game_Map();
+		this.game_data = new GameMap();
+		this.ini_map = new GameMap();
 
 		//ini p_id and p_dest_id, p_status, p_in_jail, p_stop
 		for (int i = 0; i < game.max_p_size; i++) {
@@ -97,9 +97,9 @@ public class MainMap extends JFrame {
 		getContentPane().add(game.btnNewButton);
 	}
 
-	public Game_Map ini_game_map(final Game_Map gdata) {
+	public GameMap ini_game_map(final GameMap gdata) {
 		this.setResizable(false);
-		final Game_Map ini_map = new Game_Map();
+		final GameMap ini_map = new GameMap();
 		Color[] land_color = new Color[]{Color.red, Color.cyan, Color.blue, Color.green, Color.orange, Color.pink, Color.yellow, Color.gray};
 		int index;
 		// ini gdata

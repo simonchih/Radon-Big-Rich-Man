@@ -36,7 +36,7 @@ public class Property {
 		this.frame = new JFrame("Property");
 		mygame = g;
 	}
-	private void AddElementToTable(final List<List<?>> datat, final Game_Map game_map, final int i){
+	private void AddElementToTable(final List<List<?>> datat, final GameMap game_map, final int i){
 		long fee;
 		int doub;
 		boolean db;
@@ -67,7 +67,7 @@ public class Property {
 	 * @param game_map
 	 * @wbp.parser.entryPoint
 	 */
-	protected void show(final Game_Map game_map){
+	protected void show(final GameMap game_map){
 
 		int t_index = 0;
 		String Property = "'s Property";

@@ -25,11 +25,11 @@ public class BuyLand {
 
 	public Game mygame;
 	public mcanvas mycanvas;
-	public Game_Map game_map;
+	public GameMap game_map;
 	public Game_Loop mygl;
 	public JFrame bl;
 
-	BuyLand(final Game game, final Game_Map gm, final Game_Loop gl) {
+	BuyLand(final Game game, final GameMap gm, final Game_Loop gl) {
 		this.bl = new JFrame("Buy Lnad");
 		this.bl.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.mygame = game;

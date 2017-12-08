@@ -24,11 +24,11 @@ import javax.swing.JLabel;
 public class BuildHouse {
 
 	private final Game mygame;
-	private final Game_Map game_map;
+	private final GameMap game_map;
 	private final Game_Loop mygl;
 	private final JFrame bh;
 
-	BuildHouse(final Game game, final Game_Map gm, final Game_Loop gl) {
+	BuildHouse(final Game game, final GameMap gm, final Game_Loop gl) {
 		this.bh = new JFrame("Building");
 		this.bh.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.mygame = game;

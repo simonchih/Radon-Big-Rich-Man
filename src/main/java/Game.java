@@ -138,12 +138,12 @@ public class Game {
 		}
 	}
 
-	public int double_fee(final Game_Map game_map, final int i) {
+	public int double_fee(final GameMap game_map, final int i) {
 		int doub, owner1, owner2, owner3;
 
-		owner1 = game_map.owner[game_map.same_color[Game_Map.color_index(game_map.color[i])][0]];
-		owner2 = game_map.owner[game_map.same_color[Game_Map.color_index(game_map.color[i])][1]];
-		owner3 = game_map.owner[game_map.same_color[Game_Map.color_index(game_map.color[i])][2]];
+		owner1 = game_map.owner[game_map.same_color[GameMap.color_index(game_map.color[i])][0]];
+		owner2 = game_map.owner[game_map.same_color[GameMap.color_index(game_map.color[i])][1]];
+		owner3 = game_map.owner[game_map.same_color[GameMap.color_index(game_map.color[i])][2]];
 		if (owner1 == owner2 && owner2 == owner3) {
 			doub = 2;
 		} else {
@@ -153,7 +153,7 @@ public class Game {
 		return doub;
 	}
 
-	public long toll(final Game_Map game_map, final int doub, final int i) {
+	public long toll(final GameMap game_map, final int doub, final int i) {
 		long fee, basic_money;
 
 		basic_money = (long)(0.2 * game_map.value[i]);

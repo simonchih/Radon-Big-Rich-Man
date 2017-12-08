@@ -17,9 +17,9 @@
 public class AI {
 
 	private final Game mygame;
-	private final Game_Map game_map;
+	private final GameMap game_map;
 
-	public AI(final Game game, final Game_Map gm, final Game_Loop gl) {
+	public AI(final Game game, final GameMap gm, final Game_Loop gl) {
 		this.mygame = game;
 		this.game_map = gm;
 	}

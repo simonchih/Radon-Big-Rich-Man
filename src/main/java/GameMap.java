@@ -16,7 +16,7 @@
 
 import java.awt.Color;
 
-public class Game_Map {
+public class GameMap {
 
 	final int Size = 40;
 	final int color_size = 8;

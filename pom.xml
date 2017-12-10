@@ -6,7 +6,7 @@
 		<project.build.sourceEncoding>${project.build.encoding}</project.build.sourceEncoding>
 		<project.build.resourceEncoding>${project.build.encoding}</project.build.resourceEncoding>
 
-		<project.mainClass>game</project.mainClass>
+		<project.mainClass>Game</project.mainClass>
 	</properties>
 
 	<groupId>random-big-rich-man</groupId>

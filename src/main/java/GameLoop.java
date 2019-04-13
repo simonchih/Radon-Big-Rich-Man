@@ -99,6 +99,8 @@ public class GameLoop implements Runnable {
 					}
 				}
 			}
+            
+            if (playerNumber(mygame) <= 1)break; // End Game
 
 			jf.repaint();
 			//mycanvas.paintImmediately(0, 0, mycanvas.max_size, mycanvas.max_size);

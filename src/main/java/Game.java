@@ -67,6 +67,8 @@ public class Game {
 	public ImageIcon iquestionmark_left = new ImageIcon(Game.class.getResource("/Image/questionmark_60x79_left.png"));
 	public ImageIcon iquestionmark_right = new ImageIcon(Game.class.getResource("/Image/questionmark_60x79_right.png"));
 	public ImageIcon iquestionmark_up = new ImageIcon(Game.class.getResource("/Image/questionmark_60x79_up.png"));
+    
+    public ImageIcon isqmark = new ImageIcon(Game.class.getResource("/Image/sqmark_8x11.png"));
 
 	public static final String s36_1 = "Go to";
 	public static final String s36_2 = "Jail";
@@ -89,6 +91,8 @@ public class Game {
 	/** 0: player1 */
 	public int turn;
 	public boolean move_start;
+    /** true: show small question mark */
+    public boolean[] pshow_sqmark;
 	/** 0: player 1, 3: player 4 */
 	public String[] p_name;
 	/** 0:human, 1:AI, 9:out */
@@ -97,6 +101,8 @@ public class Game {
 	public ImageIcon[] p_ic;
 	public ImageIcon[] p_pawn;
 	public long[] p_money;
+    public int[] p_sqmark_x_now;
+    public int[] p_sqmark_y_now;
 	public int[] p_x_now;
 	public int[] p_y_now;
 	public int[] p_id;
@@ -125,8 +131,10 @@ public class Game {
 		this.hospital_fee = 1000;
 		this.cross_cash = 2000;
 		this.p_pawn = new ImageIcon[maxPSize];
+        this.pshow_sqmark = new boolean[maxPSize];
 		this.p_money = new long[maxPSize];
 		this.p_x_now = new int[maxPSize];
+        this.p_sqmark_x_now = new int[maxPSize];
 		this.p_id = new int[maxPSize];
 		this.p_dest_id = new int[maxPSize];
 		this.sp_x = new int[maxPSize];
@@ -135,6 +143,7 @@ public class Game {
 		this.sp_y = new int[maxPSize];
 		this.p_status = new String[maxPSize];
 		this.p_y_now = new int[maxPSize];
+        this.p_sqmark_y_now = new int[maxPSize];
 		this.p_ic = new ImageIcon[maxPSize];
 		this.p_icon = new int[maxPSize];
 		this.p_type = new int[maxPSize];

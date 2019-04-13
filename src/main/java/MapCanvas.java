@@ -541,7 +541,17 @@ public class MapCanvas extends JComponent {
 						mygame.p_pawn[playerIdx].getIconWidth(),
 						mygame.p_pawn[playerIdx].getIconHeight(),
 						null);
-			}
+                //draw small question mark at top of pawn
+                if (true == mygame.pshow_sqmark[playerIdx]){
+                    g.drawImage(
+						mygame.isqmark.getImage(),
+						mygame.p_sqmark_x_now[playerIdx],
+						mygame.p_sqmark_y_now[playerIdx],
+						mygame.isqmark.getIconWidth(),
+						mygame.isqmark.getIconHeight(),
+						null);
+                }
+			}            
 		}
 	}
 

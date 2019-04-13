@@ -39,13 +39,14 @@ public class MainMap extends JFrame {
 		this.game_data = new GameMap();
 		this.ini_map = new GameMap();
 
-		//ini p_id and p_dest_id, p_status, p_in_jail, p_stop
+		//ini p_id and p_dest_id, p_status, p_in_jail, p_stop, pshow_sqmark
 		for (int i = 0; i < game.maxPSize; i++) {
 			game.p_id[i] = 0;
 			game.p_dest_id[i] = 0;
 			game.p_status[i] = "0";
 			game.p_in_jail[i] = 0;
 			game.p_stop[i] = 0;
+            game.pshow_sqmark[i] = false;
 		}
 
 		this.setTitle("Random Big Rich Man");
@@ -322,6 +323,8 @@ public class MainMap extends JFrame {
 		for (int i = 0; i < Game.maxPSize; i++) {
 			game.p_x_now[i] = ini_map.pX[i][0];
 			game.p_y_now[i] = ini_map.pY[i][0];
+            game.p_sqmark_x_now[i] = game.p_x_now[i] + 1;
+            game.p_sqmark_y_now[i] = game.p_y_now[i] - game.isqmark.getIconHeight();
 		}
 
 		MapCanvas canvas = new MapCanvas(ini_map, game);
@@ -467,6 +470,15 @@ public class MainMap extends JFrame {
 		game.p_y_now[2] = ini_map.pY[2][game.p_id[2]];
 		game.p_x_now[3] = ini_map.pX[3][game.p_id[3]];
 		game.p_y_now[3] = ini_map.pY[3][game.p_id[3]];
+        
+        game.p_sqmark_x_now[0] = game.p_x_now[0] + 1;
+        game.p_sqmark_y_now[0] = game.p_y_now[0] - game.isqmark.getIconHeight();
+        game.p_sqmark_x_now[1] = game.p_x_now[1] + 1;
+        game.p_sqmark_y_now[1] = game.p_y_now[1] - game.isqmark.getIconHeight();
+        game.p_sqmark_x_now[2] = game.p_x_now[2] + 1;
+        game.p_sqmark_y_now[2] = game.p_y_now[2] - game.isqmark.getIconHeight();
+        game.p_sqmark_x_now[3] = game.p_x_now[3] + 1;
+        game.p_sqmark_y_now[3] = game.p_y_now[3] - game.isqmark.getIconHeight();
 
 		//Set all level 0: No house
 		//Set all owner to None

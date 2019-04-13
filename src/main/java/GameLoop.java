@@ -56,7 +56,8 @@ public class GameLoop implements Runnable {
 			for (int i = 0; i < Game.maxPSize; i++) {
 				if (i == mygame.turn) {
 					if (9 == mygame.p_type[i]) {
-						mygame.turn = (mygame.turn + 1) % Game.maxPSize;
+                        mygame.pshow_sqmark[mygame.turn] = false;
+						mygame.turn = (mygame.turn + 1) % Game.maxPSize;    
 					} else if (mygame.p_stop[i] > 0) {
 						mygame.p_stop[i]--;
 						if (1 == mygame.p_in_jail[i]) {
@@ -64,7 +65,8 @@ public class GameLoop implements Runnable {
 						} else {
 							mygame.p_status[i] = "Stop " + mygame.p_stop[mygame.turn] + " turn.";
 						}
-						mygame.turn = (mygame.turn + 1) % Game.maxPSize;
+						mygame.pshow_sqmark[mygame.turn] = false;
+                        mygame.turn = (mygame.turn + 1) % Game.maxPSize;
 					} else {
 						mygame.p_in_jail[i] = 0;
 						mygame.p_status[i] = "0";
@@ -128,11 +130,13 @@ public class GameLoop implements Runnable {
 						{
 							one_step = (gameMap.pX[i][(mygame.p_id[i] + 1) % gameMap.size] > mygame.p_x_now[i]) ? 1 : -1;
 							mygame.p_x_now[i] = mygame.p_x_now[i] + one_step;
+                            mygame.p_sqmark_x_now[i] = mygame.p_x_now[i] + 1;
 						}
 						if (mygame.p_y_now[i] != gameMap.pY[i][(mygame.p_id[i] + 1) % gameMap.size])
 						{
 							one_step = (gameMap.pY[i][(mygame.p_id[i] + 1) % gameMap.size] > mygame.p_y_now[i]) ? 1 : -1;
 							mygame.p_y_now[i] = mygame.p_y_now[i] + one_step;
+                            mygame.p_sqmark_y_now[i] = mygame.p_y_now[i] - mygame.isqmark.getIconHeight();
 						}
 					}
 					if (i == mygame.turn
@@ -175,6 +179,9 @@ public class GameLoop implements Runnable {
 						}
 						// Chance: 2 == gameMap.type[id]
 						else if (2 == gameMap.type[id]) {
+                            mygame.pshow_sqmark[mygame.turn] = true;
+                            jf.repaint();
+                            
 							final Random rand = mygame.getRandom();
 							n = rand.nextInt(11);
 
@@ -250,6 +257,7 @@ public class GameLoop implements Runnable {
 								e.printStackTrace();
 							}
 						}
+                        mygame.pshow_sqmark[mygame.turn] = false;
 						mygame.turn = (mygame.turn + 1) % Game.maxPSize;
 					}
 				}

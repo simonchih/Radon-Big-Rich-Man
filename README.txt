@@ -6,6 +6,13 @@ monopolie-0.9.7
 Install precondition:
 Install java 1.8.0
 
+FAQ:
+Q: I alreay install Java but when I try to execute random-big-rich-man-*.exe it shows Java not found error.
+How do I do?
+A: You need to set the JAVA_HOME environment variable to your JDK or JRE base path, 
+e.g. C:\Program Files\Java\jdk1.8.0_91. For this, go to 
+Control Panel -> System -> Advanced System Settings -> Advanced -> Environment Variables -> System Variables -> New.
+
 Game Feature:
 Random map
 The land name is real TAIWAN Taipei/New Taipei location name
@@ -71,6 +78,11 @@ g. 暫停一個回合
 12. 其它規則，大致跟大富翁遊戲一樣
 
 Q&A.
+Q:我已經安裝好Java了，但是執行random-big-rich-man-*.exe, 它還是說找不到Java, 要怎麼辦？
+A: 你需要設定環境變數 JAVA_HOME 為JDK或JRE的路徑， 
+e.g. C:\Program Files\Java\jdk1.8.0_91. 要這麼做，請到以下位子去設定 
+控制台 -> 系統 -> 進階系統設定 -> 進階 -> 環境變數 -> 系統變數 -> 新增.
+
 Q:為什麼在Player Setting，買地或買房屋時，按"X"來關閉視窗沒反應？
 A:那邊是故意把X關閉功能disable，以避免誤按，請改用當時視窗的button來決定動作。
 

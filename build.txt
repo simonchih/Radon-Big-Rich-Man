@@ -1,0 +1,2 @@
+1. Install Maven and set PATH properly
+2. Open cmd, type "mvn clean install"
